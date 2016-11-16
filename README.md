@@ -1,5 +1,6 @@
 
 
+
 # AzureFastStartForIoT
 
 Welcome to the *Azure Fast Start for IoT*, a series of scenarios designed to help you build basic projects that integrate hardware running on Windows 10 Core with the IoT features of Microsoft Azure.
