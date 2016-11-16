@@ -44,7 +44,7 @@ Connected Campus
 
 ### Find the content for this scenario at [Connected Campus](/Connected Campus)
 
-This project uses Windows IoT Core and Azure to send data to iOS, Android and Windows 10 Universal Windows Apps to inform users whether a room is free and its current environmental conditions such as temperature etc.
+This project uses Windows IoT Core and Azure to send data to iOS, Android and Windows 10 Universal Windows Platform Apps to inform users whether a room is free and its current environmental conditions such as temperature etc.
 
 This scenario is based on a project from [Hackster.io](http://www.hackster.io):-
 
