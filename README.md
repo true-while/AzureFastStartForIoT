@@ -18,5 +18,5 @@ You can find the content for this scenario here XXXXXX
 
 This scenario is made up from two separate projects from [Hackster.io](http://www.hackster.io):-
 
-*__[Security Camera]__(https://microsoft.hackster.io/en-US/windows-iot/security-camera-579b7f)
-*__[Face Detection in Windows 10 IoT core with Oxford Project]__(https://www.hackster.io/dx-lego-china/face-detection-in-windows-10-iot-core-with-oxford-project-509a3b)
+*[Security Camera](https://microsoft.hackster.io/en-US/windows-iot/security-camera-579b7f)
+*[Face Detection in Windows 10 IoT core with Oxford Project](https://www.hackster.io/dx-lego-china/face-detection-in-windows-10-iot-core-with-oxford-project-509a3b)
