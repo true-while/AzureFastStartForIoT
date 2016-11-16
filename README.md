@@ -55,3 +55,14 @@ Credits for these projects are as follows:-
 
 * [Intelligent Multi-Conference Room using UWP App and Azure](https://microsoft.hackster.io/en-US/Kishore10211/intelligent-multi-conference-room-using-uwp-app-and-azure-620b1d) - Made by [Kishore Gaddam](https://microsoft.hackster.io/en-US/Kishore10211).
 
+Roadmap
+-------
+
+The following scenarios will be added at some point in the future:
+
+| Scenario        | Title         | Links  |
+| ------------- |:-------------:| -----:|
+| Remote Patient Monitoring and Clinical Analytics | EKG monitor with Cortana Analytics.| [building-a-electrocardiogram](https://microsoft.hackster.io/en-US/phantom_override/building-a-electrocardiogram-with-windows-iot-and-azure-8b2b44) |
+| Windows IoT device interactive with Cortana     |      | [interactive-with-cortana](https://www.hackster.io/ada-plasma-1f5c36/windows-iot-device-interactive-with-cortana-046906) |
+| Mobile Worker Enablement | Speech Recognition with Cortana Analytics. |  [speech-controlled-robot](https://www.hackster.io/AnuragVasanwala/speech-controlled-robot-49744c) & [interactive-with-cortana](https://www.hackster.io/ada-plasma-1f5c36/windows-iot-device-interactive-with-cortana-046906) |
+
