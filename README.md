@@ -1,3 +1,5 @@
+
+
 # AzureFastStartForIoT
 
 Welcome to the *Azure Fast Start for IoT*, a series of scenarios designed to help you build basic projects that integrate hardware running on Windows 10 Core with the IoT features of Microsoft Azure.
@@ -10,3 +12,11 @@ Fraud Prevention
 ----------------
 
 Build a system which uses the camera attached to your Windows 10 Core device to scan the face of a person entering a building and automatically open the door for a recognised employee. This scenario will leverage Windows 10 IoT, Azure for storage and Machine Learning for data processing.
+
+You can find the content for this scenario here XXXXXX
+
+This scenario is made up from two separate projects from [Hackster.io](http://www.hackster.io):-
+
+__[Security Camera]__(https://microsoft.hackster.io/en-US/windows-iot/security-camera-579b7f)
+and
+__[Face Detection in Windows 10 IoT core with Oxford Project]__(https://www.hackster.io/dx-lego-china/face-detection-in-windows-10-iot-core-with-oxford-project-509a3b)
