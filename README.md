@@ -9,7 +9,7 @@ The three scenarios currently available are:
 Fraud Prevention
 ----------------
 
-### Find the content for this scenario at XXXXXXX
+### Find the content for this scenario at [Fraud Detection](/Fraud Detection)
 
 Build a system which uses the camera attached to your Windows 10 Core device to scan the face of a person entering a building and automatically open the door for a recognised employee. This scenario will leverage Windows 10 IoT, Azure Storage Accounts and Machine Learning with Cortana for data processing.
 
@@ -22,4 +22,6 @@ Credits for these projects are as follows:-
 
 [Security Camera](https://microsoft.hackster.io/en-US/windows-iot/security-camera-579b7f) - Made by Windows IoT team ([Matt McKee](https://microsoft.hackster.io/en-US/mwmckee), [Aparajita Dutta](https://microsoft.hackster.io/en-US/apdutta), [Windows IoT](https://microsoft.hackster.io/en-US/windowsiot), [Jon Gallant](https://microsoft.hackster.io/en-US/jongallant), [Masato Sudo](https://microsoft.hackster.io/en-US/mazudo), [Shawn Foltz](https://microsoft.hackster.io/en-US/ShawnFoltz))
 
+
+[Face Detection in Windows 10 IoT core with Oxford Project](https://www.hackster.io/dx-lego-china/face-detection-in-windows-10-iot-core-with-oxford-project-509a3b) - Made by Team DX LEGO CHINA [Zepeng She](https://www.hackster.io/cheneyszp)
 
