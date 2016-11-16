@@ -9,9 +9,9 @@ The three scenarios currently available are:
 Fraud Prevention
 ----------------
 
-Build a system which uses the camera attached to your Windows 10 Core device to scan the face of a person entering a building and automatically open the door for a recognised employee. This scenario will leverage Windows 10 IoT, Azure for storage and Machine Learning for data processing.
+### Find the content for this scenario at XXXXXXX
 
-You can find the content for this scenario here XXXXXX
+Build a system which uses the camera attached to your Windows 10 Core device to scan the face of a person entering a building and automatically open the door for a recognised employee. This scenario will leverage Windows 10 IoT, Azure for storage and Machine Learning for data processing.
 
 This scenario is made up from two separate projects from [Hackster.io](http://www.hackster.io):-
 
