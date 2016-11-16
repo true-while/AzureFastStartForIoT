@@ -16,22 +16,33 @@ This basic system will detect movement near the camera and trigger it to take a 
  -----------
 
 * Set up your PC and RPi according to these [instructions](http://ms-iot.github.io/content/en-US/win10/SetupPCRPI.htm).
-* Next, wire the PIR sensor as shown in the image below being sure to use 10 kΩ pull-up resistor.
+* Wire the PIR sensor as shown in the image below being sure to use 10 kΩ pull-up resistor.
 
 ![Connect the following using a 10 kΩ pull-up resistor.](https://hackster.imgix.net/uploads/image/file/68626/PIR_bb.png?auto=compress%2Cformat&amp;w=680&amp;h=510&amp;fit=max "Connect the following using a 10 kΩ pull-up resistor.")
 
  Software Setup
  --------------
 
-* Use Command Prompt to navigate to the folder where you want the project: `cd` 
-* Run the git clone command: `git clone https://github.com/ms-iot/securitysystem.git`
+* Create a new folder to store the sample projects you'll soon download. Call this something short, e.g. c:\iotproject
+* Use the Command Prompt to navigate to the new folder where you want the project: `cd c:\iotproject` 
+* Run the git clone command: `git clone https://github.com/ms-iot/securitysystem.git` to download a copy of the basic UWP application which takes photos and uploads them to Azure Blob Storage.
 * Change directory to the project root folder: `cd securitysystem`
 * Next, get the submodules for the USB camera and the PIR sensor by running the following commands: `git submodule init` followed by `git submodule update`
-* Open the SecuritySystemUWP.sln solution file, in the SecuritySystemUWP folder, using Visual Studio 2015. 
+* Open the SecuritySystemUWP.sln solution file, in the SecuritySystemUWP folder, using Visual Studio 2015.
+* Right-click on the __com.microsoft.maker.SecuritySystem__ project and select "Build". This will download nuget packages and compile this project.
+* Repeat the process for the __OneDriveConnector__, __PirSensor__ and __UsbCamera__ projects. 
+* Finally repeat for the __SecuritySystemUWP__ project.
+* From the Solution Explorer, right-click on the Solution name (SecuritySystemUWP) and choose *Configuration Manager*.
+![Choosing the right build settings](http:// "")
+
+ 
 * On the top menu of Visual Studio, select Debug and ARM if you are using a Raspberry Pi. If you're using an MBM, select Debug and x86.
 * Next click Build -> Clean Solution. Wait for the solution to clean successfully. 
 * Select Remote Machine. You will have to enter your Remote Machine IP address and use "Universal (Unencrypted Protocol)" for Authentication Mode. *Use WindowsIoTCoreWatcher to find your IP address*.
 * You can now run the code!
+
+            ICamera cam = App.Controller.Camera;
+            await cam.TriggerCapture();
 
 Running the Web App
 -------------------
