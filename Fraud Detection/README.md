@@ -33,7 +33,7 @@ This basic system will detect movement near the camera and trigger it to take a 
 * Repeat the process for the __OneDriveConnector__, __PirSensor__ and __UsbCamera__ projects. 
 * Finally repeat for the __SecuritySystemUWP__ project.
 * From the Solution Explorer, right-click on the Solution name (SecuritySystemUWP) and choose *Configuration Manager*.
-![Choosing the right build settings](http:// "")
+![Choosing the right build settings](images/configsettings.PNG  "Choosing the right build settings")
 
  
 * On the top menu of Visual Studio, select Debug and ARM if you are using a Raspberry Pi. If you're using an MBM, select Debug and x86.
