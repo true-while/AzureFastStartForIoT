@@ -23,10 +23,10 @@ Credits for these projects are as follows:-
 * [Security Camera](https://microsoft.hackster.io/en-US/windows-iot/security-camera-579b7f) - Made by Windows IoT team ([Matt McKee](https://microsoft.hackster.io/en-US/mwmckee), [Aparajita Dutta](https://microsoft.hackster.io/en-US/apdutta), [Windows IoT](https://microsoft.hackster.io/en-US/windowsiot), [Jon Gallant](https://microsoft.hackster.io/en-US/jongallant), [Masato Sudo](https://microsoft.hackster.io/en-US/mazudo), [Shawn Foltz](https://microsoft.hackster.io/en-US/ShawnFoltz)).
 * [Face Detection in Windows 10 IoT core with Oxford Project](https://www.hackster.io/dx-lego-china/face-detection-in-windows-10-iot-core-with-oxford-project-509a3b) - Made by Team DX LEGO CHINA [Zepeng She](https://www.hackster.io/cheneyszp).
 
-Oil Level Monitoring
----------------------
+Predictive Maintenance
+----------------------
 
-### Find the content for this scenario at [Oil Level Monitoring](/Oil Level Monitoring).
+### Find the content for this scenario at [Predictive Maintenance](/Oil Level Monitoring).
 
 Build a system which uses an external sensor to detect oil levels in a pieces of machinery and relays the information to Azure. The collected data will be used to proactively detect impending maintenance issues and send control signals back to the device. This scenario will build on the Predictive Maintenance scenario which is part of the [Azure IoT Suite](http://wwww.azureiotsuite.com).
 
