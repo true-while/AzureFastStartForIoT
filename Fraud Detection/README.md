@@ -13,3 +13,5 @@ For this project you will attach a regular USB camera to your Windows IoT Core d
 This basic system will detect movement near the camera and trigger it to take a photograph. The image will be uploaded to Azure where Cortana Analytics will analyse the photo.
  __TODO: What will it do with it?__
 
+
+
