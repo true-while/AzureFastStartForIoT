@@ -41,7 +41,7 @@ Software Setup
 
 11.  From the Solution Explorer, right-click on the Solution name (SecuritySystemUWP) and choose *Configuration Manager*.
 
-__TODO: Create screen shot for building against ARM __
+__TODO__ : Create screen shot for building against ARM
 
 ![Choosing the right build settings](images/configsettings.PNG "Choosing the right build settings")
 
