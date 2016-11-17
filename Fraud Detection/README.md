@@ -70,6 +70,8 @@ Manually taking a photograph
 
 If you don't want to or can't setup the PiR detector, you can make a small change to the application to trigger a photo manually.
 
+For devices with an attached monitor you can add a button to the UWPs main application:
+
 1. Open the MainPage.xaml and add a button to the canvas wherever you want.
 2. Set it's content to "Take Photo".
 
@@ -77,8 +79,11 @@ If you don't want to or can't setup the PiR detector, you can make a small chang
 
 3. Double click the button to add and event handler, then add the following code
 
-
             ICamera cam = App.Controller.Camera;
             await cam.TriggerCapture();
 
 4. Rebuild and redeploy your application to your device. You might need to configure the application again with storage type, name and key.
+
+If your device does not have an attached screen, you will have to add a button to the homepage of the apps built-in webserver:
+
+__TODO__ : Add method for creating button on the home htm page.
