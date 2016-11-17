@@ -26,7 +26,7 @@ Credits for these projects are as follows:-
 Predictive Maintenance
 ----------------------
 
-### Find the content for this scenario at [Predictive Maintenance](/Oil Level Monitoring).
+### Find the content for this scenario at [Predictive Maintenance](/Predictive Maintenance).
 
 Build a system which uses an external sensor to detect oil levels in a pieces of machinery and relays the information to Azure. The collected data will be used to proactively detect impending maintenance issues and send control signals back to the device. This scenario will build on the Predictive Maintenance scenario which is part of the [Azure IoT Suite](http://wwww.azureiotsuite.com).
 
