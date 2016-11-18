@@ -23,6 +23,7 @@ Credits for these projects are as follows:-
 * [Security Camera](https://microsoft.hackster.io/en-US/windows-iot/security-camera-579b7f) - Made by Windows IoT team ([Matt McKee](https://microsoft.hackster.io/en-US/mwmckee), [Aparajita Dutta](https://microsoft.hackster.io/en-US/apdutta), [Windows IoT](https://microsoft.hackster.io/en-US/windowsiot), [Jon Gallant](https://microsoft.hackster.io/en-US/jongallant), [Masato Sudo](https://microsoft.hackster.io/en-US/mazudo), [Shawn Foltz](https://microsoft.hackster.io/en-US/ShawnFoltz)).
 * [Face Detection in Windows 10 IoT core with Oxford Project](https://www.hackster.io/dx-lego-china/face-detection-in-windows-10-iot-core-with-oxford-project-509a3b) - Made by Team DX LEGO CHINA [Zepeng She](https://www.hackster.io/cheneyszp).
 
+
 Predictive Maintenance
 ----------------------
 
@@ -38,6 +39,7 @@ This scenario is based on a project from [Hackster.io](http://www.hackster.io):-
 Credit for this project is as follows:-
 
 * [Oil Level Monitoring](https://www.hackster.io/sameerk/oil-level-monitoring-ac01b9) - Made by [Sameer](https://www.hackster.io/sameerk).
+
 
 Connected Campus
 ----------------
@@ -55,6 +57,24 @@ Credits for these projects are as follows:-
 
 * [Intelligent Multi-Conference Room using UWP App and Azure](https://microsoft.hackster.io/en-US/Kishore10211/intelligent-multi-conference-room-using-uwp-app-and-azure-620b1d) - Made by [Kishore Gaddam](https://microsoft.hackster.io/en-US/Kishore10211).
 
+
+Retail Management System and Inventory Optimization
+---------------------------------------------------
+
+### Find the content for this scenario at [Management System and Inventory](/Management System and Inventory)
+
+This scenario uses Windows IoT Core to send information about RFID tagged items to IoT Suite. __What will you do with it then?__
+
+This scenario is based on a project from [Hackster.io](http://www.hackster.io):-
+
+* [long-range-uhf-rfid-item-tracking](https://microsoft.hackster.io/en-US/careypayette/long-range-uhf-rfid-item-tracking-system-fc5372)
+
+Credits for these projects are as follows:-
+
+* [long-range-uhf-rfid-item-tracking](https://microsoft.hackster.io/en-US/careypayette/long-range-uhf-rfid-item-tracking-system-fc5372)
+
+
+
 Roadmap
 -------
 
@@ -63,6 +83,5 @@ The following scenarios will be added at some point in the future:
 | Scenario        | Title         | Links  |
 | ------------- |:-------------:| -----:|
 | Remote Patient Monitoring and Clinical Analytics | EKG monitor with Cortana Analytics.| [building-a-electrocardiogram](https://microsoft.hackster.io/en-US/phantom_override/building-a-electrocardiogram-with-windows-iot-and-azure-8b2b44) |
-| Retail Management System and Inventory Optimization  |  Long Range UHF RFID Item Tracking System  | [long-range-uhf-rfid-item-tracking](https://microsoft.hackster.io/en-US/careypayette/long-range-uhf-rfid-item-tracking-system-fc5372) |
 | Mobile Worker Enablement | Speech Recognition with Cortana Analytics. |  [speech-controlled-robot](https://www.hackster.io/AnuragVasanwala/speech-controlled-robot-49744c) & [interactive-with-cortana](https://www.hackster.io/ada-plasma-1f5c36/windows-iot-device-interactive-with-cortana-046906) |
 
