@@ -42,7 +42,7 @@ The following steps should be carried out on your development machine which has 
 
 All projects should have built with out errors (some warnings about async methods might be seen - these can be ignored).
 
-10.  From the tool bar, choose "Remote Machine" as the target to deploy your application to.
+10. From the tool bar, choose "Remote Machine" as the target to deploy your application to.
 
 ![Choosing the right target setting](images/remotemachine.png "Choosing the right target setting")
 
