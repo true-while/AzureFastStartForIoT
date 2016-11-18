@@ -50,7 +50,7 @@ Configuring the Web App
 =======================
 
 1. Use your web browser to navigate to http://*yourdeviceipaddress*:8000. You will see a landing page for your application running on your device.
-2. Click on the "Settings" link fron the left hand navigation menu.
+2. Click on the "Settings" link from the left hand navigation menu.
 3. Change the Storage type to *Azure* and enter the storage account name and key you saved from earlier. Other settings can be left either blank or at their defaults. __The web server built into the UWP app does not support secured connections so all information is received & sent in the clear - beware!__
 4. Press *Save* at the bottom of the page.
 
