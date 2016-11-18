@@ -41,7 +41,7 @@ The following steps should be carried out on your development machine which has 
 
 8. ![Choosing the right target setting](images/remotemachine.png "Choosing the right target setting")
 
-9. From the pop-up dialog, you should see the name and IP of your device has been autodetected (*minwinpc -- 192.168.1.5* in this case), __click 'select'__  to set it as the target for deployment device. *If your device is not shown, you can manually enter the IP address being sure to use the default authentication mode (i.e. Universal - unencrypted). The chances are however that if you don't see this appearing under "Auto Detected" that your device is not functioning correctly - ensuring it has the correct network connectivity would be first thing to check.*
+9. From the pop-up dialog, you should see the name and IP of your device has been autodetected (*minwinpc -- 192.168.1.5* in this case), __click 'select'__  to set it as the target for deployment device. *If your device is not shown, you can manually enter the IP address being sure to use the default authentication mode (i.e. Universal - unencrypted). The chances are however that if you don't see this appearing under "Auto Detected" that your device 1) is not functioning correctly - ensuring it has working network connectivity would be first thing to check, 2) something else! *
 
 10. ![Remote Machine dialog](images/connections1.png) ![Remote Machine dialog2](images/connections2.png)
 11. You'll now need to tell Visual Studio to compile the application for the ARM platform (which a requirement to run on the RPi). __Right-click__ on the name of your solution in Solution Explorer and choose *"Configuration Manager".* 
@@ -49,45 +49,27 @@ The following steps should be carried out on your development machine which has 
 13. Right-click on the __com.microsoft.maker.SecuritySystem__ project and select "Build". This will download nuget packages and compile this project.
 14. Repeat the process for the __OneDriveConnector__, __PirSensor__ and __UsbCamera__ projects. 
 15. Finally repeat for the __SecuritySystemUWP__ project. *All projects should have built with out errors (some warnings about async methods might be seen - these can be ignored).*
-16. You can now deploy and test the application by pressing `F5`.
+16. You can now deploy and test the application by pressing `F5`. *The first time you deploy an applicatioln it make take some time as required framework updates are installed onto the device - Visual Studio may even display some "This is taking too long messages" - Be patient! Subsequent deployments will be much quicker.*
 
 Configuring the Web App
 =======================
 
 1. Use your web browser to navigate to http://*yourdeviceipaddress*:8000. You will see a landing page for your application running on your device.
 2. Click on the "Settings" link fron the left hand navigation menu.
-3. Change the Storage type to *Azure* and enter the storage account name and key you saved from earlier. Other settings can be left either blank or at their defaults.
+3. Change the Storage type to *Azure* and enter the storage account name and key you saved from earlier. Other settings can be left either blank or at their defaults. __The web server built into the UWP app does not support secured connections so all information is received & sent in the clear - beware!__
 4. Press *Save* at the bottom of the page.
-
 
 ![Configuring the App on the Device via it's web interface](images/appazuresettings.png)
 
 Testing the application
 =======================
 
+1. Attach a USB webcam to the RPi, then wait a few seconds whilst Windows loads the driver. *At the time of writing, the offical RasperyPi camera is not supported on Windows 10 IoT Core :(*
 1. Moving your hand in front of the PiR sensor will cause the USB camera to take a photograph.
-2. The image is storaged in a folder in the Photos folders on the device. You can view it at http://yourdeviceipaddress:8000/gallery.htm
+2. The image has been created in the Pictures folder on the device in a subdirector called XXXX. You can view the new file at http://*yourdeviceipaddress*:8000/gallery.htm or by browsing to \\*yourdeviceipaddress*\c$\Data\Users\DefaultAccount\Pictures\securitysystem-cameradrop\.
 3. Every 60 seconds, these images are uploaded to the Azure blob container you created earlier. The originals on the device are deleted.
 
 Manually taking a photograph
 ============================
 
-If you don't want to or can't setup the PiR detector, you can make a small change to the application to trigger a photo manually.
-
-For devices with an attached monitor you can add a button to the UWPs main application screen:
-
-1. Open the MainPage.xaml and add a button to the canvas wherever you want.
-2. Set it's content to "Take Photo".
-
-![Adding a button to take a photo](images/mainpage.xaml.png "Adding a button to take a photo")
-
-3. Double click the button to add and event handler, then add the following code
-
-            ICamera cam = App.Controller.Camera;
-            await cam.TriggerCapture();
-
-4. Rebuild and redeploy your application to your device. You might need to configure the application again with storage type, name and key.
-
-If your device does not have an attached screen, you will have to add a button to the homepage of the app's built-in webserver:
-
-__TODO__ : Add method for creating button on the home htm page.
+You can manually trigger a the taking of a photo by clicking on the "Action" link on the nav menu, then clicking "Take Photo". 
