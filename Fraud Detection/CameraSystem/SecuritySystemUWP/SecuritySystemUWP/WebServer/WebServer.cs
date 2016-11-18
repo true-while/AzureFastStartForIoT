@@ -370,17 +370,9 @@ namespace SecuritySystemUWP
                         {
                             Debug.WriteLine("Taking photo using the real camera");
 
-                            try
-                            {
-                                ICamera cam = App.Controller.Camera;
-                                await cam.TriggerCapture();
-                                await redirectToPage(NavConstants.GALLERY_PAGE, os);
-                            }
-                            catch (Exception ex)
-                            {
-                                throw ex;
-                            }
-
+                            ICamera cam = App.Controller.Camera;
+                            await cam.TriggerCapture();
+                            await redirectToPage(NavConstants.GALLERY_PAGE, os);
                         }
                         else if (parameters["camera"] == "simulated")
                         {
