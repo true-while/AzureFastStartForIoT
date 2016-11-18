@@ -39,24 +39,20 @@ The following steps should be carried out on your development machine which has 
 7. Right-click on the __com.microsoft.maker.SecuritySystem__ project and select "Build". This will download nuget packages and compile this project.
 8. Repeat the process for the __OneDriveConnector__, __PirSensor__ and __UsbCamera__ projects. 
 9. Finally repeat for the __SecuritySystemUWP__ project.
+10. *All projects should have built with out errors (some warnings about async methods might be seen - these can be ignored).*
 
-All projects should have built with out errors (some warnings about async methods might be seen - these can be ignored).
+11. From the tool bar, choose "Remote Machine" as the target to deploy your application to.
 
-10. From the tool bar, choose "Remote Machine" as the target to deploy your application to.
-```
-![Choosing the right target setting](images/remotemachine.png "Choosing the right target setting")
-```
-11. From the pop-up dialog, you should see the name and IP of your device has been autodetected (*minwinpc -- 192.168.1.5* in this case), click this name to select it as the target for deployment.
-```
-*If your device is not shown, you can manually enter the IP address being sure to use the default authentication mode (i.e. Universal - unencrypted). The chances are however that if you don't see this appearing under "Auto Detected" that your device is not functioning correctly - ensuring it has the correct network connectivity would be first thing to check.*
-```
-```
-![Remote Machine dialog](images/connections1.png) ![Remote Machine dialog2](images/connections2.png)
-```
-12. From the top menu of Visual Studio, select Debug and ARM (if you are using a Raspberry Pi).
-13. Next click Build -> Clean Solution. Wait for the solution to clean successfully. 
-14. Select Remote Machine. You will have to enter your Remote Machine IP address and use "Universal (Unencrypted Protocol)" for Authentication Mode. *Use WindowsIoTCoreWatcher to find your IP address*.
-15. You can now deploy and test the application by pressing `F5`.
+12. ![Choosing the right target setting](images/remotemachine.png "Choosing the right target setting")
+
+13. From the pop-up dialog, you should see the name and IP of your device has been autodetected (*minwinpc -- 192.168.1.5* in this case), click this name to select it as the target for deployment. *If your device is not shown, you can manually enter the IP address being sure to use the default authentication mode (i.e. Universal - unencrypted). The chances are however that if you don't see this appearing under "Auto Detected" that your device is not functioning correctly - ensuring it has the correct network connectivity would be first thing to check.*
+
+14. ![Remote Machine dialog](images/connections1.png) ![Remote Machine dialog2](images/connections2.png)
+
+15. From the top menu of Visual Studio, select Debug and ARM (if you are using a Raspberry Pi).
+16. Next click Build -> Clean Solution. Wait for the solution to clean successfully. 
+17. Select Remote Machine. You will have to enter your Remote Machine IP address and use "Universal (Unencrypted Protocol)" for Authentication Mode. *Use WindowsIoTCoreWatcher to find your IP address*.
+18. You can now deploy and test the application by pressing `F5`.
 
 Configuring the Web App
 =======================
