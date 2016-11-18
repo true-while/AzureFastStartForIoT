@@ -1,4 +1,4 @@
 # Management System and Inventory
 
-Content is one the way!!!!!
+Content is on the way!!!!!
 ===========================

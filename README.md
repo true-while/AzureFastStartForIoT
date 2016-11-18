@@ -73,8 +73,6 @@ Credits for these projects are as follows:-
 
 * [long-range-uhf-rfid-item-tracking](https://microsoft.hackster.io/en-US/careypayette/long-range-uhf-rfid-item-tracking-system-fc5372)
 
-
-
 Roadmap
 -------
 
