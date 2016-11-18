@@ -13,8 +13,8 @@ This basic system will detect movement near the camera and trigger it to take a 
 Basic Hardware Setup
 ====================
 
-1. Set up your PC and RPi according to these [instructions](http://ms-iot.github.io/content/en-US/win10/SetupPCRPI.htm).
-2.  Wire the PIR sensor as shown in the image below being sure to use 10 kΩ pull-up resistor.
+1. Set up your PC and RPi according to these [instructions](http://ms-iot.github.io/content/en-US/win10/SetupPCRPI.htm). Make a note of the IP address of the device, you'll need it for later.
+2. Wire the PIR sensor as shown in the image below being sure to use 10 kΩ pull-up resistor.
 
 ![Connect the following using a 10 kΩ pull-up resistor.](https://hackster.imgix.net/uploads/image/file/68626/PIR_bb.png?auto=compress%2Cformat&amp;w=680&amp;h=510&amp;fit=max "Connect the following using a 10 kΩ pull-up resistor.")
 
@@ -28,22 +28,28 @@ Azure Pre-reqs
 Software Setup
 ===============
 
-1.  Create a new folder to store the sample projects you'll soon download. Call this something short, e.g. c:\iotproject
-2.  Use the Command Prompt to navigate to the new folder where you want the project: `cd c:\iotproject` 
-3.  Run the git clone command: `git clone https://github.com/ms-iot/securitysystem.git` to download a copy of the basic UWP application which takes photos and uploads them to Azure Blob Storage.
-4.  Change directory to the project root folder: `cd securitysystem`
-5.  Next, get the submodules for the USB camera and the PIR sensor by running the following commands: `git submodule init` followed by `git submodule update`
-6.  Open the SecuritySystemUWP.sln solution file, in the SecuritySystemUWP folder, using Visual Studio 2015.
-7.  Right-click on the __com.microsoft.maker.SecuritySystem__ project and select "Build". This will download nuget packages and compile this project.
-8.  Repeat the process for the __OneDriveConnector__, __PirSensor__ and __UsbCamera__ projects. 
+The following steps should be carried out on your development machine which has Visual Studio 2015 installed:
+
+1. Create a new folder to store the sample projects you'll soon download. Call this something short, e.g. c:\iotproject
+2. Use the Command Prompt to navigate to the new folder where you want the project: `cd c:\iotproject` 
+3. Run the git clone command: `git clone https://github.com/ms-iot/securitysystem.git` to download a copy of the basic UWP application which takes photos and uploads them to Azure Blob Storage.
+4. Change directory to the project root folder: `cd securitysystem`
+5. Next, get the submodules for the USB camera and the PIR sensor by running the following commands: `git submodule init` followed by `git submodule update`
+6. Open the SecuritySystemUWP.sln solution file, in the SecuritySystemUWP folder, using Visual Studio 2015.
+7. Right-click on the __com.microsoft.maker.SecuritySystem__ project and select "Build". This will download nuget packages and compile this project.
+8. Repeat the process for the __OneDriveConnector__, __PirSensor__ and __UsbCamera__ projects. 
 9. Finally repeat for the __SecuritySystemUWP__ project.
-10.  All projects should have build with out errors (some warnings about async methods might be seen - these can be ignored).
 
-11.  From the Solution Explorer, right-click on the Solution name (SecuritySystemUWP) and choose *Configuration Manager*.
+All projects should have built with out errors (some warnings about async methods might be seen - these can be ignored).
 
-__TODO__ : Create screen shot for building against ARM
+11.  From the tool bar, choose "Remote Machine" as the target to deploy your application to.
 
-![Choosing the right build settings](images/configsettings.PNG "Choosing the right build settings")
+![Choosing the right target setting](images/remotemachine.png "Choosing the right target setting")
+
+12. From the pop-up dialog, you should see the name and IP of your device. If not, you can manually enter the details. Be sure to use the default authentication settings (i.e. none!).
+
+![Remote Machine dialog](images/connection1.png) XXXX ![Remote Machine dialog2](images/connection2.png)
+
 
 12. From the top menu of Visual Studio, select Debug and ARM (if you are using a Raspberry Pi).
 13. Next click Build -> Clean Solution. Wait for the solution to clean successfully. 
