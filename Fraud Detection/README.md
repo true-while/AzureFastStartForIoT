@@ -21,6 +21,7 @@ Basic Hardware Setup
 ====================
 
 __TODO - This section needs reviewing and updating__
+
 1. Set up your PC and RPi according to these [instructions](http://ms-iot.github.io/content/en-US/win10/SetupPCRPI.htm). Make a note of the IP address of the device, you'll need it for later.
 2. Wire the PIR sensor as shown in the image below being sure to use 10 kΩ pull-up resistor.
 
@@ -36,7 +37,7 @@ Azure Pre-reqs
 Software Setup
 ===============
 
-The following steps should be carried out on your development machine which has Visual Studio 2015 installed:
+__The following steps should be carried out on your development machine__ which has Visual Studio 2015 installed:
 
 1. Create a new folder called `c:\source` to store the content you are about download.
 2. Open the Command Prompt to navigate to the new folder.
