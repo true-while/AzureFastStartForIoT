@@ -6,13 +6,22 @@
 Scenario
 ========
 
-For this project you will attach a regular USB camera to your Windows IoT Core device along with a PIR sensor (the required hardware will have been supplied to you by your instructor).
-This basic system will detect movement near the camera and trigger it to take a photograph. The image will be uploaded to Azure where Cortana Analytics will analyse the photo.
- __TODO: What will it do with it?__
+For this scenario you will imagine that you are building a cash machine/cash dispenser/ATM machine that authenticates customers by use of a PIN number AND a photo scan of their face.
+You will attach a regular USB camera to your Windows IoT Core device and once a photo has been taken, the image will be uploaded to Azure where Cortana Analytics will use __Face Verification__ which is part of the [Face API](https://www.microsoft.com/cognitive-services/en-us/face-api/documentation/overview) to analyse the photo to determine if this is the correct person.
+
+To concentrate on the Azure part of the scenario, you won't need to read a bank card or PIN number but instead, you will use a motion sensor which will be used to trigger the taking of a photograph when you move near the camera.
+In a real system, the user would probably insert there bank card first, followed by their PIN number. This would allow a system to retrieve a "known" image of the user from a database, take a photo of them now then compare the two.
+
+The Face API works by analysing exactly these two pictures, the first is of the "known" person, the second is the image being tested. Cortana will return a value informing you of have confident it is as to wether they match or not.
+For the purposes of this excercise you will consider results of 75% probably (or more) to be a successful match.
+
+Again to simplify the client code and concentrate on the Azure piece, you will upload a "known" photo of yourself to a folder on the device. This will simulate pulling your "known" image from a backend database.
+
 
 Basic Hardware Setup
 ====================
 
+__TODO - This section needs reviewing and updating__
 1. Set up your PC and RPi according to these [instructions](http://ms-iot.github.io/content/en-US/win10/SetupPCRPI.htm). Make a note of the IP address of the device, you'll need it for later.
 2. Wire the PIR sensor as shown in the image below being sure to use 10 kΩ pull-up resistor.
 
@@ -59,10 +68,12 @@ Configuring the Web App
 Testing the application
 =======================
 
-1. Attach a USB webcam to the RPi, then wait a few seconds whilst Windows loads the driver. *At the time of writing, the offical RasperyPi camera is not supported on Windows 10 IoT Core :(*
-1. Moving your hand in front of the PiR sensor will cause the USB camera to take a photograph.
-2. The image has been created in the Pictures folder on the device in a subdirector called XXXX. You can view the new file at http://*yourdeviceipaddress*:8000/gallery.htm or by browsing to \\*yourdeviceipaddress*\c$\Data\Users\DefaultAccount\Pictures\securitysystem-cameradrop\.
-3. Every 60 seconds, these images are uploaded to the Azure blob container you created earlier. The originals on the device are deleted.
+1. Take a selfie with your mobile phone. *Where possible make sure you are looking straight at the camera and there is nothing in the background of the image. Ideally your could ask another person to take the photo of you stood against a wall with a plain background. Ensure also the lighting in the room is good or if possible take the photo outside on bright sunny day. A good, clear and well light photograph will vastly increase the changes of a positive match.*
+2. From Explorer, copy your "known" photo to the device by pasting it into the folder `\\*yourdeviceipaddress*\c$\Data\Users\DefaultAccount\Pictures\Camera Roll`. Name your "known" photo as `me.jpg`. The name and location are important as the code you'll create shortly will reference them.
+3. Attach a USB webcam to the RPi, then wait a few seconds whilst Windows loads the drivers. *At the time of writing, the offical RaspberryPi camera is not supported on Windows 10 IoT Core :(*
+4. Moving your hand in front of the motion sensor will cause the USB camera to take a photograph.
+5. The image has been created in the Pictures folder on the device in a subdirector called XXXX. You can view the new file at http://*yourdeviceipaddress*:8000/gallery.htm or by browsing to \\*yourdeviceipaddress*\c$\Data\Users\DefaultAccount\Pictures\securitysystem-cameradrop\.
+6. Every 60 seconds, these images are uploaded to the Azure blob container you created earlier. The originals on the device are deleted.
 
 Manually taking a photograph
 ============================
