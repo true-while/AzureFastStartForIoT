@@ -33,6 +33,11 @@ Azure Pre-reqs
 1. Create a new Azure Storge account via the https://portal.azure.com portal.
 2. Open the settings for the new storage account and make a note of it's name and access key.
 3. Create a new container in the Storage Account called *secuirtysystem-cameradrop*. This is where images will be uploaded to for processing. 
+4. Open a new broswer and navigate to The Project Oxford Homepage [http://www.projectoxford.ai](http://www.projectoxford.ai). You'll have to sign-in using your Microsoft Account.
+5. At the prompt to trust the website, say *Yes*.
+6. You'll now need to verify your email address, press the "Send verification" link on the right hand side of the screen.
+7. ![Verify Email Address](images/po-unverified.png)
+8. 
 
 Software Setup
 ===============
@@ -85,11 +90,11 @@ Adding Cortana Analytics Face API support
 
 The process of uploading your photos to Cortana Analytics is easy when you use the Face SDK as these pre-created libaries do all the heavy lifting for you.
 
-You are now going to add new code to the camera project to support this.
+You are now going to add new code to the camera project to support the Face API.
 
-0. If it is not already, open the SecuritySystemUWP.sln in Visual Studio. If it is still running in the debugger from previous, stop debugging now.
-1. Right-click on the __SecuritySystemUWP__ *project* in Solution Explorer and click __Manage NuGet Packages...__.
-2. In the NuGet dialog, press "Browse" then enter "Microsoft.ProjectOxford.Face" into the search box. Select the (probably) only result from the list then press "Install".
-3. ![Installing the Face API SDK](images/nugetface.png)
-4. Blah
+1. If it is not already, open the SecuritySystemUWP.sln in Visual Studio. If it is still running in the debugger from previous, stop debugging now.
+2. Right-click on the __SecuritySystemUWP__ *project* in Solution Explorer and click __Manage NuGet Packages...__.
+3. In the NuGet dialog, press *Browse* then enter *Microsoft.ProjectOxford.Face* into the search box. Select the (probably) only result from the list then press "Install".
+4. ![Installing the Face API SDK](images/nugetface.png)
+5. 
 
