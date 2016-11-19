@@ -17,7 +17,6 @@ For the purposes of this excercise you will consider results of 75% probably (or
 
 Again to simplify the client code and concentrate on the Azure piece, you will upload a "known" photo of yourself to a folder on the device. This will simulate pulling your "known" image from a backend database.
 
-
 Basic Hardware Setup
 ====================
 
@@ -55,8 +54,8 @@ The following steps should be carried out on your development machine which has 
 14. Finally repeat for the __SecuritySystemUWP__ project. *All projects should have built with out errors (some warnings about async methods might be seen - these can be ignored).*
 15. You can now deploy and test the application by pressing `F5`. *The first time you deploy an application it make take some time as required framework updates are installed onto the device - Visual Studio may even display some "This is taking too long messages" - Be patient! Subsequent deployments will be much quicker.*
 
-Configuring the Univeral Windows App
-====================================
+Configuring the Universal Windows App
+=====================================
 
 1. Use your web browser to navigate to http://*yourdeviceipaddress*:8000. You will see a landing page for your application running on your device.
 2. Click on the "Settings" link from the left hand navigation menu.
@@ -66,7 +65,7 @@ Configuring the Univeral Windows App
 ![Configuring the App on the Device via it's web interface](images/appazuresettings.png)
 
 Testing the App
-=======================
+===============
 
 1. Take a selfie with your mobile phone. *Where possible make sure you are looking straight at the camera and there is nothing in the background of the image. Ideally your could ask another person to take the photo of you stood against a wall with a plain background. Ensure also the lighting in the room is good or if possible take the photo outside on bright sunny day. A good, clear and well light photograph will vastly increase the changes of a positive match.*
 2. From Explorer, copy your "known" photo to the device by pasting it into the folder `\\*yourdeviceipaddress*\c$\Data\Users\DefaultAccount\Pictures\Camera Roll`. Name your "known" photo as `me.jpg`. The name and location are important as the code you'll create shortly will reference them.
@@ -75,7 +74,7 @@ Testing the App
 5. The image has been created in the Pictures folder on the device in a subdirector called XXXX. You can view the new file at http://*yourdeviceipaddress*:8000/gallery.htm or by browsing to \\*yourdeviceipaddress*\c$\Data\Users\DefaultAccount\Pictures\securitysystem-cameradrop\.
 6. Every 60 seconds, these images are uploaded to the Azure blob container you created earlier. The originals on the device are deleted.
 
-Manually taking a photograph
+Manually Taking a Photograph
 ============================
 
 You can manually trigger a the taking of a photo rather than relying on the motion sensor by clicking on the "Action" link on the nav menu, then clicking "Take Photo". 
