@@ -42,6 +42,7 @@ Azure Pre-reqs
 10. Click on the *Show* link to display your access key. Make a copy of this as you'll need this for later in the scenario.
 11. ![Showing your Access Key](images/po-keys.png).
 
+
 Software Setup
 ===============
 
