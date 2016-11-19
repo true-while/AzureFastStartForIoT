@@ -55,8 +55,8 @@ The following steps should be carried out on your development machine which has 
 14. Finally repeat for the __SecuritySystemUWP__ project. *All projects should have built with out errors (some warnings about async methods might be seen - these can be ignored).*
 15. You can now deploy and test the application by pressing `F5`. *The first time you deploy an application it make take some time as required framework updates are installed onto the device - Visual Studio may even display some "This is taking too long messages" - Be patient! Subsequent deployments will be much quicker.*
 
-Configuring the Web App
-=======================
+Configuring the Univeral Windows App
+====================================
 
 1. Use your web browser to navigate to http://*yourdeviceipaddress*:8000. You will see a landing page for your application running on your device.
 2. Click on the "Settings" link from the left hand navigation menu.
@@ -65,7 +65,7 @@ Configuring the Web App
 
 ![Configuring the App on the Device via it's web interface](images/appazuresettings.png)
 
-Testing the application
+Testing the App
 =======================
 
 1. Take a selfie with your mobile phone. *Where possible make sure you are looking straight at the camera and there is nothing in the background of the image. Ideally your could ask another person to take the photo of you stood against a wall with a plain background. Ensure also the lighting in the room is good or if possible take the photo outside on bright sunny day. A good, clear and well light photograph will vastly increase the changes of a positive match.*
@@ -78,4 +78,4 @@ Testing the application
 Manually taking a photograph
 ============================
 
-You can manually trigger a the taking of a photo by clicking on the "Action" link on the nav menu, then clicking "Take Photo". 
+You can manually trigger a the taking of a photo rather than relying on the motion sensor by clicking on the "Action" link on the nav menu, then clicking "Take Photo". 
