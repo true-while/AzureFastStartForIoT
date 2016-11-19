@@ -89,6 +89,7 @@ You are now going to add new code to the camera project to support this.
 
 0. If it is not already, open the SecuritySystemUWP.sln in Visual Studio. If it is still running in the debugger from previous, stop debugging now.
 1. Right-click on the __SecuritySystemUWP__ *project* in Solution Explorer and click __Manage NuGet Packages...__.
-2. 
-
+2. In the NuGet dialog, press "Browse" then enter "Microsoft.ProjectOxford.Face" into the search box. Select the (probably) only result from the list then press "Install".
+3. ![Installing the Face API SDK](images/nugetface.png)
+4. Blah
 
