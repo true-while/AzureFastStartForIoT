@@ -78,4 +78,17 @@ Testing the App
 Manually Taking a Photograph
 ============================
 
-You can manually trigger a the taking of a photo rather than relying on the motion sensor by clicking on the "Action" link on the nav menu, then clicking "Take Photo". 
+You can manually trigger a the taking of a photo rather than relying on the motion sensor by clicking on the "Action" link on the nav menu, then clicking "Take Photo".
+
+Adding Cortana Analytics Face API support
+=========================================
+
+The process of uploading your photos to Cortana Analytics is easy when you use the Face SDK as these pre-created libaries do all the heavy lifting for you.
+
+You are now going to add new code to the camera project to support this.
+
+0. If it is not already, open the SecuritySystemUWP.sln in Visual Studio. If it is still running in the debugger from previous, stop debugging now.
+1. Right-click on the __SecuritySystemUWP__ *project* in Solution Explorer and click __Manage NuGet Packages...__.
+2. 
+
+
