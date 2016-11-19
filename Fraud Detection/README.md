@@ -33,11 +33,14 @@ Azure Pre-reqs
 1. Create a new Azure Storge account via the https://portal.azure.com portal.
 2. Open the settings for the new storage account and make a note of it's name and access key.
 3. Create a new container in the Storage Account called *secuirtysystem-cameradrop*. This is where images will be uploaded to for processing. 
-4. Open a new broswer and navigate to The Project Oxford Homepage [http://www.projectoxford.ai](http://www.projectoxford.ai). You'll have to sign-in using your Microsoft Account.
+4. Open a new broswer and navigate to the Cognitive Services Subscriptions page [https://www.microsoft.com/cognitive-services/en-US/subscriptions](https://www.microsoft.com/cognitive-services/en-US/subscriptions). You'll have to sign-in using your Microsoft Account.
 5. At the prompt to trust the website, say *Yes*.
 6. You'll now need to verify your email address, press the "Send verification" link on the right hand side of the screen.
 7. ![Verify Email Address](images/po-unverified.png)
-8. 
+8. Check your email and click on the link to verify your email address.
+9. Return to the [https://www.microsoft.com/cognitive-services/en-US/subscriptions](https://www.microsoft.com/cognitive-services/en-US/subscriptions) page, check the __Face - *Preview*__ option and press __Subscribe__ at the bottom of the page. This will generate two *Access Keys* (just think passwords) for accessing the Face API.
+10. Click on the *Show* link to display your access key. Make a copy of this as you'll need this for later in the scenario.
+11. ![Showing your Access Key](images/po-keys.png).
 
 Software Setup
 ===============
