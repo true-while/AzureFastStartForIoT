@@ -10,12 +10,12 @@ For this scenario you will imagine that you are building a cash machine/cash dis
 You will attach a regular USB camera to your Windows IoT Core device and once a photo has been taken, the image will be uploaded to Azure where Cortana Analytics will use __Face Verification__ which is part of the [Face API](https://www.microsoft.com/cognitive-services/en-us/face-api/documentation/overview) to analyse the photo to determine if this is the correct person.
 
 To concentrate on the Azure part of the scenario, you won't need to read a bank card or PIN number but instead, you will use a motion sensor which will be used to trigger the taking of a photograph when you move near the camera.
-In a real system, the user would probably insert there bank card first, followed by their PIN number. This would allow a system to retrieve a "known" image of the user from a database, take a photo of them now then compare the two.
+In a real system, the user would probably insert their bank card, followed by about PIN number. This would allow a system to know who *should* be using the machine, then send the photo for analysis with an expectation that the detected person is the real owner of the bank card.
 
-The Face API works by analysing exactly these two pictures, the first is of the "known" person, the second is the image being tested. Cortana will return a value informing you of have confident it is as to wether they match or not.
+The Face API works by analysing several pictures, the first being a number of "known" images of the person, the second is the image being tested. Cortana will return a value informing you of how confident it is as to wether they match or not.
 For the purposes of this excercise you will consider results of 75% probably (or more) to be a successful match.
 
-Again to simplify the client code and concentrate on the Azure piece, you will upload a "known" photo of yourself to a folder on the device. This will simulate pulling your "known" image from a backend database.
+Again to simplify the client code and concentrate on the Azure piece, you will upload several "known" photos of yourself to a folder on the device. These will then be uploaded to the Face API for training.
 
 Basic Hardware Setup
 ====================

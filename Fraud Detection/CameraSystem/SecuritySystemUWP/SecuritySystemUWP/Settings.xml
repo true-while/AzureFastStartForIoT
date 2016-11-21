@@ -1,15 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <AppSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <FaceAPIKey>9fb1df978574465b8ba60b85422233b3</FaceAPIKey>
+  <MicrosoftAlias />
   <NumberOfCameras>1</NumberOfCameras>
-  <CameraType>usb</CameraType>
-
-  <StorageProvider>local</StorageProvider>
-  <AzureAccountName></AzureAccountName>
-  <AzureAccessKey></AzureAccessKey>
-
-  <OneDriveClientId></OneDriveClientId>
-  <OneDriveClientSecret></OneDriveClientSecret>
-
+  <CameraType>Simulated</CameraType>
+  <StorageProvider>Local</StorageProvider>
+  <AzureAccountName>SecuritySystemPictures</AzureAccountName>
+  <AzureAccessKey>****</AzureAccessKey>
+  <OneDriveClientId>****</OneDriveClientId>
+  <OneDriveClientSecret>****</OneDriveClientSecret>
+  <OneDriveFolderPath>/Pictures/SecurityCamera</OneDriveFolderPath>
   <StorageDuration>7</StorageDuration>
-  <FolderName>imagecontainer</FolderName>
+  <GpioMotionPin>4</GpioMotionPin>
+  <OneDriveAccessToken />
+  <OneDriveRefreshToken />
 </AppSettings>

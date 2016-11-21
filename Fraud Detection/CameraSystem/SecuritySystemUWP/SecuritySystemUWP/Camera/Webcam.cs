@@ -16,7 +16,9 @@ namespace SecuritySystemUWP
         private PirSensor pirSensor;
         private int isCapturing;
         private bool isEnabled;
-        
+
+        public event EventHandler<PhotoTakenEventArgs> PhotoTaken;
+
         public bool IsEnabled
         {
             get
@@ -58,6 +60,7 @@ namespace SecuritySystemUWP
         {
             await TakePhotoAsync();
         }
+
         public void Dispose()
         {
             webcam?.Dispose();
@@ -102,12 +105,19 @@ namespace SecuritySystemUWP
                     }
                 }
                 Interlocked.Exchange(ref isCapturing, 0);
+
+                // Raise event to say a photo is ready
+
+                StorageFile newimage = await cacheFolder.GetFileAsync(imageName);
+                PhotoTaken(this, new PhotoTakenEventArgs() { Path = newimage.Path});
             }
             else
             {
                 return;
             }
         }
+
+
     }
 }
 

@@ -9,15 +9,17 @@ namespace SecuritySystemUWP
 {
     public interface ICamera
     {
-        bool IsEnabled
-        {
-            get; set;
-        }
-
+        bool IsEnabled { get; set; }
         Task Initialize();
-
         Task TriggerCapture();
-
         void Dispose();
+        event EventHandler<PhotoTakenEventArgs> PhotoTaken;
     }
+
+    public class PhotoTakenEventArgs
+    {
+        public string Path { get; set; }
+    }
+
+
 }

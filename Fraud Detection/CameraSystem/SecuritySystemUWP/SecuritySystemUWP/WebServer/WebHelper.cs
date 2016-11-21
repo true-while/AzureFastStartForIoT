@@ -107,28 +107,30 @@ namespace SecuritySystemUWP
         /// <returns></returns>
         public string GenerationActionPage()
         {
-            string html = "<form>";
+            string html = String.Empty ;
 
+            html += "<form>";
+            html += "<input type='hidden' name='myaction' value='takephoto'>";
             html += "<table>";
             html += "<tr>";
             html += "<td>";
             html += "<select name='camera'>";
-            html += "<option value='real'>Take photo using real camera</option>";
-            html += "<option value='simulated'>Take photo using simulated camera</option>";
+            html += "<option value='real'>Take photo using selected camera</option>";
             html += "</select>";
             html += "</td>";
             html += "<td>";
-            html += "<input type='submit' value='Take photo'></td>";
+            html += "<input type='submit' value='Manually take photo'></td>";
             html += "</tr>";
-            html += "</table>";
-
+            html += "</table>";   
             html += "</form>";
+
+            html += "<form>";
+            html += "<h3>Send your photos for FaceAPI training</h3>";
+            html += "<input type='hidden' name='myaction' value='sendknownimages'>";
+            html += "<input type='submit' value='Send Known Images for Face API Training'></td>";
+            html += "</form>";
+
             return html;
-
-
-
-
-
 
         }
 

@@ -38,6 +38,8 @@ namespace SecuritySystemUWP
 
         private AllJoynManager alljoynManager;
 
+        public FaceClient FaceClient;
+
         /// <summary>
         /// Provides status if the controller has been initialized or not
         /// </summary>
@@ -52,7 +54,7 @@ namespace SecuritySystemUWP
         public AppController()
         {
             Server = new WebServer();
-            XmlSettings = new AppSettings();
+            XmlSettings = new AppSettings();     
         }
 
         /// <summary>
@@ -82,6 +84,9 @@ namespace SecuritySystemUWP
                 Storage = StorageFactory.Get(XmlSettings.StorageProvider);
 
                 await Camera.Initialize();
+
+                // Configure the FaceAPI client
+                if (XmlSettings.FaceAPIKey != String.Empty) FaceClient = new FaceClient(XmlSettings.FaceAPIKey);
 
                 // Try to log into OneDrive using existing Access Token in settings file
                 if (Storage.GetType() == typeof(OneDrive))
@@ -134,6 +139,7 @@ namespace SecuritySystemUWP
                 TelemetryHelper.TrackEvent("FailedToInitialize", events);
             }
         }
+
 
         /// <summary>
         /// Disposes the file upload and deletion timers, camera, and storage

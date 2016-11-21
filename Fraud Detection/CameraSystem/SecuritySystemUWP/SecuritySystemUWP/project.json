@@ -4,6 +4,7 @@
     "Microsoft.ApplicationInsights.PersistenceChannel": "1.0.0",
     "Microsoft.ApplicationInsights.WindowsApps": "1.0.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
+    "Microsoft.ProjectOxford.Face": "1.2.1.2",
     "WindowsAzure.Storage": "4.3.0"
   },
   "frameworks": {

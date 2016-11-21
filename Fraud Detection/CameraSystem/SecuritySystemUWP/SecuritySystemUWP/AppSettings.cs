@@ -11,20 +11,24 @@ namespace SecuritySystemUWP
 {
     public enum StorageProvider
     {
-        OneDrive,
+        //OneDrive,
         Azure,
         Local
     }
 
     public enum CameraType
     {
-        Ip,
-        Usb
+        Usb,
+        Simulated
     }
 
     public class AppSettings
     {
         // Any fields without descriptions will not appear in the web interface
+
+
+        [Description("Cortana Face API Key")]
+        public string FaceAPIKey = "";
 
         [Description("The Microsoft alias of the user")]
         public string MicrosoftAlias = "";
@@ -32,7 +36,7 @@ namespace SecuritySystemUWP
         // Future add-on, should remain unchanged for now.
         public int NumberOfCameras = 1;
 
-        [Description("Type of camera you're using (e.g. IP, USB).<br>If you select IP camera, please set the IP camera's FTP path to \\Data\\Users\\DefaultAccount\\Pictures\\" + FolderName + ".")]
+        [Description("Type of camera you're using (e.g. USB or Simulated).")]
         public CameraType CameraType = CameraType.Usb;
 
         [Description("This is the storage provider that you will use to store your photos.<br>If you select OneDrive and save, make sure to go to the OneDrive tab in the left navigation bar to log in and complete configuration.")]

@@ -359,37 +359,40 @@ namespace SecuritySystemUWP
                         Uri uri = new Uri("http://1.2.3.4:8000" + request);
                         
                         Dictionary<string, string> parameters = helper.ParseGetParametersFromUrl(uri);
-                        string action = parameters["camera"];
-   
+
                         foreach (string key in parameters.Keys)
                         {
                             Debug.WriteLine("{0} = {1}", key, parameters[key]);
                         }
 
-                        if (parameters["camera"] == "real")
+                        switch (parameters["myaction"])
                         {
-                            Debug.WriteLine("Taking photo using the real camera");
+                            case "takephoto":
+                                Debug.WriteLine("Manually taking photo...");
 
-                            ICamera cam = App.Controller.Camera;
-                            await cam.TriggerCapture();
-                            await redirectToPage(NavConstants.GALLERY_PAGE, os);
+                                ICamera cam = App.Controller.Camera;
+                                await cam.TriggerCapture();
+                                await redirectToPage(NavConstants.GALLERY_PAGE, os);
+                                break;
+
+                            case "sendknownimages":
+                                Debug.WriteLine("Registgering known images with Cortana FaceAPI.....");
+
+                                if (App.Controller.FaceClient != null)
+                                {
+                                    await App.Controller.FaceClient.RegisterKnownUsersAsync();
+                                }
+                                else
+                                {
+                                    throw new Exception("The FaceAPI key has not been set in the Settings page.");
+                                }
+
+                                break;
+                            default:
+                                break;
                         }
-                        else if (parameters["camera"] == "simulated")
-                        {
-                            Debug.WriteLine("Taking photo using the simulated camera");
 
-                            // Copying the sample photo to the pictures library.
-                            StorageFolder sourceFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-                            StorageFile sourceFile = await sourceFolder.GetFileAsync(@"Assets\penguin.png");
-
-                            StorageFolder destFolder = await KnownFolders.PicturesLibrary.GetFolderAsync("securitysystem-cameradrop");
-                            StorageFile destFile = await destFolder.CreateFileAsync(@"penguin.png",CreationCollisionOption.ReplaceExisting);
-                           
-                            await sourceFile.CopyAndReplaceAsync(destFile);
-                            await redirectToPage(NavConstants.GALLERY_PAGE, os);
-
-                        }
-
+                       
 
                     }
 
@@ -448,17 +451,18 @@ namespace SecuritySystemUWP
                     }
                 }
                 #endregion
-
             }
             catch (Exception ex)
             {
+                #region Track error for debugging
                 Debug.WriteLine("Exception in writeResponseAsync(): " + ex.Message);
                 Debug.WriteLine(ex.StackTrace);
 
                 // Log telemetry event about this exception
                 var events = new Dictionary<string, string> { { "WebServer", ex.Message } };
                 TelemetryHelper.TrackEvent("FailedToWriteResponse", events);
-
+                #endregion
+                #region Display error to user
                 try
                 {
                     // Try to send an error page back if there was a problem servicing the request
@@ -469,6 +473,7 @@ namespace SecuritySystemUWP
                 {
                     TelemetryHelper.TrackException(e);
                 }
+                #endregion
             }
         }
 
