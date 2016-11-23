@@ -86,7 +86,10 @@ namespace SecuritySystemUWP
                 await Camera.Initialize();
 
                 // Configure the FaceAPI client
-                if (XmlSettings.FaceAPIKey != String.Empty) FaceClient = new FaceClient(XmlSettings.FaceAPIKey);
+                if (XmlSettings.FaceAPIKey != String.Empty)
+                {
+                  //  FaceClient = new FaceClient(XmlSettings.FaceAPIKey);
+                }
 
                 // Try to log into OneDrive using existing Access Token in settings file
                 if (Storage.GetType() == typeof(OneDrive))

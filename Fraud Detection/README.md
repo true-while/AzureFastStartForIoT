@@ -64,6 +64,52 @@ __The following steps should be carried out on your development machine__ which 
 14. Finally repeat for the __SecuritySystemUWP__ project. *All projects should have built with out errors (some warnings about async methods might be seen - these can be ignored).*
 15. You can now deploy and test the application by pressing `F5`. *The first time you deploy an application it make take some time as required framework updates are installed onto the device - Visual Studio may even display some "This is taking too long messages" - Be patient! Subsequent deployments will be much quicker.*
 
+Configuring and Testing the Universal Windows App
+=================================================
+
+1. Use your web browser to navigate to http://*yourdeviceipaddress*:8000. You will see a landing page for your application running on your device.
+2. Click on the "Settings" link from the left hand navigation menu.
+3. Ensure that the camera type setting configured as "Simulated" and press "Save" at the bottom of the screen.
+4. Moving your hand in front of the motion sensor will cause the "Simulated" camera to take a photo. *If you don't have the sensor setup, you can take a photo manually as described in the selction below.*
+5. The image has been created in the *Pictures* folder on the device in a subdirector called _securitysystem-cameradrop_. You can view the new file at http://*yourdeviceipaddress*:8000/gallery.htm or by browsing to \\*yourdeviceipaddress*\c$\Data\Users\DefaultAccount\Pictures\securitysystem-cameradrop\.
+6. Attach a USB webcam to the RPi, then wait a few seconds whilst Windows loads the drivers. *At the time of writing, the offical RaspberryPi camera is not supported on Windows 10 IoT Core :(*
+7. Repeat steps 2,3 and 4 this time setting "Usb" as the camera type. You should now see a real photograph of yourself in the gallery/cameradrop folder.
+
+Manually Taking a Photograph
+============================
+
+You can manually trigger the taking of a photo rather than relying on the motion sensor by:-
+
+1. Clicking on the "Action" link on the nav menu
+2. Clicking "Take Photo". *This will take a photo using either the simulated or attached USB camera.*
+
+Adding Cortana Analytics Face API support
+=========================================
+
+In this section you are going to enable the photo you've just taken to be sent to Cortana Analytics to see if it recognises you. The process of sending your photos to Cortana is easy when you use the Face SDK because these pre-written libaries do all the heavy lifting for you.
+
+__TODO__: Add documentation here to describe how the FaceAPI works as far as facial regonition is concerned.
+
+You are now going to add new code to the camera project to support the Face API.
+
+1. If the UWP application is still running in the debugger from the previous section, stop debugging now.
+2. Right-click on the __SecuritySystemUWP__ *project* in Solution Explorer and click __Manage NuGet Packages...__.
+3. In the NuGet dialog, press *Browse* then enter *Microsoft.ProjectOxford.Face* into the search box. Select the (probably) only result from the list then press "Install" - this module may already be installed, if so you can press the "Upgrade" link rather than the Install.
+4. ![Installing the Face API SDK](images/nugetface.png)
+5. Open the *Controller.cs* file and around line 91 locate and uncomment the following code: *FaceClient = new FaceClient(XmlSettings.FaceAPIKey);*. This is the core client object that knows how to connect to Face API. Notice it takes a *key* as a parameter, this value which will be read from the settings configuration file is your "password" for accessing the Face API service.
+5. Open the FaceAPI/FaceAPI.cs file and locate the __RegisterKnownUsersAsync()__ method.
+6. Uncomment all the code in the __Create new Person Group__ region. This section uses the FaceClient object to create a new PersonGroup called "AuthorisedUsers".
+7. Uncomment all the code in the __Upload images for each person__ region. This wil upload "known" images for several people from a folder called *Pictures/Camera Roll/knownimages*. __TODO__: This folder needs creating manually after deploying the application. Either document this or update the code sample to copy this into place.
+8. Uncomment all the code in the __Train the Model__ region. This tells the machine learning algorithm to analyze the known photos and build a working model. *Each time you add a new photo of an existing person or add an entire new person the model will need to be retrained.*
+9. Finally round about line 96 uncomment the line *App.Controller.Camera.PhotoTaken += Camera_PhotoTaken;*. Now, eachtime a new photo is taken it will be sent to Cortana for analysis.
+
+
+
+
+
+
+
+
 Configuring the Universal Windows App
 =====================================
 
@@ -74,31 +120,14 @@ Configuring the Universal Windows App
 
 ![Configuring the App on the Device via it's web interface](images/appazuresettings.png)
 
+
+
 Testing the App
 ===============
 
 1. Take a selfie with your mobile phone. *Where possible make sure you are looking straight at the camera and there is nothing in the background of the image. Ideally your could ask another person to take the photo of you stood against a wall with a plain background. Ensure also the lighting in the room is good or if possible take the photo outside on bright sunny day. A good, clear and well light photograph will vastly increase the changes of a positive match.*
 2. From Explorer, copy your "known" photo to the device by pasting it into the folder `\\*yourdeviceipaddress*\c$\Data\Users\DefaultAccount\Pictures\Camera Roll`. Name your "known" photo as `me.jpg`. The name and location are important as the code you'll create shortly will reference them.
-3. Attach a USB webcam to the RPi, then wait a few seconds whilst Windows loads the drivers. *At the time of writing, the offical RaspberryPi camera is not supported on Windows 10 IoT Core :(*
+3. 
 4. Moving your hand in front of the motion sensor will cause the USB camera to take a photograph.
-5. The image has been created in the Pictures folder on the device in a subdirector called XXXX. You can view the new file at http://*yourdeviceipaddress*:8000/gallery.htm or by browsing to \\*yourdeviceipaddress*\c$\Data\Users\DefaultAccount\Pictures\securitysystem-cameradrop\.
-6. Every 60 seconds, these images are uploaded to the Azure blob container you created earlier. The originals on the device are deleted.
-
-Manually Taking a Photograph
-============================
-
-You can manually trigger a the taking of a photo rather than relying on the motion sensor by clicking on the "Action" link on the nav menu, then clicking "Take Photo".
-
-Adding Cortana Analytics Face API support
-=========================================
-
-The process of uploading your photos to Cortana Analytics is easy when you use the Face SDK as these pre-created libaries do all the heavy lifting for you.
-
-You are now going to add new code to the camera project to support the Face API.
-
-1. If it is not already, open the SecuritySystemUWP.sln in Visual Studio. If it is still running in the debugger from previous, stop debugging now.
-2. Right-click on the __SecuritySystemUWP__ *project* in Solution Explorer and click __Manage NuGet Packages...__.
-3. In the NuGet dialog, press *Browse* then enter *Microsoft.ProjectOxford.Face* into the search box. Select the (probably) only result from the list then press "Install".
-4. ![Installing the Face API SDK](images/nugetface.png)
 5. 
-
+6. Every 60 seconds, these images are uploaded to the Azure blob container you created earlier. The originals on the device are deleted.

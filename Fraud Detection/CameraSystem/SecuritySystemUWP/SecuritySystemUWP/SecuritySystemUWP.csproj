@@ -128,6 +128,15 @@
     <Content Include="Assets\ident1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\knownimages\Anna\anna1.jpg" />
+    <Content Include="Assets\knownimages\Anna\anna2.jpg" />
+    <Content Include="Assets\knownimages\Anna\anna3.jpg" />
+    <Content Include="Assets\knownimages\Clare\clare1.jpg" />
+    <Content Include="Assets\knownimages\Clare\clare2.jpg" />
+    <Content Include="Assets\knownimages\Clare\clare3.jpg" />
+    <Content Include="Assets\knownimages\Sue\Sue1.jpg" />
+    <Content Include="Assets\knownimages\Sue\Sue2.jpg" />
+    <Content Include="Assets\knownimages\Sue\Sue3.jpg" />
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\penguin.png" />
     <Content Include="Assets\SmallLogo.png" />

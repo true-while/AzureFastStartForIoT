@@ -380,23 +380,23 @@ namespace SecuritySystemUWP
 
                                 break;
 
-                            case "sendknownimages":
-                                Debug.WriteLine("Registgering known images with Cortana FaceAPI.....");
+                            //case "sendknownimages":
+                            //    Debug.WriteLine("Registgering known images with Cortana FaceAPI.....");
 
-                                if (App.Controller.FaceClient == null)
-                                {
+                            //    if (App.Controller.FaceClient == null)
+                            //    {
 
-                                    result = "<span style='color:Red'>The FaceAPI key has not been set or is incorrect. Go to the Settings page and review the setting.</span><br><br>";
+                            //        result = "<span style='color:Red'>The FaceAPI key has not been set or is incorrect. Go to the Settings page and review the setting.</span><br><br>";
 
-                                }
-                                else
-                                {
-                                    await App.Controller.FaceClient.RegisterKnownUsersAsync();
-                                    result = "<span style='color:Green'>Known image upload complete</span><br><br>";
+                            //    }
+                            //    else
+                            //    {
+                            //        await App.Controller.FaceClient.RegisterKnownUsersAsync();
+                            //        result = "<span style='color:Green'>Known image upload complete</span><br><br>";
 
-                                }
+                            //    }
 
-                                break;
+                            //    break;
                             default:
                                 break;
                         }
