@@ -55,9 +55,9 @@ __The following steps should be carried out on your development machine__ which 
 5. Open the SecuritySystemUWP.sln solution file, in the SecuritySystemUWP folder, using Visual Studio 2015.
 6. From the tool bar, choose "Remote Machine" as the target to deploy your application to.
 7. ![Choosing the right target setting](images/remotemachine.png "Choosing the right target setting")
-8. From the pop-up dialog, you should see the name and IP of your device has been autodetected (*minwinpc -- 192.168.1.5* in this case), __click 'select'__  to set it as the target for deployment device. *If your device is not shown, you can manually enter the IP address being sure to use the default authentication mode (i.e. Universal - unencrypted).
+8. From the pop-up dialog, you should see the name and IP of your device has been autodetected (*minwinpc -- 192.168.1.5* in this case), __click 'select'__  to set it as the target for deployment device. *If your device is not shown, you can manually enter the IP address being sure to use the default authentication mode (i.e. Universal - unencrypted).*
 9. ![Remote Machine dialog](images/connections1.png) ![Remote Machine dialog2](images/connections2.png)
-10. You'll now need to tell Visual Studio to compile the application for the ARM platform (which a requirement to run on the RPi). __Right-click__ on the name of your solution in Solution Explorer and choose *"Configuration Manager".* 
+10. Configure Visual Studio to compile the application for the ARM platform (which a requirement to run on the RPi). __Right-click__ on the name of your solution in Solution Explorer and choose *"Configuration Manager".* 
 11. Set the *Active solution platform* setting to __ARM__. Click __Close__.
 12. Right-click on the __com.microsoft.maker.SecuritySystem__ project and select "Build". This will download nuget packages and compile this project.
 13. Repeat the process for the __OneDriveConnector__, __PirSensor__ and __UsbCamera__ projects. 
@@ -71,9 +71,10 @@ Configuring and Testing the App - Part 1
 2. Click on the "Settings" link from the left hand navigation menu.
 3. Ensure that the camera type setting configured as "Simulated" and press "Save" at the bottom of the screen.
 4. Moving your hand in front of the motion sensor will cause the "Simulated" camera to take a photo. *If you don't have the sensor setup, you can take a photo manually as described in the selction below.*
-5. The image has been created in the *Pictures* folder on the device in a subdirector called _securitysystem-cameradrop_. You can view the new file at http://*yourdeviceipaddress*:8000/gallery.htm or by browsing to \\*yourdeviceipaddress*\c$\Data\Users\DefaultAccount\Pictures\securitysystem-cameradrop\.
-6. Attach a USB webcam to the RPi, then wait a few seconds whilst Windows loads the drivers. *At the time of writing, the offical RaspberryPi camera is not supported on Windows 10 IoT Core :(*
-7. Repeat steps 2,3 and 4 this time setting "Usb" as the camera type. You should now see a real photograph of yourself in the gallery/cameradrop folder.
+5. An image called *Ident1.jpg* has been created in the *Pictures*\_securitysystem-cameradrop_ folder on the device. You can view this file via http://*yourdeviceipaddress*:8000/gallery.htm or by browsing to \\*yourdeviceipaddress*\c$\Data\Users\DefaultAccount\Pictures\securitysystem-cameradrop\. *You will need to enter the Admin username and password to access the fileshare*.
+6. Attach a USB webcam to the RPi and wait a few seconds whilst Windows loads the drivers. *At the time of writing, the offical RaspberryPi camera is not supported on Windows 10 IoT Core :(*
+7. Repeat steps 2,3 and 4 this time setting "Usb" as the camera type.
+8. Trigger the taking of a new photo by moving your hand in front of the motion sensor. You should now see a real photograph of yourself in the gallery/cameradrop folder.
 
 Manually Taking a Photograph
 ============================
@@ -86,9 +87,14 @@ You can manually trigger the taking of a photo rather than relying on the motion
 Adding Cortana Analytics Face API support
 =========================================
 
-In this section you are going to enable the photo you've just taken to be sent to Cortana Analytics to see if it recognises you. The process of sending your photos to Cortana is easy when you use the Face SDK because these pre-written libaries do all the heavy lifting for you.
+In this section you are going to enable the photo you've just taken to be sent to Cortana Analytics to see if it recognises you. The process of sending your photos to Cortana is easy when you use the Face SDK as these pre-written libaries do all the heavy lifting for you.
 
-__TODO__: Add documentation here to describe how the FaceAPI works as far as facial regonition is concerned.
+Face API can be used to identify a person based on a photograph and a people database (called a a person group in the SDK) which needs to be created in advance and can be edited over time.
+The following figure is an example of a person group named "myfriends". Each group may contain up to 1,000 person objects. Meanwhile, each person object can have one or more photos registered. 
+
+![The structure of a Person Group](images/persongroup.jpg).
+
+Read more about how Face Verification works in the [Face API Documentation](https://www.microsoft.com/cognitive-services/en-us/face-api/documentation/overview).
 
 You are now going to add new code to the camera project to support the Face API.
 
