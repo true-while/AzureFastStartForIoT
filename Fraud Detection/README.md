@@ -6,16 +6,17 @@
 Scenario
 ========
 
-For this scenario you will imagine that you are building a cash machine/cash dispenser/ATM machine that authenticates customers by use of a PIN number AND a photo scan of their face.
-You will attach a regular USB camera to your Windows IoT Core device and once a photo has been taken, the image will be uploaded to Azure where Cortana Analytics will use __Face Verification__ which is part of the [Face API](https://www.microsoft.com/cognitive-services/en-us/face-api/documentation/overview) to analyse the photo to determine if this is the correct person.
+For this scenario you will imagine that you are building a system that authenticates users by use of a photo scan of their face.
+You will attach a regular USB camera to your Windows IoT Core device and once a photo has been taken, the image will be sent to Cortana Analytics which will use __Face Verification__ which is part of the [Face API](https://www.microsoft.com/cognitive-services/en-us/face-api/documentation/overview) to analyse the photo and determine if this person should be allowed access.
 
-To concentrate on the Azure part of the scenario, you won't need to read a bank card or PIN number but instead, you will use a motion sensor which will be used to trigger the taking of a photograph when you move near the camera.
-In a real system, the user would probably insert their bank card, followed by about PIN number. This would allow a system to know who *should* be using the machine, then send the photo for analysis with an expectation that the detected person is the real owner of the bank card.
+You will use a motion sensor attached to the device which will be used to trigger the taking of a photograph when there is movement near the camera.
 
-The Face API works by analysing several pictures, the first being a number of "known" images of the person, the second is the image being tested. Cortana will return a value informing you of how confident it is as to wether they match or not.
-For the purposes of this excercise you will consider results of 75% probably (or more) to be a successful match.
+The Face Verification API works by analysing several pictures, the first are several "known" images of the person, the second is the image being tested, i.e. the photo which has just been taken.
+If a face is detected in the photo and a possible match has been found, Cortana will return a number between 0 and 1 informing you of how confident it is.
+For the purposes of this excercise you will consider results of 0.75 or more to be a successful match.
 
-Again to simplify the client code and concentrate on the Azure piece, you will upload several "known" photos of yourself to a folder on the device. These will then be uploaded to the Face API for training.
+The scenario sample application comes preloaded with known images for three different people bug you can add your own if you want.
+For testing purposes, it has to ability to simulate a camera that takes a photo of one of the known people.
 
 Basic Hardware Setup
 ====================
@@ -95,13 +96,13 @@ You are now going to add new code to the camera project to support the Face API.
 2. Right-click on the __SecuritySystemUWP__ *project* in Solution Explorer and click __Manage NuGet Packages...__.
 3. In the NuGet dialog, press *Browse* then enter *Microsoft.ProjectOxford.Face* into the search box. Select the (probably) only result from the list then press "Install" - this module may already be installed, if so you can press the "Upgrade" link rather than the Install.
 4. ![Installing the Face API SDK](images/nugetface.png)
-5. Open the *Controller.cs* file and around line 91 locate and uncomment the following code: *FaceClient = new FaceClient(XmlSettings.FaceAPIKey);*. This is the core client object that knows how to connect to Face API. Notice it takes a *key* as a parameter, this value which will be read from the settings configuration file is your "password" for accessing the Face API service.
+5. Open the *Controller.cs* file and around line 95 locate and uncomment the following code: *FaceClient = new FaceClient(XmlSettings.FaceAPIKey);*. This is the core client object that knows how to connect to Face API. Notice it takes a *key* as a parameter, this value which will be read from the settings configuration file is your "password" for accessing the Face API service.
 5. Open the FaceAPI/FaceAPI.cs file and locate the __RegisterKnownUsersAsync()__ method.
 6. Uncomment all the code in the __Create new Person Group__ region. This section uses the FaceClient object to create a new PersonGroup called "AuthorisedUsers".
 7. Uncomment all the code in the __Upload images for each person__ region. This wil upload "known" images for several people from a folder called *Pictures/Camera Roll/knownimages*.
 8. Uncomment all the code in the __Train the Model__ region. This tells the machine learning algorithm to analyze the known photos and build a working model. *Each time you add a new photo of an existing person or add an entire new person the model will need to be retrained.*
-9. Round about line 96 uncomment the line *App.Controller.Camera.PhotoTaken += Camera_PhotoTaken;*. Now, eachtime a new photo is taken it will be sent to Cortana for analysis.
-10. Finally, on or about line 394 of WebServer/WebServer.cs uncomment the line *await App.Controller.FaceClient.RegisterKnownUsersAsync();* and also the following *result = .... ; * line. These lines which are part of a button pressed event handler will allow the manual uploading and training of the machine learning Face API model.
+9. Round about line 107 uncomment the line *App.Controller.Camera.PhotoTaken += Camera_PhotoTaken;*. Now, eachtime a new photo is taken it will be sent to Cortana for analysis.
+10. Finally, on or about line 392 of WebServer/WebServer.cs uncomment the line *await App.Controller.FaceClient.RegisterKnownUsersAsync();* and also the following *result = .... ; * line. These lines which are part of a button pressed event handler will trigger the uploading of the known images and training of the machine learning Face API model.
 
 Configuring the App for the Face API access
 ===========================================

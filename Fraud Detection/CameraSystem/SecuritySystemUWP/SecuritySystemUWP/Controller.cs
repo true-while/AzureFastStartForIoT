@@ -92,7 +92,7 @@ namespace SecuritySystemUWP
                 // Configure the FaceAPI client
                 if (XmlSettings.FaceAPIKey != String.Empty)
                 {
-                      FaceClient = new FaceClient(XmlSettings.FaceAPIKey);
+                      //FaceClient = new FaceClient(XmlSettings.FaceAPIKey);
                 }
 
                 // Try to log into OneDrive using existing Access Token in settings file

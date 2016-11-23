@@ -104,7 +104,7 @@ namespace SecuritySystemUWP
 
             KnownImagesRegistered = true;
 
-            App.Controller.Camera.PhotoTaken += Camera_PhotoTaken;
+            //App.Controller.Camera.PhotoTaken += Camera_PhotoTaken;
         }
 
         private void Camera_PhotoTaken(object sender, PhotoTakenEventArgs e)

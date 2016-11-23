@@ -386,13 +386,11 @@ namespace SecuritySystemUWP
                                 {
 
                                     result = "<span style='color:Red'>The FaceAPI key has not been set or is incorrect. Go to the Settings page and review the setting.</span><br><br>";
-
                                 }
                                 else
                                 {
-                                    App.Controller.FaceClient.RegisterKnownUsersAsync();
-                                    result = "<span style='color:Green'>Known image upload complete</span><br><br>";
-
+                                    //App.Controller.FaceClient.RegisterKnownUsersAsync();
+                                    //result = "<span style='color:Green'>Known image upload complete</span><br><br>";
                                 }
 
                                 break;
