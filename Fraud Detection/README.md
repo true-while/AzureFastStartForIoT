@@ -89,8 +89,8 @@ Adding Cortana Analytics Face API support
 
 In this section you are going to enable the photo you've just taken to be sent to Cortana Analytics to see if it recognises you. The process of sending your photos to Cortana is easy when you use the Face SDK as these pre-written libaries do all the heavy lifting for you.
 
-Face API can be used to identify a person based on a photograph and a people database (called a a person group in the SDK) which needs to be created in advance and can be edited over time.
-The following figure is an example of a person group named "myfriends". Each group may contain up to 1,000 person objects. Meanwhile, each person object can have one or more photos registered. 
+Face API can be used to identify a person based on a photograph and a people database (called a __Person Group__ in the SDK) which needs to be created in advance and can be edited over time.
+The following figure is an example of a person group named "myfriends". Each group may contain up to 1,000 people and each person can have one or more photos registered. 
 
 ![The structure of a Person Group](images/persongroup.jpg).
 
@@ -100,7 +100,7 @@ You are now going to add new code to the camera project to support the Face API.
 
 1. If the UWP application is still running in the debugger from the previous section, stop debugging now.
 2. Right-click on the __SecuritySystemUWP__ *project* in Solution Explorer and click __Manage NuGet Packages...__.
-3. In the NuGet dialog, press *Browse* then enter *Microsoft.ProjectOxford.Face* into the search box. Select the (probably) only result from the list then press "Install" - this module may already be installed, if so you can press the "Upgrade" link rather than the Install.
+3. In the NuGet dialog, press *Browse* then enter *Microsoft.ProjectOxford.Face* into the search box. Select the (probably) only result from the list then press "Install". It might be that this package is already installed, in which case you will see a small green circle containing a white check mark next to the name of the packag.
 4. ![Installing the Face API SDK](images/nugetface.png)
 5. Open the *Controller.cs* file and around line 95 locate and uncomment the following code: *FaceClient = new FaceClient(XmlSettings.FaceAPIKey);*. This is the core client object that knows how to connect to Face API. Notice it takes a *key* as a parameter, this value which will be read from the settings configuration file is your "password" for accessing the Face API service.
 5. Open the FaceAPI/FaceAPI.cs file and locate the __RegisterKnownUsersAsync()__ method.
