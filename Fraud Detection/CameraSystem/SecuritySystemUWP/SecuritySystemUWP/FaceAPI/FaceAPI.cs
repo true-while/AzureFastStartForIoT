@@ -24,10 +24,10 @@ namespace SecuritySystemUWP
 
         public FaceClient(string key)
         {
-            faceServiceClient = new FaceServiceClient(key);
+            //faceServiceClient = new FaceServiceClient(key);
         }
 
-        public void RegisterKnownUsersAsync()
+        public async Task RegisterKnownUsersAsync()
         {
             try
             {
