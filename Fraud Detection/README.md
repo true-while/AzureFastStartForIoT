@@ -64,8 +64,8 @@ __The following steps should be carried out on your development machine__ which 
 14. Finally repeat for the __SecuritySystemUWP__ project. *All projects should have built with out errors (some warnings about async methods might be seen - these can be ignored).*
 15. You can now deploy and test the application by pressing `F5`. *The first time you deploy an application it make take some time as required framework updates are installed onto the device - Visual Studio may even display some "This is taking too long messages" - Be patient! Subsequent deployments will be much quicker.*
 
-Configuring and Testing the Universal Windows App
-=================================================
+Configuring and Testing the App - Part 1
+========================================
 
 1. Use your web browser to navigate to http://*yourdeviceipaddress*:8000. You will see a landing page for your application running on your device.
 2. Click on the "Settings" link from the left hand navigation menu.
@@ -116,12 +116,8 @@ Configuring the App for the Face API access
 
  __TODO__: This folder needs creating manually after deploying the application. Either document this or update the code sample to copy this into place.
 
-
-Testing the App Part 1
-======================
-
-Testing the App Part 2
-======================
+Configuring and Testing the App - Part 2
+========================================
 
 1. Take 5 or 6 good selfies with your mobile phone. *Where possible make sure you are looking more or less straight at the camera and there is nothing in the background of the image. Ideally you could ask another person to take the photo of you stood against a wall with a plain background. Ensure also the lighting in the room is good or if possible take the photos outside on bright sunny day. A good, clear and well light photograph will vastly increase the chances of a positive match.*
 2. From Explorer, copy all the photos to the device by pasting them into the folder `\\*yourdeviceipaddress*\c$\Data\Users\DefaultAccount\Pictures\Camera Roll\knownimages\<yournamehere>`.
