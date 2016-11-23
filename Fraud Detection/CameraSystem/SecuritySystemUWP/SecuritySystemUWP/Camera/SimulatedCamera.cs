@@ -41,6 +41,7 @@ namespace SecuritySystemUWP
             sourceFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
             sourceFile = await sourceFolder.GetFileAsync(@"Assets\ident1.jpg");
             destFolder = await KnownFolders.PicturesLibrary.GetFolderAsync("securitysystem-cameradrop");
+            PhotoTaken = delegate { };
         }
 
         public async Task TriggerCapture()

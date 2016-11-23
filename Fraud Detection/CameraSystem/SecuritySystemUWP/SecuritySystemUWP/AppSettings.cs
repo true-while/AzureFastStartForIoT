@@ -37,7 +37,7 @@ namespace SecuritySystemUWP
         public int NumberOfCameras = 1;
 
         [Description("Type of camera you're using (e.g. USB or Simulated).")]
-        public CameraType CameraType = CameraType.Usb;
+        public CameraType CameraType = CameraType.Simulated;
 
         [Description("This is the storage provider that you will use to store your photos.<br>If you select OneDrive and save, make sure to go to the OneDrive tab in the left navigation bar to log in and complete configuration.")]
         public StorageProvider StorageProvider = StorageProvider.Local;
@@ -106,6 +106,20 @@ namespace SecuritySystemUWP
         /// <returns></returns>
         public static async Task<AppSettings> RestoreAsync(string filename)
         {
+            try
+            {
+                await SettingsFolder.GetFileAsync(filename);
+            }
+            catch (FileNotFoundException)
+            {
+                StorageFile securityLogFile = await SettingsFolder.CreateFileAsync(@"settings.xml", CreationCollisionOption.FailIfExists);
+                await FileIO.AppendTextAsync(securityLogFile, "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + Environment.NewLine);
+                await FileIO.AppendTextAsync(securityLogFile, "<AppSettings xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">" + Environment.NewLine);
+                await FileIO.AppendTextAsync(securityLogFile, "</AppSettings>" + Environment.NewLine);
+            }
+
+
+           
             try
             {
                 StorageFile sessionFile = await SettingsFolder.CreateFileAsync(filename, CreationCollisionOption.OpenIfExists);

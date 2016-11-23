@@ -54,6 +54,8 @@ namespace SecuritySystemUWP
             pirSensor.motionDetected += PirSensor_MotionDetected;
 
             Interlocked.Exchange(ref isCapturing, 0);
+
+            PhotoTaken = delegate { };
         }
 
         public async Task TriggerCapture()
@@ -72,6 +74,8 @@ namespace SecuritySystemUWP
         ********************************************************************************************/
         private async void PirSensor_MotionDetected(object sender, GpioPinValueChangedEventArgs e)
         {
+
+            
             await TakePhotoAsync();
         }
 
@@ -109,6 +113,7 @@ namespace SecuritySystemUWP
                 // Raise event to say a photo is ready
 
                 StorageFile newimage = await cacheFolder.GetFileAsync(imageName);
+
                 PhotoTaken(this, new PhotoTakenEventArgs() { Path = newimage.Path});
             }
             else

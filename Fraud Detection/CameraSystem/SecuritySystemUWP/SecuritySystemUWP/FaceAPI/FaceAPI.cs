@@ -29,78 +29,77 @@ namespace SecuritySystemUWP
 
         public async Task RegisterKnownUsersAsync()
         {
-            StorageFolder knownImagesBaseFolder = await KnownFolders.CameraRoll.GetFolderAsync("knownimages");
-            var knownImageFolders = await knownImagesBaseFolder.GetFoldersAsync();
+            try
+            {
+                #region Create new Person Group
+                try
+                {
+                    // Delete the person group if it already exists.
+                    PersonGroup group = await faceServiceClient.GetPersonGroupAsync(personGroupId);
+                    Debug.WriteLine("Person Group " + personGroupId + " already exists, deleting it.");
+                    await faceServiceClient.DeletePersonGroupAsync(personGroupId);
+                }
+                catch (Exception)
+                {
+                    // Hmmm, that exception tasted yummy.
+                }
 
-            //try
-            //{
-            //    #region Create new Person Group
-            //    try
-            //        {
-            //            // Delete the person group if it already exists.
-            //            PersonGroup group = await faceServiceClient.GetPersonGroupAsync(personGroupId);
-            //            Debug.WriteLine("Person Group " + personGroupId + " already exists, deleting it.");
-            //            await faceServiceClient.DeletePersonGroupAsync(personGroupId);
-            //        }
-            //        catch (Exception)
-            //        {
-            //            // Hmmm, that exception tasted yummy.
-            //        }
+                // create an empty person group with an Id and a friendly display name.
+                await faceServiceClient.CreatePersonGroupAsync(personGroupId, personGroupName);
+                #endregion
+                #region Upload images for each person
+                StorageFolder knownImagesBaseFolder = await KnownFolders.CameraRoll.GetFolderAsync("knownimages");
+                var knownImageFolders = await knownImagesBaseFolder.GetFoldersAsync();
+                foreach (StorageFolder person in knownImageFolders)
+                {
+                    Debug.WriteLine(person.Name);
+                    // define a person in the group
+                    CreatePersonResult friend = await faceServiceClient.CreatePersonAsync(personGroupId, person.Name);
+                    IReadOnlyList<StorageFile> files = await person.GetFilesAsync();
 
-            //    // create an empty person group with an Id and a friendly display name.
-            //    await faceServiceClient.CreatePersonGroupAsync(personGroupId, personGroupName);
-            //    #endregion
-            //    #region Upload images for each person
-            //    foreach (StorageFolder person in knownImageFolders)
-            //        {
-            //        Debug.WriteLine(person.Name);
-            //        // define a person in the group
-            //        CreatePersonResult friend = await faceServiceClient.CreatePersonAsync(personGroupId, person.Name);
-            //        IReadOnlyList<StorageFile> files = await person.GetFilesAsync();
+                    // add the known images of the person
+                    foreach (StorageFile file in files)
+                    {
+                        using (Stream s = File.OpenRead(file.Path))
+                        {
+                            Debug.WriteLine("Uploading " + file.Path);
+                            // detect faces in the image and add to person
+                            await faceServiceClient.AddPersonFaceAsync(personGroupId, friend.PersonId, s);
+                        }
+                    }
+                }
+                #endregion
+                #region Train the model.
+                await faceServiceClient.TrainPersonGroupAsync(personGroupId);
 
-            //            // add the known images of the person
-            //            foreach (StorageFile file in files)
-            //            {
-            //                using (Stream s = File.OpenRead(file.Path))
-            //                {
-            //                    Debug.WriteLine("Uploading " + file.Path);
-            //                    // detect faces in the image and add to person
-            //                    await faceServiceClient.AddPersonFaceAsync(personGroupId, friend.PersonId, s);
-            //                }
-            //            }
-            //        }
-            //    #endregion
-            //    #region Train the model.
-            //    await faceServiceClient.TrainPersonGroupAsync(personGroupId);
+                // wait until the training is complete.
+                TrainingStatus trainingstatus = null;
+                while (true)
+                {
+                    trainingstatus = await faceServiceClient.GetPersonGroupTrainingStatusAsync(personGroupId);
 
-            //        // wait until the training is complete.
-            //        TrainingStatus trainingstatus = null;
-            //        while (true)
-            //        {
-            //            trainingstatus = await faceServiceClient.GetPersonGroupTrainingStatusAsync(personGroupId);
+                    if (trainingstatus.Status == Status.Succeeded)
+                    {
+                        Debug.WriteLine("Training complete.");
+                        break;
+                    }
+                    Debug.WriteLine("Wax on......Wax off......");
+                    await Task.Delay(30000);
+                }
 
-            //            if (trainingstatus.Status == Status.Succeeded)
-            //            {
-            //                Debug.WriteLine("Training complete.");
-            //                break;
-            //            }
-            //            Debug.WriteLine("Wax on......Wax off......");
-            //            await Task.Delay(30000);
-            //        }
+                #endregion
 
-            //    #endregion
-
-            //    App.Controller.Camera.PhotoTaken += Camera_PhotoTaken;
-            //}
-            //catch (Exception ex)
-            //{
-            //    #region Track and display errors
-            //    FaceAPIException fex = (FaceAPIException)ex.InnerException;
-            //    Debug.WriteLine(ex.InnerException.Message);
-            //    Debug.WriteLine(fex.ErrorCode);
-            //    Debug.WriteLine(fex.ErrorMessage);
-            //    #endregion
-            //}
+                //App.Controller.Camera.PhotoTaken += Camera_PhotoTaken;
+            }
+            catch (Exception ex)
+            {
+                #region Track and display errors
+                FaceAPIException fex = (FaceAPIException)ex.InnerException;
+                Debug.WriteLine(ex.InnerException.Message);
+                Debug.WriteLine(fex.ErrorCode);
+                Debug.WriteLine(fex.ErrorMessage);
+                #endregion
+            }
 
             KnownImagesRegistered = true;
 
@@ -110,8 +109,6 @@ namespace SecuritySystemUWP
         private void Camera_PhotoTaken(object sender, PhotoTakenEventArgs e)
         {
             Task.Run(async () => {
-
-
 
                 string result = await TestUserAsync(e.Path);
 

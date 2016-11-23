@@ -351,6 +351,7 @@ namespace SecuritySystemUWP
                     //await redirectToPage(NavConstants.HOME_PAGE, os);
 
                     string html;
+                    string result = String.Empty;
 
                     // Process the GET parameters
                     if (request.Contains("?"))
@@ -372,19 +373,27 @@ namespace SecuritySystemUWP
 
                                 ICamera cam = App.Controller.Camera;
                                 await cam.TriggerCapture();
-                                await redirectToPage(NavConstants.GALLERY_PAGE, os);
+                                //await redirectToPage(NavConstants.GALLERY_PAGE, os);
+
+                                html = helper.GeneratePage("Actions", "Manual actions", helper.GenerationActionPage(), result = "<span style='color:Green'>Photo taken.</span><br><br>");
+                                await WebHelper.WriteToStream(html, os);
+
                                 break;
 
                             case "sendknownimages":
                                 Debug.WriteLine("Registgering known images with Cortana FaceAPI.....");
 
-                                if (App.Controller.FaceClient != null)
+                                if (App.Controller.FaceClient == null)
                                 {
-                                    await App.Controller.FaceClient.RegisterKnownUsersAsync();
+
+                                    result = "<span style='color:Red'>The FaceAPI key has not been set or is incorrect. Go to the Settings page and review the setting.</span><br><br>";
+
                                 }
                                 else
                                 {
-                                    throw new Exception("The FaceAPI key has not been set in the Settings page.");
+                                    await App.Controller.FaceClient.RegisterKnownUsersAsync();
+                                    result = "<span style='color:Green'>Known image upload complete</span><br><br>";
+
                                 }
 
                                 break;
@@ -392,11 +401,9 @@ namespace SecuritySystemUWP
                                 break;
                         }
 
-                       
-
                     }
 
-                    html = helper.GeneratePage("Actions", "Manual actions", helper.GenerationActionPage());
+                    html = helper.GeneratePage("Actions", "Manual actions", helper.GenerationActionPage(), result);
                     await WebHelper.WriteToStream(html, os);
 
                 }
