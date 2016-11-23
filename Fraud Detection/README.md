@@ -51,7 +51,7 @@ __The following steps should be carried out on your development machine__ which 
 1. Create a new folder called `c:\source` to store the content you are about download.
 2. Open the Command Prompt to navigate to the new folder.
 3. Run the git clone command: `git clone https://github.com/UKNorthernlad/AzureFastStartForIoT.git` to download a copy of the class content. This contains a basic UWP application which takes photos and uploads them to Azure Blob Storage.
-4. Change directory to the project root folder: `c:\source\AzureFastStartForIoT\Fraud Detection\CameraSystem\SecuritySystemUWP`.
+4. Open the project root folder in Explorer: `c:\source\AzureFastStartForIoT\Fraud Detection\CameraSystem\SecuritySystemUWP`.
 5. Open the SecuritySystemUWP.sln solution file, in the SecuritySystemUWP folder, using Visual Studio 2015.
 6. From the tool bar, choose "Remote Machine" as the target to deploy your application to.
 7. ![Choosing the right target setting](images/remotemachine.png "Choosing the right target setting")
