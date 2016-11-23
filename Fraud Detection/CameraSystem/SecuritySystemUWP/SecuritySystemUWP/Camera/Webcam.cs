@@ -74,8 +74,6 @@ namespace SecuritySystemUWP
         ********************************************************************************************/
         private async void PirSensor_MotionDetected(object sender, GpioPinValueChangedEventArgs e)
         {
-
-            
             await TakePhotoAsync();
         }
 

@@ -99,35 +99,44 @@ You are now going to add new code to the camera project to support the Face API.
 5. Open the *Controller.cs* file and around line 91 locate and uncomment the following code: *FaceClient = new FaceClient(XmlSettings.FaceAPIKey);*. This is the core client object that knows how to connect to Face API. Notice it takes a *key* as a parameter, this value which will be read from the settings configuration file is your "password" for accessing the Face API service.
 5. Open the FaceAPI/FaceAPI.cs file and locate the __RegisterKnownUsersAsync()__ method.
 6. Uncomment all the code in the __Create new Person Group__ region. This section uses the FaceClient object to create a new PersonGroup called "AuthorisedUsers".
-7. Uncomment all the code in the __Upload images for each person__ region. This wil upload "known" images for several people from a folder called *Pictures/Camera Roll/knownimages*. __TODO__: This folder needs creating manually after deploying the application. Either document this or update the code sample to copy this into place.
+7. Uncomment all the code in the __Upload images for each person__ region. This wil upload "known" images for several people from a folder called *Pictures/Camera Roll/knownimages*.
 8. Uncomment all the code in the __Train the Model__ region. This tells the machine learning algorithm to analyze the known photos and build a working model. *Each time you add a new photo of an existing person or add an entire new person the model will need to be retrained.*
-9. Finally round about line 96 uncomment the line *App.Controller.Camera.PhotoTaken += Camera_PhotoTaken;*. Now, eachtime a new photo is taken it will be sent to Cortana for analysis.
+9. Round about line 96 uncomment the line *App.Controller.Camera.PhotoTaken += Camera_PhotoTaken;*. Now, eachtime a new photo is taken it will be sent to Cortana for analysis.
+10. Finally, on or about line 394 of WebServer/WebServer.cs uncomment the line *await App.Controller.FaceClient.RegisterKnownUsersAsync();* and also the following *result = .... ; * line. These lines which are part of a button pressed event handler will allow the manual uploading and training of the machine learning Face API model.
 
 
-
-
-
-
-
-
-Configuring the Universal Windows App
-=====================================
+Configuring the App for the Face API access
+===========================================
 
 1. Use your web browser to navigate to http://*yourdeviceipaddress*:8000. You will see a landing page for your application running on your device.
 2. Click on the "Settings" link from the left hand navigation menu.
-3. Change the Storage type to *Azure* and enter the storage account name and key you saved from earlier. Other settings can be left either blank or at their defaults. __The web server built into the UWP app does not support secured connections so all information is received & sent in the clear - beware!__
+3. Enter the FaceAPI key your created at the beginning of the scenario into the FaceAPI settings box. __The web server built into the UWP app does not support secured connections so all information is received & sent in the clear - beware!__
 4. Press *Save* at the bottom of the page.
 
-![Configuring the App on the Device via it's web interface](images/appazuresettings.png)
+
+ __TODO__: This folder needs creating manually after deploying the application. Either document this or update the code sample to copy this into place.
 
 
+Testing the App Part 1
+======================
 
-Testing the App
-===============
+Testing the App Part 2
+======================
 
-1. Take a selfie with your mobile phone. *Where possible make sure you are looking straight at the camera and there is nothing in the background of the image. Ideally your could ask another person to take the photo of you stood against a wall with a plain background. Ensure also the lighting in the room is good or if possible take the photo outside on bright sunny day. A good, clear and well light photograph will vastly increase the changes of a positive match.*
-2. From Explorer, copy your "known" photo to the device by pasting it into the folder `\\*yourdeviceipaddress*\c$\Data\Users\DefaultAccount\Pictures\Camera Roll`. Name your "known" photo as `me.jpg`. The name and location are important as the code you'll create shortly will reference them.
-3. 
-4. Moving your hand in front of the motion sensor will cause the USB camera to take a photograph.
-5. 
-6. Every 60 seconds, these images are uploaded to the Azure blob container you created earlier. The originals on the device are deleted.
+1. Take 5 or 6 good selfies with your mobile phone. *Where possible make sure you are looking more or less straight at the camera and there is nothing in the background of the image. Ideally you could ask another person to take the photo of you stood against a wall with a plain background. Ensure also the lighting in the room is good or if possible take the photos outside on bright sunny day. A good, clear and well light photograph will vastly increase the chances of a positive match.*
+2. From Explorer, copy all the photos to the device by pasting them into the folder `\\*yourdeviceipaddress*\c$\Data\Users\DefaultAccount\Pictures\Camera Roll\knownimages\<yournamehere>`.
+3. You now need to upload the "known" photos to Cortana for processing. Navigate to http://*yourdeviceipaddress*:8000 and from the "Actions" menu on the Navbar, click "Send Known Images for Face API Training". Wait for the green "Uploading Complete" message to appear at the top of the Actions page before continuing.
+4. Now, moving your hand in front of the motion sensor or manually triggering a photo will trigger the taking of a photo.
+5. The photo will then be sent to Cortana for analysis and if the user is recognised, an entry will be placed into a log file in the "knownimages" folder where you placed your selfies earlier.
+
+
+Keeping an archive of photos
+============================
+
+You may want to keep an archive of photos taken by your device but storing these long term on the device is not an option. Here you will configure the scenario to upload the photo into an archive in Azure blob storage.
+
+1. Navigate to the Settings page on your device. http://*yourdeviceipaddress*:8000.
+2. Change the Storage type to *Azure* and enter the storage account name and key you saved from earlier. Other settings can be left either blank or at their defaults. __The web server built into the UWP app does not support secured connections so all information is received & sent in the clear - beware!__
+3. Press *Save* at the bottom of the page.
+4. ![Configuring the App on the Device via it's web interface](images/appazuresettings.png)
+5. Trigger the taking of a photograph as done is previous sections. Every 60 seconds the photos in the "securitysystem-cameradrop" folder will be uploaded to Azure Storage account your configured in the "Azure Pre-reqs" section above.

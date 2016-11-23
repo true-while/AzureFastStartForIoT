@@ -27,7 +27,7 @@ namespace SecuritySystemUWP
             faceServiceClient = new FaceServiceClient(key);
         }
 
-        public async Task RegisterKnownUsersAsync()
+        public void RegisterKnownUsersAsync()
         {
             try
             {
@@ -48,9 +48,9 @@ namespace SecuritySystemUWP
                 //await faceServiceClient.CreatePersonGroupAsync(personGroupId, personGroupName);
                 #endregion
 
-
                 #region Upload images for each person
-                //StorageFolder knownImagesBaseFolder = await KnownFolders.CameraRoll.GetFolderAsync("knownimages");
+                ////StorageFolder knownImagesBaseFolder = await KnownFolders.CameraRoll.GetFolderAsync("knownimages");
+                //StorageFolder knownImagesBaseFolder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(@"Assets\knownimages");
                 //var knownImageFolders = await knownImagesBaseFolder.GetFoldersAsync();
                 //foreach (StorageFolder person in knownImageFolders)
                 //{
@@ -72,7 +72,6 @@ namespace SecuritySystemUWP
                 //}
                 #endregion
 
-
                 #region Train the model.
                 //await faceServiceClient.TrainPersonGroupAsync(personGroupId);
 
@@ -92,8 +91,6 @@ namespace SecuritySystemUWP
                 //}
 
                 #endregion
-
-                //App.Controller.Camera.PhotoTaken += Camera_PhotoTaken;
             }
             catch (Exception ex)
             {
@@ -107,28 +104,40 @@ namespace SecuritySystemUWP
 
             KnownImagesRegistered = true;
 
-            //App.Controller.Camera.PhotoTaken += Camera_PhotoTaken;
+            App.Controller.Camera.PhotoTaken += Camera_PhotoTaken;
         }
 
         private void Camera_PhotoTaken(object sender, PhotoTakenEventArgs e)
         {
             Task.Run(async () => {
 
-                string result = await TestUserAsync(e.Path);
+                string logmessage = String.Empty;
 
-                if (result == null) return;
+                //StorageFolder folder = await KnownFolders.PicturesLibrary.GetFolderAsync("securitysystem-cameradrop");
+                StorageFolder folder = KnownFolders.PicturesLibrary;
+                StorageFile securityLogFile = await folder.CreateFileAsync(@"securityaccess.log", CreationCollisionOption.OpenIfExists);
 
-                StorageFolder folder = await KnownFolders.PicturesLibrary.GetFolderAsync("securitysystem-cameradrop");
-                StorageFile securityLogFile = await folder.CreateFileAsync(@"iot-camera.log", CreationCollisionOption.OpenIfExists);
+                Debug.WriteLine("Sending photo to Face API for analysis....");
+                Person person = await TestUserAsync(e.Path);
+                if (person == null)
+                {
+                    logmessage = "An unsuccessful access attempt was made at " + DateTime.Now + Environment.NewLine;
+                }
+                else
+                {
+                    logmessage = person.Name + " was identified at " + DateTime.Now + Environment.NewLine;
+                }
 
-                await FileIO.AppendTextAsync(securityLogFile, result + " was identified at " + DateTime.Now + Environment.NewLine);
+                Debug.WriteLine(logmessage);
+                await FileIO.AppendTextAsync(securityLogFile, logmessage);
 
             }).Wait();
         }
 
-        public async Task<string> TestUserAsync(string testImageFile)
+        public async Task<Person> TestUserAsync(string testImageFile)
         {
             Person person = null;
+           
             try
             {
                 using (Stream s = File.OpenRead(testImageFile))
@@ -140,7 +149,8 @@ namespace SecuritySystemUWP
                     var faceIds = faces.Select(face => face.FaceId).ToArray();
                     #endregion
                     #region Perform the identification
-                    // IdentifyAsync will identify each face in each bounding box. Returns a list of possible matches (candidates) and a confidence value.
+                    // IdentifyAsync will identify each face in each bounding box.
+                    // Returns a list of possible matches (candidates) and a confidence value.
                     var results = await faceServiceClient.IdentifyAsync(personGroupId, faceIds);
                     #endregion
                     #region Process the results
@@ -153,7 +163,7 @@ namespace SecuritySystemUWP
                         }
                         else
                         {
-                            if (identifyResult.Candidates[0].Confidence > 0.75)
+                            if (identifyResult.Candidates[0].Confidence > 0.7)
                             {
                                 // Get the details of the top candidate.
                                 var candidateId = identifyResult.Candidates[0].PersonId;
@@ -162,23 +172,25 @@ namespace SecuritySystemUWP
                             }
                             else
                             {
-                                Debug.WriteLine("A candidate was found but the confidence was not high enough to be considered a true match.");
+                                Debug.WriteLine("A candidate was found but the confidence was not high enough to be considered a true match. Confidence value = " + identifyResult.Candidates[0].Confidence.ToString());
                             }
-
-
-
                         }
                     }
-                    #endregion             
+                    #endregion
                 }
-
             }
-            catch (Exception)
+            catch (FaceAPIException fex)
             {
-                throw;
+                #region Print out error message to Output window.
+                Debug.WriteLine(fex.Message);
+                Debug.WriteLine(fex.ErrorCode);
+                Debug.WriteLine(fex.ErrorMessage);
+                Debug.WriteLine(fex.InnerException.Message);
+                throw fex;
+                #endregion
             }
 
-            return person.Name;
+            return person;
 
         }
     }

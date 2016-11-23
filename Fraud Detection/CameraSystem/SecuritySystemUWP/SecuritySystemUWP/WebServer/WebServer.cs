@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.ProjectOxford.Face;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -109,13 +110,13 @@ namespace SecuritySystemUWP
                         dataRead = buffer.Length;
                     }
 
-                    // Print out the incoming HTTP request in the Trace window.
-                    StringBuilder b = new StringBuilder();
-                    foreach(char c in data)
-                    {
-                        b.Append(c);
-                    }
-                    Debug.Write(b);
+                    //// Print out the incoming HTTP request in the Trace window.
+                    //StringBuilder b = new StringBuilder();
+                    //foreach(char c in data)
+                    //{
+                    //    b.Append(c);
+                    //}
+                    //Debug.Write(b);
                 }
 
                 using (IOutputStream output = socket.OutputStream)
@@ -369,34 +370,32 @@ namespace SecuritySystemUWP
                         switch (parameters["myaction"])
                         {
                             case "takephoto":
-                                Debug.WriteLine("Manually taking photo...");
-
-                                ICamera cam = App.Controller.Camera;
-                                await cam.TriggerCapture();
-                                //await redirectToPage(NavConstants.GALLERY_PAGE, os);
+                                Debug.WriteLine("Manually Taking photo...");
+                                await App.Controller.Camera.TriggerCapture();
+                                Debug.WriteLine("Photo capture done.");
 
                                 html = helper.GeneratePage("Actions", "Manual actions", helper.GenerationActionPage(), result = "<span style='color:Green'>Photo taken.</span><br><br>");
-                                await WebHelper.WriteToStream(html, os);
+                                //await WebHelper.WriteToStream(html, os);
 
                                 break;
 
-                            //case "sendknownimages":
-                            //    Debug.WriteLine("Registgering known images with Cortana FaceAPI.....");
+                            case "sendknownimages":
+                                Debug.WriteLine("Registgering known images with Cortana FaceAPI.....");
 
-                            //    if (App.Controller.FaceClient == null)
-                            //    {
+                                if (App.Controller.FaceClient == null)
+                                {
 
-                            //        result = "<span style='color:Red'>The FaceAPI key has not been set or is incorrect. Go to the Settings page and review the setting.</span><br><br>";
+                                    result = "<span style='color:Red'>The FaceAPI key has not been set or is incorrect. Go to the Settings page and review the setting.</span><br><br>";
 
-                            //    }
-                            //    else
-                            //    {
-                            //        await App.Controller.FaceClient.RegisterKnownUsersAsync();
-                            //        result = "<span style='color:Green'>Known image upload complete</span><br><br>";
+                                }
+                                else
+                                {
+                                    App.Controller.FaceClient.RegisterKnownUsersAsync();
+                                    result = "<span style='color:Green'>Known image upload complete</span><br><br>";
 
-                            //    }
+                                }
 
-                            //    break;
+                                break;
                             default:
                                 break;
                         }
@@ -459,6 +458,25 @@ namespace SecuritySystemUWP
                 }
                 #endregion
             }
+            catch (FaceAPIException fex)
+            {
+                #region Track error for debugging
+                Debug.WriteLine("Exception in FaceAPI code: " + fex.Message);
+                #endregion
+                #region Display error to user
+                try
+                {
+                    // Try to send an error page back if there was a problem servicing the request
+                    string html = helper.GeneratePage("Error", "Error", "There's been an error: " + fex.Message + "<br><br>");
+                    await WebHelper.WriteToStream(html, os);
+                }
+                catch (Exception e)
+                {
+                    TelemetryHelper.TrackException(e);
+                }
+                #endregion
+
+            }
             catch (Exception ex)
             {
                 #region Track error for debugging
@@ -466,8 +484,8 @@ namespace SecuritySystemUWP
                 Debug.WriteLine(ex.StackTrace);
 
                 // Log telemetry event about this exception
-                var events = new Dictionary<string, string> { { "WebServer", ex.Message } };
-                TelemetryHelper.TrackEvent("FailedToWriteResponse", events);
+                //var events = new Dictionary<string, string> { { "WebServer", ex.Message } };
+                //TelemetryHelper.TrackEvent("FailedToWriteResponse", events);
                 #endregion
                 #region Display error to user
                 try

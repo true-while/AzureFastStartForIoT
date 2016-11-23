@@ -113,13 +113,10 @@ namespace SecuritySystemUWP
             html += "<input type='hidden' name='myaction' value='takephoto'>";
             html += "<table>";
             html += "<tr>";
-            html += "<td>";
-            html += "<select name='camera'>";
-            html += "<option value='real'>Take photo using selected camera</option>";
-            html += "</select>";
+            html += "<td>";         
             html += "</td>";
             html += "<td>";
-            html += "<input type='submit' value='Manually take photo'></td>";
+            html += "<input type='submit' value='Take photo'></td>";
             html += "</tr>";
             html += "</table>";   
             html += "</form>";

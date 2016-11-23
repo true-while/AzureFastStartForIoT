@@ -10,6 +10,7 @@ using Windows.ApplicationModel.Core;
 using Windows.Devices.AllJoyn;
 using Windows.Foundation;
 using Windows.Storage;
+using Windows.Storage.Search;
 using Windows.UI.Xaml;
 
 namespace SecuritySystemUWP
@@ -76,9 +77,12 @@ namespace SecuritySystemUWP
                     await folder.CreateFolderAsync(AppSettings.FolderName);
                 }
 
+                // Copy sample "known" images to users Pictures folder.
+                //await CreateAndPopulateKnownImages(folder);
+               
                 // Start web server on port 8000
                 if (!Server.IsRunning)
-                    Server.Start(8000);                
+                    Server.Start(8000);
 
                 Camera = CameraFactory.Get(XmlSettings.CameraType);
                 Storage = StorageFactory.Get(XmlSettings.StorageProvider);
@@ -88,7 +92,7 @@ namespace SecuritySystemUWP
                 // Configure the FaceAPI client
                 if (XmlSettings.FaceAPIKey != String.Empty)
                 {
-                  //  FaceClient = new FaceClient(XmlSettings.FaceAPIKey);
+                      FaceClient = new FaceClient(XmlSettings.FaceAPIKey);
                 }
 
                 // Try to log into OneDrive using existing Access Token in settings file
@@ -143,7 +147,6 @@ namespace SecuritySystemUWP
             }
         }
 
-
         /// <summary>
         /// Disposes the file upload and deletion timers, camera, and storage
         /// </summary>
@@ -189,5 +192,8 @@ namespace SecuritySystemUWP
         {
             Storage.DeleteExpiredPictures();
         }
+
+
+
     }
 }
