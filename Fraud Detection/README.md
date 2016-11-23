@@ -42,7 +42,6 @@ Azure Pre-reqs
 10. Click on the *Show* link to display your access key. Make a copy of this as you'll need this for later in the scenario.
 11. ![Showing your Access Key](images/po-keys.png).
 
-
 Software Setup
 ===============
 
@@ -104,7 +103,6 @@ You are now going to add new code to the camera project to support the Face API.
 9. Round about line 96 uncomment the line *App.Controller.Camera.PhotoTaken += Camera_PhotoTaken;*. Now, eachtime a new photo is taken it will be sent to Cortana for analysis.
 10. Finally, on or about line 394 of WebServer/WebServer.cs uncomment the line *await App.Controller.FaceClient.RegisterKnownUsersAsync();* and also the following *result = .... ; * line. These lines which are part of a button pressed event handler will allow the manual uploading and training of the machine learning Face API model.
 
-
 Configuring the App for the Face API access
 ===========================================
 
@@ -112,9 +110,6 @@ Configuring the App for the Face API access
 2. Click on the "Settings" link from the left hand navigation menu.
 3. Enter the FaceAPI key your created at the beginning of the scenario into the FaceAPI settings box. __The web server built into the UWP app does not support secured connections so all information is received & sent in the clear - beware!__
 4. Press *Save* at the bottom of the page.
-
-
- __TODO__: This folder needs creating manually after deploying the application. Either document this or update the code sample to copy this into place.
 
 Configuring and Testing the App - Part 2
 ========================================
@@ -124,7 +119,6 @@ Configuring and Testing the App - Part 2
 3. You now need to upload the "known" photos to Cortana for processing. Navigate to http://*yourdeviceipaddress*:8000 and from the "Actions" menu on the Navbar, click "Send Known Images for Face API Training". Wait for the green "Uploading Complete" message to appear at the top of the Actions page before continuing.
 4. Now, moving your hand in front of the motion sensor or manually triggering a photo will trigger the taking of a photo.
 5. The photo will then be sent to Cortana for analysis and if the user is recognised, an entry will be placed into a log file in the "knownimages" folder where you placed your selfies earlier.
-
 
 Keeping an archive of photos
 ============================
