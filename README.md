@@ -73,13 +73,28 @@ Credits for these projects are as follows:-
 
 * [long-range-uhf-rfid-item-tracking](https://microsoft.hackster.io/en-US/careypayette/long-range-uhf-rfid-item-tracking-system-fc5372)
 
+
+Remote Patient Monitoring and Clinical Analytics
+------------------------------------------------
+
+### Find the content for this scenario at [Remote Patient Monitoring and Clinical Analytics](/Patient Monitoring)
+
+This scenario will use Windows IoT, Azure storage, data processing and Cortana Analytics for intelligent interactions with the user. 
+
+This scenario is based on a project from [Hackster.io](http://www.hackster.io):-
+
+* [Building a Electrocardiogram with Windows IOT and Azure](https://microsoft.hackster.io/en-US/phantom_override/building-a-electrocardiogram-with-windows-iot-and-azure-8b2b44?ref=channel&ref_id=4087_popular___&offset=270)
+
+Credits for these projects are as follows:-
+
+* [Building a Electrocardiogram with Windows IOT and Azure](https://microsoft.hackster.io/en-US/phantom_override/building-a-electrocardiogram-with-windows-iot-and-azure-8b2b44?ref=channel&ref_id=4087_popular___&offset=270) - Made by [Christiano Faig](https://microsoft.hackster.io/en-US/phantom_override).
+
 Roadmap
 -------
 
 The following scenarios will be added at some point in the future:
 
 | Scenario        | Title         | Links  |
-| ------------- |:-------------:| -----:|
-| Remote Patient Monitoring and Clinical Analytics | EKG monitor with Cortana Analytics.| [building-a-electrocardiogram](https://microsoft.hackster.io/en-US/phantom_override/building-a-electrocardiogram-with-windows-iot-and-azure-8b2b44) |
-| Mobile Worker Enablement | Speech Recognition with Cortana Analytics. |  [speech-controlled-robot](https://www.hackster.io/AnuragVasanwala/speech-controlled-robot-49744c) & [interactive-with-cortana](https://www.hackster.io/ada-plasma-1f5c36/windows-iot-device-interactive-with-cortana-046906) |
+| --------------- |:-------------:| ------:|
+| Mobile Worker Enablement | Speech Recognition with Cortana Analytics. | [speech-controlled-robot](https://www.hackster.io/AnuragVasanwala/speech-controlled-robot-49744c) & [interactive-with-cortana](https://www.hackster.io/ada-plasma-1f5c36/windows-iot-device-interactive-with-cortana-046906) |
 
