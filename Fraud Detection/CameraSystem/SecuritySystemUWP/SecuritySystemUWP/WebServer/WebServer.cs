@@ -389,7 +389,7 @@ namespace SecuritySystemUWP
                                 }
                                 else
                                 {
-                                    //App.Controller.FaceClient.RegisterKnownUsersAsync();
+                                    //await App.Controller.FaceClient.RegisterKnownUsersAsync();
                                     //result = "<span style='color:Green'>Known image upload complete</span><br><br>";
                                 }
 

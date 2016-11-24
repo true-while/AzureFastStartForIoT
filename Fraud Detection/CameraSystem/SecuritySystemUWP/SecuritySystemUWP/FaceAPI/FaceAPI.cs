@@ -87,7 +87,7 @@ namespace SecuritySystemUWP
                 //        break;
                 //    }
                 //    Debug.WriteLine("Wating for training to complete....");
-                //    await Task.Delay(30000);
+                //    await Task.Delay(10000);
                 //}
 
                 #endregion
