@@ -102,13 +102,14 @@ You are now going to add new code to the camera project to support the Face API.
 2. Right-click on the __SecuritySystemUWP__ *project* in Solution Explorer and click __Manage NuGet Packages...__.
 3. In the NuGet dialog, press *Browse* then enter *Microsoft.ProjectOxford.Face* into the search box. Select the (probably) only result from the list then press "Install". It might be that this package is already installed, in which case you will see a small green circle containing a white check mark next to the name of the packag.
 4. ![Installing the Face API SDK](images/nugetface.png)
-5. Open the *Controller.cs* file and around line 95 locate and uncomment the following code: *FaceClient = new FaceClient(XmlSettings.FaceAPIKey);*. This is the core client object that knows how to connect to Face API. Notice it takes a *key* as a parameter, this value which will be read from the settings configuration file is your "password" for accessing the Face API service.
+5. Open the *Controller.cs* file and around line 95 locate and uncomment the following code: *FaceClient = new FaceClient(XmlSettings.FaceAPIKey);*. This reads the FaceAPI key from the settings file and passes it to a custom class which controls access to the Cortana service.
 5. Open the FaceAPI/FaceAPI.cs file and locate the __RegisterKnownUsersAsync()__ method.
 6. Uncomment all the code in the __Create new Person Group__ region. This section uses the FaceClient object to create a new PersonGroup called "AuthorisedUsers".
 7. Uncomment all the code in the __Upload images for each person__ region. This wil upload "known" images for several people from a folder called *Pictures/Camera Roll/knownimages*.
 8. Uncomment all the code in the __Train the Model__ region. This tells the machine learning algorithm to analyze the known photos and build a working model. *Each time you add a new photo of an existing person or add an entire new person the model will need to be retrained.*
 9. Round about line 107 uncomment the line *App.Controller.Camera.PhotoTaken += Camera_PhotoTaken;*. Now, eachtime a new photo is taken it will be sent to Cortana for analysis.
-10. Finally, on or about line 392 of WebServer/WebServer.cs uncomment the line *await App.Controller.FaceClient.RegisterKnownUsersAsync();* and also the following *result = .... ; * line. These lines which are part of a button pressed event handler will trigger the uploading of the known images and training of the machine learning Face API model.
+10. On or about line 27, locate and uncomment the line *faceServiceClient = new FaceServiceClient(key);*.  This is the core client object that knows how to connect to Face API. Notice it takes a *key* as a parameter, this value which will be read from the settings configuration file is your "password" for accessing the Face API service.
+11. Finally, on or about line 392 of WebServer/WebServer.cs uncomment the line *await App.Controller.FaceClient.RegisterKnownUsersAsync();* and also the following *result = .... ; * line. These lines which are part of a button pressed event handler will trigger the uploading of the known images and training of the machine learning Face API model.
 
 Configuring the App for the Face API access
 ===========================================
