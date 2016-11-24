@@ -6,7 +6,8 @@
 Scenario
 ========
 
-For this scenario you will imagine that you are building a system that authenticates users by use of a photo scan of their face.
+For this scenario you will imagine that you are building a system that uses a photograph of a person to determine if they should be admitted to a building.
+This could form part of a two phase security check, e.g. Do you have the correct access badge and the face that matches it?
 You will attach a regular USB camera to your Windows IoT Core device and once a photo has been taken, the image will be sent to Cortana Analytics which will use __Face Verification__ which is part of the [Face API](https://www.microsoft.com/cognitive-services/en-us/face-api/documentation/overview) to analyse the photo and determine if this person should be allowed access.
 
 You will use a motion sensor attached to the device which will be used to trigger the taking of a photograph when there is movement near the camera.

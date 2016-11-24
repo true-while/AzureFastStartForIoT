@@ -6,12 +6,13 @@ The content has been drawn from a number of different locations and authors and 
 
 The three scenarios currently available are:
 
-Fraud Prevention
-----------------
+Fraud Detection
+---------------
 
 ### Find the content for this scenario at [Fraud Detection](/Fraud Detection)
 
-Build a system which uses the camera attached to your Windows 10 Core device to scan the face of a person entering a building and automatically open the door for a recognised employee. This scenario will leverage Windows 10 IoT, Azure Storage Accounts and Machine Learning with Cortana for data processing.
+For this scenario you will imagine that you are building a system that uses a photograph of a person to determine if they should be admitted to a building.
+This could form part of a two phase security check, e.g. Do you have the correct access badge and the face that matches it?
 
 This scenario is made up from two separate projects from [Hackster.io](http://www.hackster.io):-
 
