@@ -54,7 +54,7 @@ Azure Pre-reqs
 Develoment Machine Setup
 ========================
 
-Ensure you have your local development machine setup according to these instructions: [Azure IoT Development machine setup](../IoT Developer Setup.docx)
+Ensure you have your local development machine setup according to these instructions: [Azure IoT Development machine setup](../IoT Developer Setup.docx?raw=true)
 
 Blah
 ====
