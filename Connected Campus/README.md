@@ -1,6 +1,6 @@
 # Connected Campus
 
-![](images/azure.png)
+![](images/meetingroom.png)
 
 Scenario
 ========
@@ -42,7 +42,6 @@ You will need the following hardware items to build this scenario:
 * An LED
 * Male/Male Jumper Wires
 * Female/Male Jumper Wires
-
 
 ![](images/circuit.png)
 
