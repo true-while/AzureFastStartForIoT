@@ -12,7 +12,9 @@ This data will then be displayed on a dashboard where the user can see if the ro
 Credits: Full credits for this scenario go to:
 
 * [Intelligent Multi-Conference Room using UWP App and Azure](https://microsoft.hackster.io/en-US/Kishore10211/intelligent-multi-conference-room-using-uwp-app-and-azure-620b1d).
+
 Additional content has been added by
+
 * [Microsoft Premier Services](https://www.microsoft.com/en-us/microsoftservices/support.aspx).
 
 Architecture
