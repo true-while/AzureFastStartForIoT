@@ -121,6 +121,25 @@ The AzureIoTHub class contains two methods that you can start using right away f
 * The Connected Service Wizard has inserted into the new class a __deviceConnectionString__ variable that contains the access key required to connect your device to IoT Hub. Anyone who comes into the possession of this information will be able to send and receive messages on behalf of that device. It is recommended that you remove this string from the source code before committing your code into a source control. Consider storing it in a configuration file or an environment variable.
 
 
+12.	Replace the Run method of the StartupTask class with the following code
+```
+        public async void Run(IBackgroundTaskInstance taskInstance)
+        {
+            // Using BackgroundTaskDeferral
+            // as described in http://aka.ms/backgroundtaskdeferral
+            BackgroundTaskDeferral deferral = taskInstance.GetDeferral();
+
+            // Call asynchronous method(s) using the await keyword.
+            await AzureIoTHub.SendDeviceToCloudMessageAsync();
+            string result = await AzureIoTHub.ReceiveCloudToDeviceMessageAsync();
+
+            // Once the asynchronous method(s) are done, close the deferral.
+            //
+            deferral.Complete();
+        }
+```
+
+
 ######################
 
 
