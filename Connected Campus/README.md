@@ -11,7 +11,7 @@ This data will then be displayed on a dashboard where the user can see if the ro
 
 Credits: Full credits for this scenario go to:
 
-* [Intelligent Multi-Conference Room using UWP App and Azure](https://microsoft.hackster.io/en-US/Kishore10211/intelligent-multi-conference-room-using-uwp-app-and-azure-620b1d).
+* [Intelligent Multi-Conference Room using UWP App and Azure](https://microsoft.hackster.io/en-US/Kishore10211/intelligent-multi-conference-room-using-uwp-app-and-azure-620b1d) - Made by [Kishore Gaddam](https://microsoft.hackster.io/en-US/Kishore10211).
 
 Additional content has been added by
 
@@ -69,8 +69,13 @@ Develoment Machine and IoT device Setup
 
 For more in depth guidance on setting up your hardware device see [Get Started](https://developer.microsoft.com/en-us/windows/iot/GetStarted).
 
-Blah
-====
+Step 1 - Build an IoT Hub
+=========================
+
+1. [Open th Azure Portal](https://portal.azure.com).
+2. Click (+)-->Internet of Things-->IoT Hub.
+3. ![New IoT Hub](images/newiot.png)
+4. Blah
 
 
 [Deploying an App with Visual Studio](https://developer.microsoft.com/en-us/windows/iot/Docs/appdeployment)
