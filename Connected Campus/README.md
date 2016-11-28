@@ -63,6 +63,7 @@ Develoment Machine and IoT device Setup
 ========================================
 
 * Ensure your local development machine is setup according to these instructions: [Azure IoT Development machine setup](../IoT Developer Setup.docx?raw=true)
+* Part of the above document describes installing the "Device Explorer" tool - make sure that you follow these instructions as you'll need that tool later on.
 * Ensure you have [followed the instructions](https://developer.microsoft.com/en-us/windows/iot/docs/iotdashboard) to __Use the Windows 10 IoT Core Dashboard__ to setup your Raspberry Pi.
 
 *Note about setting up Wi-Fi on the RPi:* IoT Dashboard shows all available networks that your PC has previously connected to. If you don’t see your desired Wi-Fi network on the list, ensure you’re connected to it on your PC. If you uncheck the Wi-Fi box when writing the Windows 10 IoT Core image onto your SD card, you must connect an Ethernet cable to your board after flashing. Wether using Wi-Fi or Ethernet, your device will recieve an IP via DHCP at start up.
@@ -80,7 +81,12 @@ Step 1 - Build an IoT Hub
 6. Once the IoTHub has been created, ensure to make a copy of the Connection String - this is shown via the *Shared Access Policies-->iothubowner* blade.
 7. ![Iot Hub Key](images/iothubkeys.png)
 
+Step 2 - Register your device with IoT Hub
+==========================================
 
+For your device to connect to IoT Hub it must have its own Device Identity (aka set of credentials). The process of obtaining these is known as Registering your Device. Currently there is no way to do this via the Azure Portal but there is a remote API available. Rather than write a custom application to connect & register you are going to use Device Explorer which is part of the IoT SDK. You can also register a device via the IoT Dashboard application or use iothub-explorer, another tool from the IoT SDK written in node.js.
+
+1.	Open the Device Explorer (C:\Program Files (x86)\Microsoft\DeviceExplorer\DeviceExplorer.exe) and fill the IoT Hub Connection String field with the connection string of the IoT Hub you created in previous steps and click on Update.
 
 
 
