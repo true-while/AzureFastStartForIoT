@@ -75,7 +75,13 @@ Step 1 - Build an IoT Hub
 1. [Open th Azure Portal](https://portal.azure.com).
 2. Click (+)-->Internet of Things-->IoT Hub.
 3. ![New IoT Hub](images/newiot.png)
-4. Blah
+4. Enter a unique name for the IoT Hub, choose a Pricing and Scale tier (note that Free has been choosen here), select or create a Resource Group and datacentre location and __Click Create__.
+5. ![Choosing IoT Hub settings](images/newiothubsettings.png)
+6. Once the IoTHub has been created, ensure to make a copy of the Connection String - this is shown via the *Shared Access Policies-->iothubowner* blade.
+7. ![Iot Hub Key](images/iothubkeys.png)
+
+
+
 
 
 [Deploying an App with Visual Studio](https://developer.microsoft.com/en-us/windows/iot/Docs/appdeployment)
