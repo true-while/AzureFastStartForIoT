@@ -86,7 +86,7 @@ Step 2 - Register your device with IoT Hub
 
 For your device to connect to IoT Hub it must have its own Device Identity (aka set of credentials). The process of obtaining these is known as Registering your Device. Currently there is no way to do this via the Azure Portal but there is a remote API available. Rather than write a custom application to connect & register you are going to use Device Explorer which is part of the IoT SDK. You can also register a device via the IoT Dashboard application or use iothub-explorer, another tool from the IoT SDK written in node.js.
 
-1.	Open the Device Explorer (C:\Program Files (x86)\Microsoft\DeviceExplorer\DeviceExplorer.exe) and fill the IoT Hub Connection String field with the connection string of the IoT Hub you created in previous steps and click on Update.
+1.	Open the Device Explorer (*C:\Program Files (x86)\Microsoft\DeviceExplorer\DeviceExplorer.exe*) and fill the IoT Hub Connection String field with the connection string of the IoT Hub you created in previous steps and click on Update.
 2. ![Setting the connection string](images/deviceexplorerconnstr.png)
 3. Go to the __Management tab__ and __Click on the Create button__. The Create Device popup will be displayed. Make up a Device ID for your device (myFirstDevice for example) and __click on Create__.
 4. ![Create device entry](images/createentry.png)
@@ -95,6 +95,15 @@ For your device to connect to IoT Hub it must have its own Device Identity (aka 
 
 __Note__: The device identities registration can be automated using the Azure IoT Hubs SDK. An example can be found at https://azure.microsoft.com/en-us/documentation/articles/iot-hub-csharp-csharp-getstarted/#create-a-device-identity. 
 
+
+Step 3 - Create an UWP App for your device
+==========================================
+
+This application is going to read the sensor date from your device and upload it to IoT Hub
+
+1. From Visual Studio select File-->New-->Project from the main menu. Create a new project by selecting Universal –> Blank App template. Call it "__ConnectedCampus__".
+2. ![Blank project](images/newproject.png).
+3. 
 
 ######################
 
