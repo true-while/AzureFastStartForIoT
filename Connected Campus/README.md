@@ -9,6 +9,12 @@ In this scenario you will build an application for a Windows 10 Core device with
 Every 10 seconds it will send information about the environmental conditions of a room in which it is located to Azure.
 This data will then be displayed on a dashboard where the user can see if the room is free and wether they wish to use it or not.
 
+Credits: Full credits for this scenario go to:
+
+* [Intelligent Multi-Conference Room using UWP App and Azure](https://microsoft.hackster.io/en-US/Kishore10211/intelligent-multi-conference-room-using-uwp-app-and-azure-620b1d).
+Additional content has been added by
+* [Microsoft Premier Services](https://www.microsoft.com/en-us/microsoftservices/support.aspx).
+
 Architecture
 ============
 
