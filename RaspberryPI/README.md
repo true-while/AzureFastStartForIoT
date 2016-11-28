@@ -12,4 +12,6 @@ __TODO:__ Blah blah blah....
 Connecting External Devices
 ===========================
 
+__TODO:__ Blah blah blah....
+
 ![Raspberry i 3 PinOuts](images/pinout.png)
