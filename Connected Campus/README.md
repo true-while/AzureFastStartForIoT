@@ -51,7 +51,9 @@ You will need the following hardware items to build this scenario:
 * Male/Male Jumper Wires
 * Female/Male Jumper Wires
 
-![](images/circuit.png)
+![The Basic Circuit for the Connected Campus device](images/circuit.png)
+
+![](/RaspberryPI/images/pinout.png)
 
 Azure Pre-reqs
 ==============
