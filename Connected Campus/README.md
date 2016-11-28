@@ -51,11 +51,9 @@ You will need the following hardware items to build this scenario:
 * Male/Male Jumper Wires
 * Female/Male Jumper Wires
 
-![The Basic Circuit for the Connected Campus device](images/circuit.png)
-
 [Click Image to Open it it's own tab - ](https://raw.githubusercontent.com/UKNorthernlad/AzureFastStartForIoT/master/Connected%20Campus/images/circuit.png)
 
-![](/RaspberryPI/images/pinout.png)
+![Raspberry Pi 3 PinOut Reference](/RaspberryPI/images/pinout.png)
 
 Azure Pre-reqs
 ==============
@@ -109,6 +107,7 @@ This application is going to read the sensor date from your device and upload it
 1. Open Visual Studio then go *File->Project->Visual C#->Windows->Windows IoT Core* and select the *Background Application (IoT)* template.
 2. ![Blank project](images/newproject.png)
 3. Give your project a name and make sure the .NET Framework version is 4.5.1 or later. Click __Create__. Accept the defaults for Universal Windows Project target versions.
+3. [Follow these instructions to add a NuGet reference](/Developer Setup/NuGet Package Install.md) to the __Microsoft.Azure.Devices.Client__ package.
 4. Right click on References in the Solution Explorer and choose “Connected Service”.
 5. ![Add reference](images/addservicereference.png)
 6. Choose __Azure IoT Hub__ and press __Configure__ then select the option to __hardcode__ shared access keys in the applications code, then press OK.
