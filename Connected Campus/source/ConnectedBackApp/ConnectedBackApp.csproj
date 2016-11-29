@@ -93,6 +93,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <None Include="data.json" />
     <None Include="project.json" />
     <None Include="Service References\deviothub99\ConnectedService.json" />
   </ItemGroup>

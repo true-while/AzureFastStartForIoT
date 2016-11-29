@@ -1,0 +1,12 @@
+[{
+    "DeviceId": "device1",
+    "RoomStatus": "Vacant",
+    "RoomTemp": "26.06436",
+    "RoomPressure": "103273.9",
+    "RoomAlt": "0",
+    "Color": "Green",
+    "Time": "2016-11-29T17:30:16.7636920Z",
+    "LightStatus": "Bright",
+    "LightCDSValue": "539",
+    "LightCDSVoltageValue": "2.634409"
+}]
