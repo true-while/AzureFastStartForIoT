@@ -106,7 +106,7 @@ This application is going to read the sensor date from your device and upload it
 
 1. Open Visual Studio then go *File->Project->Visual C#->Windows->Windows IoT Core* and select the *Background Application (IoT)* template.
 2. ![Blank project](images/newproject.png)
-3. Give your project a name and make sure the .NET Framework version is 4.5.1 or later. Click __Create__. Accept the defaults for Universal Windows Project target versions.
+3. Call your project "ConnectedBackApp" and make sure the .NET Framework version is 4.5.1 or later. Click __Create__. Accept the defaults for Universal Windows Project target versions.
 3. [Follow these instructions to add a NuGet reference](/Developer Setup/NuGet Package Install.md) to the __Microsoft.Azure.Devices.Client__ package.
 4. Right click on References in the Solution Explorer and choose “Connected Service”.
 5. ![Add reference](images/addservicereference.png)
@@ -134,15 +134,58 @@ The AzureIoTHub class contains two methods that you can start using right away f
             BackgroundTaskDeferral deferral = taskInstance.GetDeferral();
 
             // Call asynchronous method(s) using the await keyword.
-            await AzureIoTHub.SendDeviceToCloudMessageAsync();
-            string result = await AzureIoTHub.ReceiveCloudToDeviceMessageAsync();
+            //await AzureIoTHub.SendDeviceToCloudMessageAsync();
+            //string result = await AzureIoTHub.ReceiveCloudToDeviceMessageAsync();
 
             // Once the asynchronous method(s) are done, close the deferral.
             //
             deferral.Complete();
         }
 ```
+13. Download and add the [BMP280.cs source file](source/BMP280.cs) and it to your project by __Right-clicking__ on your project's name in Solution Explorer and selecting __Add-->Exsiting Item__. This file contains three classes for reading data from the *BME280* Pressure and Temprature sensor.
+14. Open the __StartupTask.cs__ file.
+15. Add the following #include headers:-
+```
+using System.Diagnostics;
+using Windows.Devices.I2c;
+using Windows.Devices.Enumeration;
+using System.Threading.Tasks;
+using Windows.Devices.Gpio;
+```
+16. Add the following code to the *StartupTask* class:-
 
+```
+//Method to initialize the BMP280 sensor
+        public async Task Initialize()
+        {
+            Debug.WriteLine("BMP280::Initialize");
+
+            try
+            {
+                //Instantiate the I2CConnectionSettings using the device address of the BMP280
+                I2cConnectionSettings settings = new I2cConnectionSettings(BMP280_Address);
+                //Set the I2C bus speed of connection to fast mode
+                settings.BusSpeed = I2cBusSpeed.FastMode;
+                //Use the I2CBus device selector to create an advanced query syntax string
+                string aqs = I2cDevice.GetDeviceSelector(I2CControllerName);
+                //Use the Windows.Devices.Enumeration.DeviceInformation class to create a collection using the advanced query syntax string
+                DeviceInformationCollection dis = await DeviceInformation.FindAllAsync(aqs);
+                //Instantiate the the BMP280 I2C device using the device id of the I2CBus and the I2CConnectionSettings
+                bmp280 = await I2cDevice.FromIdAsync(dis[0].Id, settings);
+                //Check if device was found
+                if (bmp280 == null)
+                {
+                    Debug.WriteLine("Device not found");
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Exception: " + e.Message + "\n" + e.StackTrace);
+                throw;
+            }
+
+        }
+```
 
 ######################
 
