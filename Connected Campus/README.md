@@ -890,7 +890,11 @@ public sealed class StartupTask : IBackgroundTask
 Step 4 - Verify your device is correctly collecting data.
 =========================================================
 
-__TODO:__ Talk about the Debug output and provide a screen shot.
+Once the UWP App is deployed to your device it will run and collect data every 10 seconds *(this can be changed by updating the looping delay at line 123 of StartupTask.cs)*.
+
+With the deployed application and correctly built external circuit, you should see the following output from the Debug window in Visual Studio
+
+![Debug output when device, application and circuit are working correctly](images/workingdebugoutput.png).
 
 Step 5 - Use the Device Explorer to verify your device is correctly sending data.
 =================================================================================
