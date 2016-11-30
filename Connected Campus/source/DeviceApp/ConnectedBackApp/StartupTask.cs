@@ -120,7 +120,7 @@ namespace ConnectedBackApp
 
                 await SendDeviceToCloudMessageAsync(roomstatus, bmpSensorData, adcSensorData);
 
-                await Task.Delay(1000);
+                await Task.Delay(10000);
 
             }
 
