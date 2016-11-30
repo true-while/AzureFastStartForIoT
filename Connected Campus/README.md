@@ -102,7 +102,9 @@ __Note__: The device identities registration can be automated using the Azure Io
 Step 3 - Create an UWP App for your device
 ==========================================
 
-This application is going to read the sensor date from your device and upload it to IoT Hub
+This application will read the sensor date from your device and upload it to IoT Hub.
+
+A [Completed Example](source/DeviceApp) is also available. __TODO__: Add details on how to set this up and use it.
 
 1. Open Visual Studio then go *File->Project->Visual C#->Windows->Windows IoT Core* and select the *Background Application (IoT)* template.
 2. ![Blank project](images/newproject.png)
