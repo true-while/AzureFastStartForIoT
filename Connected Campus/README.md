@@ -389,7 +389,7 @@ public sealed class StartupTask : IBackgroundTask
 ```
 14. Add a new class to the project by __Right-Clicking__ on the project name in *Solution Explorer* and choosing __Add->Class__. Call the new class __"MCP3008"__. 
 15. Add the following code to the new *MCP3008.cs* file replacing the exising class defintion. *The light detector part of the circuit you built earlier produces a variable voltage however the Raspberry PI does not have a built-in Analog-To-Digital converter therefore it needs to use an external MCP3008 chip to do the work. The code you are about to add to the new class file knows how to read data from that chip and convert it into a value that can be used in the rest of the program.*
-```
+    ```
  class MCP3008
     {
         // Constants for the SPI controller chip interface
@@ -509,7 +509,7 @@ public sealed class StartupTask : IBackgroundTask
         public float cdsVoltage { get; set; }
         public string lightStatus { get; set; }
     }
-```
+    ```
 16. Blah
 
 
