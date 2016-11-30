@@ -106,25 +106,27 @@ This application will read the sensor date from your device and upload it to IoT
 
 A [Completed Example](source/DeviceApp) is also available. __TODO__: Add details on how to set this up and use it.
 
-1. Open Visual Studio then go *File->Project->Visual C#->Windows->Windows IoT Core* and select the *Background Application (IoT)* template.
-2. ![Blank project](images/newproject.png)
-3. Call your project "ConnectedBackApp" and make sure the .NET Framework version is 4.5.1 or later. Click __Create__. Accept the defaults for Universal Windows Project target versions.
-3. [Follow these instructions to add a NuGet reference](/Developer Setup/NuGet Package Install.md) to the __Microsoft.Azure.Devices.Client__ package.
-4. Right click on References in the Solution Explorer and choose “Connected Service”.
-5. ![Add reference](images/addservicereference.png)
-6. Choose __Azure IoT Hub__ and press __Configure__ then select the option to __hardcode__ shared access keys in the applications code, then press OK.
-7. ![Add Service](images/addservice.png) ![Hardcode connection string](images/hardcode.png)
-8. The wizard will now search for IoT Hubs available in your subscription, find the one you created previously and click __Add__.
-9. ![Wizard Search](images/wizardsearch.png)
-10. Select the device you registered earlier then click OK.
-11. ![Add Device](images/selectdevice.png)
+<ol>
+
+<li>Open Visual Studio then go *File->Project->Visual C#->Windows->Windows IoT Core* and select the *Background Application (IoT)* template.
+<li> ![Blank project](images/newproject.png)
+<li> Call your project "ConnectedBackApp" and make sure the .NET Framework version is 4.5.1 or later. Click __Create__. Accept the defaults for Universal Windows Project target versions.
+<li> [Follow these instructions to add a NuGet reference](/Developer Setup/NuGet Package Install.md) to the __Microsoft.Azure.Devices.Client__ package.
+<li> Right click on References in the Solution Explorer and choose “Connected Service”.
+<li> ![Add reference](images/addservicereference.png)
+<li> Choose __Azure IoT Hub__ and press __Configure__ then select the option to __hardcode__ shared access keys in the applications code, then press OK.
+<li> ![Add Service](images/addservice.png) ![Hardcode connection string](images/hardcode.png)
+<li> The wizard will now search for IoT Hubs available in your subscription, find the one you created previously and click __Add__.
+<li> ![Wizard Search](images/wizardsearch.png)
+<li> Select the device you registered earlier then click OK.
+<li> ![Add Device](images/selectdevice.png)
 * A new file __AzureIoTHub.cs__ has been added to your Visual Studio project along with several Nuget packages which reference the Azure IoT SDK. This file contains the boiler-plate code that you can immediately invoke in your application.
 The AzureIoTHub class contains two methods that you can start using right away from your own classes:
 *    A method to send messages - __SendDeviceToCloudMessageAsync()__
 *    A method to start listening for incoming messages - __ReceiveCloudToDeviceMessageAsync()__
 * You can call these methods from elsewhere in your project.
 * The Connected Service Wizard has inserted into the new class a __deviceConnectionString__ variable that contains the access key required to connect your device to IoT Hub. Anyone who comes into the possession of this information will be able to send and receive messages on behalf of that device. It is recommended that you remove this string from the source code before committing your code into a source control. Consider storing it in a configuration file or an environment variable.
-12.	Replace the entire StartupTask class with the following code:-  __TODO: Describe what it does__
+<li>	Replace the entire StartupTask class with the following code:-  __TODO: Describe what it does__
 ```
 public sealed class StartupTask : IBackgroundTask
     {
@@ -387,8 +389,8 @@ public sealed class StartupTask : IBackgroundTask
         #endregion
     }
 ```
-13. Add a new class to the project by __Right-Clicking__ on the project name in *Solution Explorer* and choosing __Add->Class__. Call the new class __"MCP3008"__. 
-14. Add the following code to the new *MCP3008.cs* file replacing the exising class defintion. *The light detector part of the circuit you built earlier produces a variable voltage however the Raspberry PI does not have a built-in Analog-To-Digital converter therefore it needs to use an external MCP3008 chip to do the work. The code you are about to add to the new class file knows how to read data from that chip and convert it into a value that can be used in the rest of the program.*
+<li>Add a new class to the project by __Right-Clicking__ on the project name in *Solution Explorer* and choosing __Add->Class__. Call the new class __"MCP3008"__. 
+<li>Add the following code to the new *MCP3008.cs* file replacing the exising class defintion. *The light detector part of the circuit you built earlier produces a variable voltage however the Raspberry PI does not have a built-in Analog-To-Digital converter therefore it needs to use an external MCP3008 chip to do the work. The code you are about to add to the new class file knows how to read data from that chip and convert it into a value that can be used in the rest of the program.*
 ```
  class MCP3008
     {
@@ -511,7 +513,9 @@ public sealed class StartupTask : IBackgroundTask
     }
 
 ```
+<li>Blah
 
+</ol>
 ######################
 
 
