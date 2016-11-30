@@ -58,8 +58,7 @@ You will need the following hardware items to build this scenario:
 Azure Pre-reqs
 ==============
 
-1. XXX
-2. XXX
+1. A working Azure subscription.
 
 Develoment Machine and IoT device Setup
 ========================================
