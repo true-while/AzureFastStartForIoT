@@ -511,7 +511,6 @@ public sealed class StartupTask : IBackgroundTask
         public float cdsVoltage { get; set; }
         public string lightStatus { get; set; }
     }
-
 ```
 <li>Blah
 
