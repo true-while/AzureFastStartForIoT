@@ -118,16 +118,13 @@ A [Completed Example](source/DeviceApp) is also available. __TODO__: Add details
 9. ![Wizard Search](images/wizardsearch.png)
 10. Select the device you registered earlier then click OK.
 11. ![Add Device](images/selectdevice.png)
-
 * A new file __AzureIoTHub.cs__ has been added to your Visual Studio project along with several Nuget packages which reference the Azure IoT SDK. This file contains the boiler-plate code that you can immediately invoke in your application.
 The AzureIoTHub class contains two methods that you can start using right away from your own classes:
 *    A method to send messages - __SendDeviceToCloudMessageAsync()__
 *    A method to start listening for incoming messages - __ReceiveCloudToDeviceMessageAsync()__
 * You can call these methods from elsewhere in your project.
 * The Connected Service Wizard has inserted into the new class a __deviceConnectionString__ variable that contains the access key required to connect your device to IoT Hub. Anyone who comes into the possession of this information will be able to send and receive messages on behalf of that device. It is recommended that you remove this string from the source code before committing your code into a source control. Consider storing it in a configuration file or an environment variable.
-
-
-12.	Replace the entire StartupTask class with the following code
+12.	Replace the entire StartupTask class with the following code:-  __TODO: Describe what it does__
 ```
 public sealed class StartupTask : IBackgroundTask
     {
@@ -390,268 +387,129 @@ public sealed class StartupTask : IBackgroundTask
         #endregion
     }
 ```
-13. Add a new class to the projet called "MCP3008".
+13. Add a new class to the project by __Right-Clicking__ on the project name in *Solution Explorer* and choosing __Add->Class__. Call the new class __"MCP3008"__. 
+14. Add the following code to the new *MCP3008.cs* file replacing the exising class defintion. *The light detector part of the circuit you built earlier produces a variable voltage however the Raspberry PI does not have a built-in Analog-To-Digital converter therefore it needs to use an external MCP3008 chip to do the work. The code you are about to add to the new class file knows how to read data from that chip and convert it into a value that can be used in the rest of the program.*
 ```
-public sealed class StartupTask : IBackgroundTask
+ class MCP3008
     {
-        #region Constants and variables
+        // Constants for the SPI controller chip interface
+        private SpiDevice mcp3008;
+        const int SPI_CHIP_SELECT_LINE = 0;  // SPI0 CS0 pin 24
 
-        // This should really be read from a config file.
-        private string deviceName = "device1";
+        // ADC chip operation constants
+        const byte MCP3008_SingleEnded = 0x08;
+        const byte MCP3008_Differential = 0x00;
 
-        // These defined GPIO pins on which the movement sensor and status LED will be connected.
-        private const int ledPin = 5;
-        private const int pirPin = 6;
-        private GpioPin led;
-        private GpioPin pir;
+        // These are used when we calculate the voltage from the ADC units
+        float ReferenceVoltage;
+        public const uint Min = 0;
+        public const uint Max = 1023;
 
-        // These represent the two sensors, i.e. the pressure/temp (BMP280) & light detector (MCP3008).
-        private BMP280 bmpsensor;
-        private MCP3008 mcp3008;
 
-        // These hold the results of all the sensor data.
-        private MCP3008SensorData adcSensorData;
-        private BMP280SensorData bmpSensorData;
-
-        float currentTemperature = 0;
-        float currentPressure = 0;
-
-        // Use for configuration of the MCP3008 class voltage formula
-        const float ReferenceVoltage = 5.0F; // The MCP3008 works on a 5v reference voltage.
-
-        // Values for which channels we will be using from the ADC chip
-        const byte LowPotentiometerADCChannel = 0;
-        const byte HighPotentiometerADCChannel = 1;
-        const byte CDSADCChannel = 2;
-
-        // Some strings to let us know the current state.
-        const string JustRightLightString = "Bright";//Ah, just right
-        const string LowLightString = "Dark";//I need a light
-        const string HighLightString = "Too Bright";
-
-        // Some internal state information
-        enum eState { unknown, JustRight, TooBright, TooDark };
-        eState CurrentState = eState.unknown;
-        #endregion
-
-        public async void Run(IBackgroundTaskInstance taskInstance)
+        public MCP3008(float referenceVolgate)
         {
-            // Using BackgroundTaskDeferral
-            // as described in http://aka.ms/backgroundtaskdeferral
-            BackgroundTaskDeferral deferral = taskInstance.GetDeferral();
+            Debug.WriteLine("MCP3008::New MCP3008");
 
-            bmpsensor = new BMP280();
-            await bmpsensor.Initialize();
-
-            mcp3008 = new MCP3008(ReferenceVoltage);
-            mcp3008.Initialize();
-
-            InitGPIO();
-
-            bmpSensorData = new BMP280SensorData();
-            adcSensorData = new MCP3008SensorData();
-
-            string roomstatus = String.Empty;
-
-            while (true)
-            {
-                Debug.WriteLine("Reading taken at " + DateTime.UtcNow);
-
-                #region Read pressure and temperature data from sensor
-                bmpSensorData.Temperature = await bmpsensor.ReadTemperature();
-                bmpSensorData.Pressure = await bmpsensor.ReadPreasure();           
-                Debug.WriteLine(bmpSensorData.Temperature + " deg C");
-                Debug.WriteLine(bmpSensorData.Pressure + " Pa");
-                Debug.WriteLine(bmpSensorData.Pressure / 100000 + " Bar");
-                Debug.WriteLine(bmpSensorData.Pressure / 100 + " milliBar");
-                #endregion
-
-                #region Reading Lighting Information from Sensor  
-                adcSensorData = ReadLightStatusInRoom();
-                Debug.WriteLine("Light Status in Room: " + adcSensorData.lightStatus);
-                #endregion
-
-                #region Read the motion sensor
-                // If sensor pin is high, then motion was detected
-                if (pir.Read() == GpioPinValue.High)
-                {
-                    // turn on the LED
-                    led.Write(GpioPinValue.Low);
-                    Debug.WriteLine("Motion detected - Room is occupied");
-                    roomstatus = "Occupied";
-                    
-                }
-                else
-                {
-                    // turn off the LED
-                    led.Write(GpioPinValue.High);
-                    Debug.WriteLine("No motion detected - Room is vacant");
-                    roomstatus = "Vacant";
-                }
-                #endregion
-
-                await SendDeviceToCloudMessageAsync(roomstatus, bmpSensorData, adcSensorData);
-
-                await Task.Delay(10000);
-
-            }
-
-           // Once the asynchronous method(s) are done, close the deferral.
-           // deferral.Complete();
+            // Store the reference voltage value for later use in the voltage calculation.
+            ReferenceVoltage = referenceVolgate;
         }
 
-        #region Private methods
-        private void InitGPIO()
+        /// <summary>
+        /// This method is used to configure the Pi2 to communicate over the SPI bus to the MCP3008 ADC chip.
+        /// </summary>
+        public async void Initialize()
         {
-            // get the GPIO controller
-            var gpio = GpioController.GetDefault();
-            
-
-            // return an error if there is no gpio controller
-            if (gpio == null)
-            {
-                led = null;
-                Debug.WriteLine("There is no GPIO controller.");
-                return;
-            }
-
-            Debug.WriteLine("GPIO is Ready. Pin Count = " + gpio.PinCount);
-
-            // set up the LED on the defined GPIO pin
-            // and set it to High to turn off the LED
-            led = gpio.OpenPin(ledPin);
-            led.Write(GpioPinValue.High);
-            led.SetDriveMode(GpioPinDriveMode.Output);
-
-            // set up the PIR sensor's signal on the defined GPIO pin
-            // and set it's initial value to Low
-            pir = gpio.OpenPin(pirPin);
-            pir.SetDriveMode(GpioPinDriveMode.Input);
-
-            Debug.WriteLine("GPIO pins initialized correctly.");
-        }
-        private MCP3008SensorData ReadLightStatusInRoom()
-        {
-            var MCP3008SensorData = new MCP3008SensorData();
+            Debug.WriteLine("MCP3008::Initialize");
             try
             {
+                // Setup the SPI bus configuration
+                var settings = new SpiConnectionSettings(SPI_CHIP_SELECT_LINE);
+                // 3.6MHz is the rated speed of the MCP3008 at 5v
+                settings.ClockFrequency = 3600000;
+                settings.Mode = SpiMode.Mode0;
+
+                // Ask Windows for the list of SpiDevices
+
+                // Get a selector string that will return all SPI controllers on the system 
+                string aqs = SpiDevice.GetDeviceSelector();
+
+                // Find the SPI bus controller devices with our selector string           
+                var dis = await DeviceInformation.FindAllAsync(aqs);
+
+                // Create an SpiDevice with our bus controller and SPI settings           
+                mcp3008 = await SpiDevice.FromIdAsync(dis[0].Id, settings);
+
                 if (mcp3008 == null)
                 {
-                    Debug.WriteLine("Light Sensor data is not ready");
-                    MCP3008SensorData.lightStatus = "N/A";
-                    return MCP3008SensorData;
+                    Debug.WriteLine(
+                        "SPI Controller {0} is currently in use by another application. Please ensure that no other applications are using SPI.",
+                        dis[0].Id);
+                    return;
                 }
 
-                // The new light state, assume it's just right to start.
-                eState newState = eState.JustRight;
-
-                // Read from the ADC chip the current values of the two pots and the photo cell.
-                MCP3008SensorData.lowPotReadVal = mcp3008.ReadADC(LowPotentiometerADCChannel);
-                MCP3008SensorData.highPotReadVal = mcp3008.ReadADC(HighPotentiometerADCChannel);
-                MCP3008SensorData.cdsReadVal = mcp3008.ReadADC(CDSADCChannel);
-
-                // convert the ADC readings to voltages to make them more friendly.
-                MCP3008SensorData.lowPotVoltage = mcp3008.ADCToVoltage(MCP3008SensorData.lowPotReadVal);
-                MCP3008SensorData.highPotVoltage = mcp3008.ADCToVoltage(MCP3008SensorData.highPotReadVal);
-                MCP3008SensorData.cdsVoltage = mcp3008.ADCToVoltage(MCP3008SensorData.cdsReadVal);
-
-                // Let us know what was read in.
-                Debug.WriteLine(String.Format("Read values {0}, {1}, {2} ", MCP3008SensorData.lowPotReadVal,
-                    MCP3008SensorData.highPotReadVal, MCP3008SensorData.cdsReadVal));
-                Debug.WriteLine(String.Format("Voltages {0}, {1}, {2} ", MCP3008SensorData.lowPotVoltage,
-                    MCP3008SensorData.highPotVoltage, MCP3008SensorData.cdsVoltage));
-
-                // Compute the new state by first checking if the light level is too low
-                if (MCP3008SensorData.cdsVoltage < MCP3008SensorData.lowPotVoltage)
-                {
-                    newState = eState.TooDark;
-                }
-
-                // And now check if it too high.
-                if (MCP3008SensorData.cdsVoltage > MCP3008SensorData.highPotVoltage)
-                {
-                    newState = eState.TooBright;
-
-                }
-
-                // Use another method to determine what to do with the state.
-                MCP3008SensorData.lightStatus = CheckForStateValue(newState);
-                return MCP3008SensorData;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                MCP3008SensorData.lightStatus = "N/A";
-                return MCP3008SensorData;
+                Debug.WriteLine("Exception: " + e.Message + "\n" + e.StackTrace);
+                throw;
             }
-
         }
-        private string CheckForStateValue(eState newState)
+
+        /// <summary> 
+        /// This method does the actual work of communicating over the SPI bus with the chip.
+        /// To line everything up for ease of reading back (on byte boundary) we 
+        /// will pad the command start bit with 7 leading "0" bits
+        ///
+        /// Write 0000 000S GDDD xxxx xxxx xxxx
+        /// Read  ???? ???? ???? ?N98 7654 3210
+        /// S = start bit
+        /// G = Single / Differential
+        /// D = Chanel data 
+        /// ? = undefined, ignore
+        /// N = 0 "Null bit"
+        /// 9-0 = 10 data bits
+        /// </summary>
+        public int ReadADC(byte whichChannel)
         {
-            String lightStatus;
+            byte command = whichChannel;
+            command |= MCP3008_SingleEnded;
+            command <<= 4;
 
-            switch (newState)
-            {
-                case eState.JustRight:
-                    {
-                        lightStatus = JustRightLightString;
-                    }
-                    break;
+            byte[] commandBuf = new byte[] { 0x01, command, 0x00 };
 
-                case eState.TooBright:
-                    {
-                        lightStatus = HighLightString;
-                    }
-                    break;
+            byte[] readBuf = new byte[] { 0x00, 0x00, 0x00 };
 
-                case eState.TooDark:
-                    {
-                        lightStatus = LowLightString;
-                    }
-                    break;
+            mcp3008.TransferFullDuplex(commandBuf, readBuf);
 
-                default:
-                    {
-                        lightStatus = "N/A";
-                    }
-                    break;
-            }
+            int sample = readBuf[2] + ((readBuf[1] & 0x03) << 8);
+            int s2 = sample & 0x3FF;
+            Debug.Assert(sample == s2);
 
-            return lightStatus;
+            return sample;
         }
-        private async Task SendDeviceToCloudMessageAsync(string status, BMP280SensorData BMP280SensorData, MCP3008SensorData MCP3008SensorData)
+
+        /// <summary>
+        ///  Returns the ADC value (uint) as a float voltage based on the configured reference voltage
+        /// </summary>
+        /// <param name="adc"> the ADC value to convert</param>
+        /// <returns>The computed voltage based on the reference voltage</returns>
+        public float ADCToVoltage(int adc)
         {
-            ConferenceRoomDataPoint conferenceRoomDataPoint = new ConferenceRoomDataPoint()
-            {
-                DeviceId = deviceName,
-                Time = DateTime.UtcNow.ToString("o"),
-                RoomTemp = BMP280SensorData.Temperature.ToString(),
-                RoomPressure = BMP280SensorData.Pressure.ToString(),
-                RoomAlt = BMP280SensorData.Altitude.ToString(),
-                LightStatus = MCP3008SensorData.lightStatus,
-                LightCDSValue = MCP3008SensorData.cdsReadVal.ToString(),
-                LightCDSVoltageValue = MCP3008SensorData.cdsVoltage.ToString(),
-                RoomStatus = status
-            };
-
-            if (status == "Occupied")
-            {
-                conferenceRoomDataPoint.Color = "Red";
-            }
-            else
-            {
-                conferenceRoomDataPoint.Color = "Green";
-            }
-
-
-
-            var jsonString = JsonConvert.SerializeObject(conferenceRoomDataPoint);
-            //var jsonStringInBytes = new Message(Encoding.ASCII.GetBytes(jsonString));
-
-            await AzureIoTHub.SendDeviceToCloudMessageAsync(jsonString);
-            Debug.WriteLine("{0} > Sending message: {1}", DateTime.UtcNow, jsonString);
+            return (float)adc * ReferenceVoltage / (float)Max;
         }
-        #endregion
     }
+
+    public sealed class MCP3008SensorData
+    {
+        public int lowPotReadVal { get; set; }
+        public int highPotReadVal { get; set; }
+        public int cdsReadVal { get; set; }
+        public float lowPotVoltage { get; set; }
+        public float highPotVoltage { get; set; }
+        public float cdsVoltage { get; set; }
+        public string lightStatus { get; set; }
+    }
+
 ```
 
 ######################
