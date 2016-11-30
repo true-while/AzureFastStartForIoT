@@ -53,6 +53,8 @@ You will need the following hardware items to build this scenario:
 
 ![The circuit](images/circuit.png)
 
+![The circuit](images/prototype.png)
+
 ![Raspberry Pi 3 PinOut Reference](/RaspberryPI/images/pinout.png)
 
 Azure Pre-reqs
