@@ -51,7 +51,7 @@ You will need the following hardware items to build this scenario:
 * Male/Male Jumper Wires
 * Female/Male Jumper Wires
 
-[Click Image to Open it it's own tab - ](/images/circuit.png?raw=true)
+![The circuit](/images/circuit.png?raw=true)
 
 ![Raspberry Pi 3 PinOut Reference](/RaspberryPI/images/pinout.png)
 
