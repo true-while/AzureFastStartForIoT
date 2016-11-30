@@ -91,9 +91,9 @@ For your device to connect to IoT Hub it must have its own Device Identity (aka 
 
 1.	Open the Device Explorer (*C:\Program Files (x86)\Microsoft\DeviceExplorer\DeviceExplorer.exe*) and fill the IoT Hub Connection String field with the connection string of the IoT Hub you created in previous steps and click on Update.
     ![Setting the connection string](images/deviceexplorerconnstr.png)
-2. Go to the __Management tab__ and __Click on the Create button__. The Create Device popup will be displayed. Make up a Device ID for your device (myFirstDevice for example) and __click on Create__.
+2. Go to the __Management tab__ and __Click on the Create button__. The Create Device popup will be displayed. Enter "__device1__" as the Device ID for your device  and __click on Create__. *The device name is important as other parts of the supplied sample program rely on this*.
     ![Create device entry](images/createentry.png)
-3. Once the device identity is created, it will be displayed in the grid. Right click on the identity you just created, select __Copy connection string__ for selected device and take note of the value copied to your clipboard, since it will be required to connect your device with the IoT Hub.
+3. Once the device identity is created, it will be displayed in the grid. __Right click__ on the device entry you just created and select __Copy connection string__. Paste this into a notepad as it will be required later one.
     ![Copy device details](images/degrid.png)
 
 __Note__: The device identities registration can be automated using the Azure IoT Hubs SDK. An example can be found at https://azure.microsoft.com/en-us/documentation/articles/iot-hub-csharp-csharp-getstarted/#create-a-device-identity. 
@@ -864,8 +864,50 @@ public sealed class StartupTask : IBackgroundTask
     using Windows.Foundation;
     using Windows.Storage;
     ```
-15. Blah
-######################
+15. Add one more class to the project called *ConferenceRoomDataPoint*. Replace the class definition with the following code:-
+    ```
+        public sealed class ConferenceRoomDataPoint
+    {
+        public string DeviceId { get; set; }
+        public string RoomStatus { get; set; }
 
+        public string RoomTemp { get; set; }
 
-[Deploying an App with Visual Studio](https://developer.microsoft.com/en-us/windows/iot/Docs/appdeployment)
+        public string RoomPressure { get; set; }
+
+        public string RoomAlt { get; set; }
+        public string Color { get; set; }
+        public string Time { get; set; }
+        public string LightStatus { get; internal set; }
+        public string LightCDSValue { get; internal set; }
+        public string LightCDSVoltageValue { get; internal set; }
+    }
+    ```
+16. Open the *AzureIoTHub.cs* file added by the wizard earlier. Replace the deviceConnectionString with that you obtained in __Step 3__ of the *Step 2 - Register your device with IoT Hub* section.
+17. At this point all the code is ready and your circuit should also be ready. Time to test! You can now deploy and test the application by pressing `F5`. *The first time you deploy an application it make take some time as required framework updates are installed onto the device - Visual Studio may even display some "This is taking too long messages" - Be patient! Subsequent deployments will be much quicker.*. For help on deploying apps please see [Deploying an App with Visual Studio](https://developer.microsoft.com/en-us/windows/iot/Docs/appdeployment)
+
+Step 4 - Verify your device is correctly collecting data.
+=========================================================
+
+__TODO:__ Talk about the Debug output and provide a screen shot.
+
+Step 5 - Use the Device Explorer to verify your device is correctly sending data.
+=================================================================================
+
+__TODO:__ Add details on how to monitor data using Device Explorer. Add a screen shot.
+
+Step 6 - Open the provided Client UWP App to visualize the data
+===============================================================
+
+__TODO:__ Add details on how to open, configure and run this application. Add screen shots.
+
+Step 7 - Configure Azure Stream Analytics to pull data from IoT Hub
+===================================================================
+
+__TODO:__ Add details on how to setup and configure. Add screen shots.
+
+Step 8 - Configure PowerBI to display the average temperature
+=============================================================
+
+__TODO:__ Add details on how to setup and configure. Add screen shots.
+
