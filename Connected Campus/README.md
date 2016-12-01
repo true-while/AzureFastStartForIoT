@@ -1004,7 +1004,6 @@ GROUP BY
     ```
     ![Inserted Query](images/saquery.png).
 21. Finally run the job by clicking on the __Start__ button.
-    ![Start Stream Analytics Job](images/runsajob.png).
 
 
 Step 8 - Configure PowerBI to display the average temperature
@@ -1013,10 +1012,23 @@ Step 8 - Configure PowerBI to display the average temperature
 Finally you will use PowerBI to display a guage showing the average temperature of the room. Once the Stream Analytics job has started a new dataset called `RoomSet` which contains a single table called `Rooms` will be available in PowerBI. You will display data from this table.
 
 1. Login to the [PowerBI](https://www.powerbi.com) site.
-2. Locate the `RoomsSet` dataset from the bottom of the hand menu.
+2. Locate the `Streaming DataSets` dataset from the bottom of the hand menu and __Click__ it.
     ![Start Stream Analytics Job](images/pbidataset.png).
-4. Click on the + icon to create a report.
+4. Click on the + icon to create a report against the *RoomSet* dataset. This displays the report canvas, the data table inside the dataset and the different visualizations available.
     ![Start Stream Analytics Job](images/addingtodataset.png).
-5. 
+5. Click to add a *Guage chart*.
+    ![Adding guage chart](images/visualization.png).
+6. Drag and drop the `roomtempavg` value field from fields tab to `value` field in Visualization tab.
+    ![Setting the visualization value](images/vizvalue.png).
+7. The guage now looks like this:-
+      ![Visualization value result](images/guage.png).
+8. Change the `roomtempavg` value `sum` to `average`.
+        ![Setting the visualization value to show average data](images/vizaverage.png).
+9. The final visualization looks like this:-
+        ![The Final Visualization](images/visualfinal.png).
+10. Click on Pin symbol on top of the chart to add it to dashboard. Save it before pining to the dashboard.
+        ![Saving the report](images/savereport.png).
+
+
 
 
