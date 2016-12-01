@@ -1039,7 +1039,7 @@ Finally you will use PowerBI to display a guage showing the average temperature 
 9. ![Setting the visualization value to show average data](images/vizaverage.png).
 10. The final visualization shows the average of all the temprature values it has received from Stream Analytics.
 11. ![The Final Visualization](images/visualfinal.png).
-12. Click on Pin symbol on top of the chart to add it to dashboard. Save it before pining to the dashboard.
+12. Click on the Pin symbol at the top of the chart to add it to a dashboard. Enter a name for the dashboard then press __Save and Continue__.
     ![Saving the report](images/savereport.png).
 
 
