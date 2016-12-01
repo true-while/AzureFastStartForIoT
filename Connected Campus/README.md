@@ -929,7 +929,7 @@ You will get these details under IoTHub Settings -> Messaging section under Devi
 2. Open the MainPage.xaml.cs file.
 3. On line 38 (the *ConnectionString* variable) remove the reference to the service bus endpoint, i.e. `sb://ihsuprodamres036dednamespace.servicebus.windows.net/` and replace it with your own __Event Hub-compatible endpoint__ as recorded in the *Step 1 - Build an IoT Hub* section above.
 4. Again on the same line, replace the *iothubowner* Shared Secret with the value previously saved.
-5. On line 39 (the *eventHubEntity* variable) remove the existing value and replace it with your own __Event Hub-compatible name_ as recorded in the *Step 1 - Build an IoT Hub* section above.
+5. On line 39 (the *eventHubEntity* variable) remove the existing value and replace it with your own __Event Hub-compatible name__ as recorded in the *Step 1 - Build an IoT Hub* section above.
     The completed two lines will now look similar to this:-
     ```
         static string ConnectionString = "Endpoint=sb://ihsuprodamres034dednamespace.servicebus.windows.net/;SharedAccessKeyName=iothubowner;SharedAccessKey=kWdvdpkc493bhytnV9dun/le7k0MsBcIjFpssw=";
