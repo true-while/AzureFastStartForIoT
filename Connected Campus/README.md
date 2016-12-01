@@ -27,9 +27,7 @@ The system you are about to build consists of the following components and will 
 3. The collected data will be uploaded to IoTHub.
 4. An application will be created to allow the viewing of the raw data once it has been uploaded.
 5. The raw data will be feed into __Azure Stream Analytics__ to produce averages of temprature overtime.
-6. A copy of the processes data will be archived into an Azure Storage Account.
-7. The processed data will be filtered to suit our business needs.
-8. The final data will be sent to __Power BI__ for display. This will make it easly available to view on a number of mobile devices or computers.
+6. The final data will be sent to __Power BI__ for display. This will make it easly available to view on a number of mobile devices or computers.
 
 ![](images/overview.png)
 
@@ -38,7 +36,14 @@ Basic Hardware Setup
 
 __TODO - This section needs reviewing and updating__
 
-You will need the following hardware items to build this scenario:
+As described in the [Kit List for these scenarios](/AzureFastStartForIoT/blob/master/Electronics/Kit%20List.md), you will need the following hardware items to build this scenario:
+
+* [Microsoft IoT Pack for Raspberry Pi 3 - w/ Raspberry Pi 3](https://www.adafruit.com/products/2733)
+* [1 x USB cable - A/MicroB - 3ft](https://www.adafruit.com/product/592)
+* [1 x Adafruit Assembled Pi Cobbler Breakout + Cable for Raspberry Pi - Model B](https://www.adafruit.com/product/914)
+* [1 x PIR (motion) sensor](https://www.adafruit.com/product/189)
+
+Specifically the following items are required from the kit list:
 
 * Raspberry Pi
 * Breadboard (generic)
