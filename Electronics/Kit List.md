@@ -18,7 +18,7 @@
 
 ##Predictive Maintenance
 
-* [1 x Force Sensor](http://www.digikey.com/product-detail/en/30-81794/1027-1001-ND/2476468)
+* [1 x Force Sensor](https://www.adafruit.com/products/166)
 
 ##Retail Management System and Inventory Optimization
 
@@ -32,7 +32,7 @@
 
 * [Uxcell CP2102 USB 2.0 to UART TTL 6PIN Module Serial Converter Adapter](https://www.amazon.com/gp/product/B00SL0U3RG/ref=as_li_ss_tl?psc=1&redirect=true&ref_=oh_aui_detailpage_o01_s00&linkCode=sl1&tag=gettawaywit0c-20&linkId=8221398cfd7444c42f165fbc0d2d75e2) 
 
-* Any 5VDC 2A Power Supply with a Center-positive 5.5x2.1mm barrel connector.- Any supplier
+* Any 5VDC 2A Power Supply with a Center-positive 5.5x2.1mm barrel connector.- To be confirmed.
 
 
 ##Remote Patient Monitoring and Clinical Analytics
