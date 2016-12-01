@@ -914,7 +914,7 @@ Step 5 - Use the Device Explorer to verify your device is correctly sending data
 The Device Explorer tool which you have already used previously can be used to monitor messages which have been sent to IoT Hub. We are going to use it to confirm our data arrived correctly by reading the data back via IoT Hub's Event Hub compatible endpoint.
 
 1.	Open the Device Explorer (*C:\Program Files (x86)\Microsoft\DeviceExplorer\DeviceExplorer.exe*) and fill the IoT Hub Connection String field with the connection string of the IoT Hub you created in previous steps and click on Update.
-    ![Setting the connection string](images/deviceexplorerconnstr.png)
+    ![Setting the connection string](images/deconfigure.png)
 2. Click on the `Data` tab, ensure that your device is selected in the `Device ID` drop down, then __Click__ the  __Monitor__ button. You should see a new JSON string every 10 seconds which contains the data from your device.
     ![Monitor messages sent to IoT Hub](images/monitormessages.png)
  
