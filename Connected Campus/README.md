@@ -1021,13 +1021,13 @@ Finally you will use PowerBI to display a guage showing the average temperature 
 6. Drag and drop the `roomtempavg` value field from fields tab to `value` field in Visualization tab.
     ![Setting the visualization value](images/vizvalue.png).
 7. The guage now looks like this:-
-      ![Visualization value result](images/guage.png).
+    ![Visualization value result](images/guage.png).
 8. Change the `roomtempavg` value `sum` to `average`.
-        ![Setting the visualization value to show average data](images/vizaverage.png).
+    ![Setting the visualization value to show average data](images/vizaverage.png).
 9. The final visualization looks like this:-
-        ![The Final Visualization](images/visualfinal.png).
+    ![The Final Visualization](images/visualfinal.png).
 10. Click on Pin symbol on top of the chart to add it to dashboard. Save it before pining to the dashboard.
-        ![Saving the report](images/savereport.png).
+    ![Saving the report](images/savereport.png).
 
 
 
