@@ -34,9 +34,7 @@ The system you are about to build consists of the following components and will 
 Basic Hardware Setup
 ====================
 
-__TODO - This section needs reviewing and updating__
-
-As described in the [Kit List for these scenarios](/AzureFastStartForIoT/blob/master/Electronics/Kit%20List.md), you will need the following hardware items to build this scenario:
+As described in the [Kit List for these scenarios](/Electronics/Kit%20List.md), you will need the following hardware items to build this scenario:
 
 * [Microsoft IoT Pack for Raspberry Pi 3 - w/ Raspberry Pi 3](https://www.adafruit.com/products/2733)
 * [1 x USB cable - A/MicroB - 3ft](https://www.adafruit.com/product/592)
