@@ -83,7 +83,7 @@ Step 1 - Build an IoT Hub
 3. Enter a unique name for the IoT Hub, choose a Pricing and Scale tier (note that Free has been choosen here), select or create a Resource Group and datacentre location and __Click Create__.
 4. ![Choosing IoT Hub settings](images/newiothubsettings.png)
 5. Once the IoTHub has been created, ensure to make a copy of the *iothubowner* Connection String - this is shown via the *Shared Access Policies-->iothubowner* blade.
-    ![Iot Hub Key](images/iothubkeys.png)
+    ![Iot Hub Key](images/iothubkeys.png)  
 6. Finally you should also make a copy of the *Event Hub-compatible name* & *Event Hub-compatible endpoint* values. You'll need these later on when you start to read data back from IoT Hub.
     ![Event Hub Compatible Endpoint](images/eventhubendpoint.png)
 7. Done.
@@ -93,8 +93,8 @@ Step 2 - Register your device with IoT Hub
 
 For your device to connect to IoT Hub it must have its own Device Identity (aka set of credentials). The process of obtaining these is known as Registering your Device. Currently there is no way to do this via the Azure Portal but there is a remote API available. Rather than write a custom application to connect & register you are going to use Device Explorer which is part of the IoT SDK. You can also register a device via the IoT Dashboard application or use iothub-explorer, another tool from the IoT SDK written in node.js.
 
-1.	Open the Device Explorer (*C:\Program Files (x86)\Microsoft\DeviceExplorer\DeviceExplorer.exe*) and fill the IoT Hub Connection String field with the connection string of the IoT Hub you created in previous steps and click on Update.
-    ![Setting the connection string](images/deviceexplorerconnstr.png)
+1.	Open the Device Explorer (*C:\Program Files (x86)\Microsoft\DeviceExplorer\DeviceExplorer.exe*) and fill the IoT Hub Connection String field with the connection string of the IoT Hub you created in previous steps and click on __Update__.
+    ![Setting the connection string](images/deconfigure.png)
 2. Go to the __Management tab__ and __Click on the Create button__. The Create Device popup will be displayed. Enter "__device1__" as the Device ID for your device  and __click on Create__. *The device name is important as other parts of the supplied sample program rely on this*.
     ![Create device entry](images/createentry.png)
 3. Once the device identity is created, it will be displayed in the grid. __Right click__ on the device entry you just created and select __Copy connection string__. Paste this into a notepad as it will be required later one.
