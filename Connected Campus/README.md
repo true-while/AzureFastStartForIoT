@@ -947,7 +947,43 @@ The running application will display the room occupied status, temperature and p
 Step 7 - Configure Azure Stream Analytics to pull data from IoT Hub
 ===================================================================
 
-__TODO:__ Add details on how to setup and configure. Add screen shots.
+You will now configure Azure Stream Analytics to pull the uploaded data from IoT Hub, compute a set of rolling averages then off-load the data to Azure PowerBI.
+
+1. Log in to the [Azure classic portal](http://manage.windowsazure.com).
+2. Click on "__New plus__" icon on bottom left hand corner of the page then __Select Data Services->Stream Analytics->Quick Create__
+    ![Stream Analytics->Quick Create](images/streamanalyticsquickcreate.png).
+3. Enter a *Job Name* of `Rooms`, Select `Region` and a related regional storage account (or create a new storage account if one does not exist already).
+4. Finally __Click__ the *Create Stream Analytics Job* button.
+    ![Creating the Stream Analytics Job](images/createsajob.png).
+5. Select the new stream analytics job, click the *Inputs* tab and select *Add An Input*.
+    ![Add a Stream Analytics Input](images/addinput.png).
+6. Select the `Add Data Strea` option then press the `Next` arrow.
+    ![Choosing to add a Data Stream](images/adddatastream.png).
+7. Select IoT Hub as the data stream input and click `Next`.
+    ![Choosing to add a Data Stream](images/selectionhub.png).
+8. Enter an Input stream alias name of `RoomsDataIn`. This will be used in later steps.
+9. Select a subscription then choose the IoT Hub which you created above.
+10. Select `iothubowner` as shared access policy name and click on next.
+    ![IoT Hub Settings for Stream Analytics Job Input](images/iothubsettings.png).
+11. Select Event serialization format as JSON and Encoding as UTF8 then __Click__ the *Tick icon* to create the input.
+    ![Serialization Settings](images/serializationsettings.png).
+12. The completed input looks like this:
+    ![Completed input](images/completed.png).
+13. Click on the `Outputs` tab then __Click__ *Add an Output*.
+    ![Add Output](images/addoutput.png).
+14. Choose `PowerBI` as the destination and click `Next`.
+    ![Choose BI Output](images/choosebi.png).
+15. To use *Power BI* you must authorize the Stream Analytics service to access your companies Power BI subscription in order to define a new datasheet and send across data. __Click Authorise Now__. *You can register for a free PowerBI account but your company must be an existing O365 customer or you must have setup an O365 trial*.
+    ![Authorizing the Stream Analytics Service to connect to your PowerBI subscription](images/authorizepowerbi.png).
+16. 
+
+
+
+
+
+
+
+
 
 Step 8 - Configure PowerBI to display the average temperature
 =============================================================
