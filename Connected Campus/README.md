@@ -931,10 +931,12 @@ You will get these details under IoTHub Settings -> Messaging section under Devi
 4. Again on the same line, replace the *iothubowner* Shared Secret with the value previously saved.
 5. On line 39 (the *eventHubEntity* variable) remove the existing value and replace it with your own __Event Hub-compatible name__ as recorded in the *Step 1 - Build an IoT Hub* section above.
 6. The completed two lines will now look similar to this:-
-    ```
+```
         static string ConnectionString = "Endpoint=sb://ihsuprodamres034dednamespace.servicebus.windows.net/;SharedAccessKeyName=iothubowner;SharedAccessKey=kWdvdpkc493bhytnV9dun/le7k0MsBcIjFpssw=";
+```
+``` 
         static string eventHubEntity = "iothub-ehub-deviothub9-88974-af8949fa5d";
-    ```
+```
 7. Now press `F5` to run the application. Note this runs on your local Windows 10 development machine and not on your IoT device, so don't try to deploy it there.
 
 The running application will display the room occupied status, temperature and pressure data which is being sent from you IoT device.
