@@ -82,8 +82,11 @@ Step 1 - Build an IoT Hub
     ![New IoT Hub](images/newiot.png)
 3. Enter a unique name for the IoT Hub, choose a Pricing and Scale tier (note that Free has been choosen here), select or create a Resource Group and datacentre location and __Click Create__.
 4. ![Choosing IoT Hub settings](images/newiothubsettings.png)
-5. Once the IoTHub has been created, ensure to make a copy of the Connection String - this is shown via the *Shared Access Policies-->iothubowner* blade.
+5. Once the IoTHub has been created, ensure to make a copy of the *iothubowner* Connection String - this is shown via the *Shared Access Policies-->iothubowner* blade.
     ![Iot Hub Key](images/iothubkeys.png)
+6. Finally you should also make a copy of the *Event Hub-compatible name* & *Event Hub-compatible endpoint* values. You'll need these later on when you start to read data back from IoT Hub.
+    ![Event Hub Compatible Endpoint](images/eventhubendpoint.png)
+7. Done.
 
 Step 2 - Register your device with IoT Hub
 ==========================================
@@ -892,19 +895,51 @@ Step 4 - Verify your device is correctly collecting data.
 
 Once the UWP App is deployed to your device it will run and collect data every 10 seconds *(this can be changed by updating the looping delay at line 123 of StartupTask.cs)*.
 
-With the deployed application and correctly built external circuit, you should see the following output from the Debug window in Visual Studio
+When the UWP application and external circuit are both correctly build and configured, you will see the following output in the Debug window of Visual Studio:-
 
 ![Debug output when device, application and circuit are working correctly](images/workingdebugoutput.png).
+
+The following items are of note:-
+* You'll see the date the reading was taken.
+* The temperature.
+* The pressure (three different units are displayed).
+* Two lines which display the values from the Analog-to-Digital conversion MCP3008 chip.
+* The light status in the room (dark/bright/too bright).
+* The motion detector status indicating wether the room is occupied or not.
+* A line containing the string "Sending Message" with JSON data. This is the data being uploaded to IoT Hub.
 
 Step 5 - Use the Device Explorer to verify your device is correctly sending data.
 =================================================================================
 
-__TODO:__ Add details on how to monitor data using Device Explorer. Add a screen shot.
+The Device Explorer tool which you have already used previously can be used to monitor messages which have been sent to IoT Hub. We are going to use it to confirm our data arrived correctly by reading the data back via IoT Hub's Event Hub compatible endpoint.
 
+1.	Open the Device Explorer (*C:\Program Files (x86)\Microsoft\DeviceExplorer\DeviceExplorer.exe*) and fill the IoT Hub Connection String field with the connection string of the IoT Hub you created in previous steps and click on Update.
+    ![Setting the connection string](images/deviceexplorerconnstr.png)
+2. Click on the `Data` tab, ensure that your device is selected in the `Device ID` drop down, then __Click__ the  __Monitor__ button. You should see a new JSON string every 10 seconds which contains the data from your device.
+    ![Monitor messages sent to IoT Hub](images/monitormessages.png)
+ 
 Step 6 - Open the provided Client UWP App to visualize the data
 ===============================================================
 
-__TODO:__ Add details on how to open, configure and run this application. Add screen shots.
+To provide a more visually attractive way of viewing the data, a standard UWP App has been created for you to visualise the data. This will connect to the Event Hub compatible endpoint associated with your IoT Hub and read the messages.
+
+You will get these details under IoTHub Settings -> Messaging section under Device-to-CLoud Settings we have Event Hub-compatible name is nothing but EventHubEntity and Event Hub-compatible endpoint
+
+1. Open the [Client App](source/ClientApp/ClientApp.sln) application in another instance of Visual Studio.
+2. Open the MainPage.xaml.cs file.
+3. On line 38 (the *ConnectionString* variable) remove the reference to the service bus endpoint, i.e. `sb://ihsuprodamres036dednamespace.servicebus.windows.net/` and replace it with your own __Event Hub-compatible endpoint__ as recorded in the *Step 1 - Build an IoT Hub* section above.
+4. Again on the same line, replace the *iothubowner* Shared Secret with the value previously saved.
+5. On line 39 (the *eventHubEntity* variable) remove the existing value and replace it with your own __Event Hub-compatible name_ as recorded in the *Step 1 - Build an IoT Hub* section above.
+    The completed two lines will now look similar to this:-
+    ```
+        static string ConnectionString = "Endpoint=sb://ihsuprodamres034dednamespace.servicebus.windows.net/;SharedAccessKeyName=iothubowner;SharedAccessKey=kWdvdpkc493bhytnV9dun/le7k0MsBcIjFpssw=";
+        static string eventHubEntity = "iothub-ehub-deviothub9-88974-af8949fa5d";
+    ```
+6. Now press `F5` to run the application. Note this runs on your local Windows 10 development machine and not on your IoT device, so don't try to deploy it there.
+
+The running application will display the room occupied status, temperature and pressure data which is being sent from you IoT device.
+
+![Room Status Application](images/roomstatusapp.png).
 
 Step 7 - Configure Azure Stream Analytics to pull data from IoT Hub
 ===================================================================
