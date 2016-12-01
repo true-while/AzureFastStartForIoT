@@ -20,7 +20,7 @@ Additional content has been added by
 Architecture
 ============
 
-The system you are about to build consists of the following parts/will work in the following manner:
+The system you are about to build consists of the following components and will work in the following manner:
 
 1. __An IoT Hub__. This will act as the main gateway for ingesting data from connected devices. You will need to register your device with IoT Hub before you can send it data.
 2. A __Raspberry Pi__ with attached sensors. A motion sensor will be used determine wether anybody is in the room with light and temprature data being collected via appropriate sensors.
