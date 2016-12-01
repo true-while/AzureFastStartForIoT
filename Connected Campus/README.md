@@ -48,24 +48,35 @@ Specifically the following items are required from the kit list:
 * PIR Motion Sensor
 * Adafruit BMP280 Barometric Pressure & Altitude Sensor
 * MCP3008 - 8-Channel 10-Bit ADC With SPI Interface
-* Potentiometer - 10K
+* 2 x Potentiometer - 10K
 * Resistor 10k ohm
+* Resistor 560 ohm
 * An LED
-* Male/Male Jumper Wires
-* Female/Male Jumper Wires
+* Jumper Wires
+
+## Basic Circuit
+
+Build your basic cicuit according to this diagram:
 
 ![The circuit](images/circuit.png)
 
+If you have more electronics experience, this is the circuit diagram of what you'll be building:
+
 ![The circuit diagram](images/circuitdiagram.png)
 
-![Completed circuit example](images/prototype.png)
+For interest/reference, these are the PINs on the Raspberry Pi. Note for example that the LED is attached to GPIO Pin 5 - this is referenced later in the code.
 
 ![Raspberry Pi 3 PinOut Reference](/RaspberryPI/images/pinout.png)
+
+## "Here's one I made earlier"
+
+![Completed circuit example](images/prototype.png)
 
 Azure Pre-reqs
 ==============
 
-1. A working Azure subscription.
+1. A working Azure subscription or trail - http://portal.azure.com
+2. A working PowerBI subscription or trial - http://www.powerbi.com
 
 Develoment Machine and IoT device Setup
 ========================================
