@@ -968,14 +968,43 @@ You will now configure Azure Stream Analytics to pull the uploaded data from IoT
 11. Select Event serialization format as JSON and Encoding as UTF8 then __Click__ the *Tick icon* to create the input.
     ![Serialization Settings](images/serializationsettings.png).
 12. The completed input looks like this:
-    ![Completed input](images/completed.png).
+    ![Completed input](images/completedinput.png).
 13. Click on the `Outputs` tab then __Click__ *Add an Output*.
     ![Add Output](images/addoutput.png).
 14. Choose `PowerBI` as the destination and click `Next`.
     ![Choose BI Output](images/choosebi.png).
 15. To use *Power BI* you must authorize the Stream Analytics service to access your companies Power BI subscription in order to define a new datasheet and send across data. __Click Authorise Now__. *You can register for a free PowerBI account but your company must be an existing O365 customer or you must have setup an O365 trial*.
     ![Authorizing the Stream Analytics Service to connect to your PowerBI subscription](images/authorizepowerbi.png).
-16. 
+16. After successful authorization, you should enter an Output alias name (e.g. `BIOut`) which is a friendly name to reference in output queries.
+17. Enter `RoomSet` as the DataSet Name and `Rooms` as the table name (you can only have one table in a Stream Analytics output dataset)
+18. Select *My Workspace* as the workspace.
+    ![Stream Analytics Output Job Creation Settings](images/outputconfiguresettings.png).
+19. The completed output looks like this:
+    ![Completed output](images/completedoutput.png).
+20. Click the `Query` tab and in the *Query* section of the screen ente the following Stream Analytics query:-
+    ```
+    SELECT
+    DeviceId,
+    RoomStatus,
+    LightStatus,
+    Max(Time) Time,
+    Avg(RoomTemp) roomtempAVG,
+    Avg(RoomPressure) AVGPressure,
+    Avg(RoomAlt) AVGRoomAlt,
+    Avg(LightCDSValue) AVGLightCDSValue,
+    Avg(LightCDSVoltageValue) LightCDSVoltageValue
+INTO
+    [BIOut]
+FROM
+    [RoomsDataIn] TIMESTAMP by Time
+GROUP BY
+    DeviceId,RoomStatus,LightStatus,TumblingWindow(Second,10)
+    ```
+    ![Inserted Query](images/saquery.png).
+21. Finally run the job by clicking on the __Start__ button.
+    ![Start Stream Analytics Job](images/runsajob.png).
+
+
 
 
 
