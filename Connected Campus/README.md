@@ -911,13 +911,13 @@ Step 4 - Verify your device is correctly collecting data.
 
 Once the UWP App is deployed to your device it will run and collect data every 10 seconds *(this can be changed by updating the looping delay at line 123 of StartupTask.cs)*.
 
-When the UWP application and external circuit are both correctly build and configured, you will see the following output in the Debug window of Visual Studio:-
+When the UWP application and external circuit are both correctly built and configured, you will see the following output in the Debug window of Visual Studio:-
 
-![Debug output when device, application and circuit are working correctly](images/workingdebugoutput.png).
+![Debug output when device, application and circuit are working correctly](images/workingdebugoutput.png)
 
 The following items are of note:-
-* You'll see the date the reading was taken.
-* The temperature.
+* You will see the date the reading was taken.
+* The temperature in deg. C.
 * The pressure (three different units are displayed).
 * Two lines which display the values from the Analog-to-Digital conversion MCP3008 chip.
 * The light status in the room (dark/bright/too bright).
@@ -939,8 +939,6 @@ Step 6 - Open the provided Client UWP App to visualize the data
 
 To provide a more visually attractive way of viewing the data, a standard UWP App has been created for you to visualise the data. This will connect to the Event Hub compatible endpoint associated with your IoT Hub and read the messages.
 
-You will get these details under IoTHub Settings -> Messaging section under Device-to-CLoud Settings we have Event Hub-compatible name is nothing but EventHubEntity and Event Hub-compatible endpoint
-
 1. Open the [Client App](source/ClientApp/ClientApp.sln) application in another instance of Visual Studio.
 2. Open the MainPage.xaml.cs file.
 3. On line 38 (the *ConnectionString* variable) remove the reference to the service bus endpoint, i.e. `sb://ihsuprodamres036dednamespace.servicebus.windows.net/` and replace it with your own __Event Hub-compatible endpoint__ as recorded in the *Step 1 - Build an IoT Hub* section above.
@@ -956,7 +954,7 @@ You will get these details under IoTHub Settings -> Messaging section under Devi
 
 __Now press `F5` to run the application__. Note this runs on your local Windows 10 development machine and not on your IoT device, so don't try to deploy it there.
 
-The running application will display the room occupied status, temperature and pressure data which is being sent from you IoT device.
+The running application will display the room occupied status, temperature and pressure data which is being sent from the Windows 10 IoT device.
 
 ![Room Status Application](images/roomstatusapp.png).
 
@@ -967,37 +965,37 @@ You will now configure Azure Stream Analytics to pull the uploaded data from IoT
 
 1. Log in to the [Azure classic portal](http://manage.windowsazure.com).
 2. Click on "__New plus__" icon on bottom left hand corner of the page then __Select Data Services->Stream Analytics->Quick Create__
-    ![Stream Analytics->Quick Create](images/streamanalyticsquickcreate.png).
-3. Enter a *Job Name* of `Rooms`, Select `Region` and a related regional storage account (or create a new storage account if one does not exist already).
-4. Finally __Click__ the *Create Stream Analytics Job* button.
-    ![Creating the Stream Analytics Job](images/createsajob.png).
-5. Select the new stream analytics job, click the *Inputs* tab and select *Add An Input*.
-    ![Add a Stream Analytics Input](images/addinput.png).
-6. Select the `Add Data Strea` option then press the `Next` arrow.
-    ![Choosing to add a Data Stream](images/adddatastream.png).
-7. Select IoT Hub as the data stream input and click `Next`.
-    ![Choosing to add a Data Stream](images/selectionhub.png).
-8. Enter an Input stream alias name of `RoomsDataIn`. This will be used in later steps.
-9. Select a subscription then choose the IoT Hub which you created above.
-10. Select `iothubowner` as shared access policy name and click on next.
-    ![IoT Hub Settings for Stream Analytics Job Input](images/iothubsettings.png).
-11. Select Event serialization format as JSON and Encoding as UTF8 then __Click__ the *Tick icon* to create the input.
-    ![Serialization Settings](images/serializationsettings.png).
-12. The completed input looks like this:
-    ![Completed input](images/completedinput.png).
-13. Click on the `Outputs` tab then __Click__ *Add an Output*.
-    ![Add Output](images/addoutput.png).
-14. Choose `PowerBI` as the destination and click `Next`.
-    ![Choose BI Output](images/choosebi.png).
-15. To use *Power BI* you must authorize the Stream Analytics service to access your companies Power BI subscription in order to define a new datasheet and send across data. __Click Authorise Now__. *You can register for a free PowerBI account but your company must be an existing O365 customer or you must have setup an O365 trial*.
-    ![Authorizing the Stream Analytics Service to connect to your PowerBI subscription](images/authorizepowerbi.png).
-16. After successful authorization, you should enter an Output alias name (e.g. `BIOut`) which is a friendly name to reference in output queries.
-17. Enter `RoomSet` as the DataSet Name and `Rooms` as the table name (you can only have one table in a Stream Analytics output dataset)
-18. Select *My Workspace* as the workspace.
-    ![Stream Analytics Output Job Creation Settings](images/outputconfiguresettings.png).
-19. The completed output looks like this:
-    ![Completed output](images/completedoutput.png).
-20. Click the `Query` tab and in the *Query* section of the screen ente the following Stream Analytics query:-
+3. ![Stream Analytics->Quick Create](images/streamanalyticsquickcreate.png).
+4. Enter a *Job Name* of `Rooms`, Select `Region` and a related regional storage account (or create a new storage account if one does not exist already).
+5. Finally __Click__ the *Create Stream Analytics Job* button.
+6. ![Creating the Stream Analytics Job](images/createsajob.png).
+7. Select the new stream analytics job, click the *Inputs* tab and select *Add An Input*.
+8. ![Add a Stream Analytics Input](images/addinput.png).
+9. Select the `Add Data Stream` option then press the `Next` arrow.
+10. ![Choosing to add a Data Stream](images/adddatastream.png).
+11.  Select IoT Hub as the data stream input and click `Next`.
+12. ![Choosing to add a Data Stream](images/selectionhub.png).
+13. Enter an Input stream alias name of `RoomsDataIn`. This will be used in later steps.
+14. Select a subscription then choose the IoT Hub which you created above.
+15. Select `iothubowner` as shared access policy name and click on next.
+16. ![IoT Hub Settings for Stream Analytics Job Input](images/iothubsettings.png).
+17. Select Event serialization format as JSON and Encoding as UTF8 then __Click__ the *Tick icon* to create the input.
+18. ![Serialization Settings](images/serializationsettings.png).
+19. The completed input looks like this:
+20. ![Completed input](images/completedinput.png).
+21.  Click on the `Outputs` tab then __Click__ *Add an Output*.
+22. ![Add Output](images/addoutput.png).
+23. Choose `PowerBI` as the destination and click `Next`.
+24. ![Choose BI Output](images/choosebi.png).
+25. To use *Power BI* you must authorize the Stream Analytics service to access your companies Power BI subscription in order to define a new datasheet and send across data. __Click Authorise Now__. *You can register for a free PowerBI account but your company must be an existing O365 customer or you must have setup an O365 trial*.
+27. ![Authorizing the Stream Analytics Service to connect to your PowerBI subscription](images/authorizepowerbi.png).
+28. After successful authorization, you should enter an Output alias name (e.g. `BIOut`) which is a friendly name to reference in output queries.
+29. Enter `RoomSet` as the DataSet Name and `Rooms` as the table name (you can only have one table in a Stream Analytics output dataset)
+30. Select *My Workspace* as the workspace.
+31. ![Stream Analytics Output Job Creation Settings](images/outputconfiguresettings.png).
+32. The completed output looks like this:
+33. ![Completed output](images/completedoutput.png).
+34. Click the `Query` tab and in the *Query* section of the screen ente the following Stream Analytics query:-
     ```
     SELECT
     DeviceId,
@@ -1016,8 +1014,9 @@ FROM
 GROUP BY
     DeviceId,RoomStatus,LightStatus,TumblingWindow(Second,10)
     ```
-    ![Inserted Query](images/saquery.png).
-21. Finally run the job by clicking on the __Start__ button.
+    
+35. ![Inserted Query](images/saquery.png).
+36. Finally run the job by clicking on the __Start__ button.
 
 
 Step 8 - Configure PowerBI to display the average temperature
