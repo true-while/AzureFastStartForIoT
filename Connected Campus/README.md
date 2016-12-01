@@ -1017,7 +1017,7 @@ Finally you will use PowerBI to display a guage showing the average temperature 
 4. Click on the + icon to create a report against the *RoomSet* dataset. This displays the report canvas, the data table inside the dataset and the different visualizations available.
     ![Start Stream Analytics Job](images/addingtodataset.png).
 5. Click to add a *Guage chart*.
-    ![Adding guage chart](images/visualization.png).
+    ![Adding guage chart](images/vizualization.png).
 6. Drag and drop the `roomtempavg` value field from fields tab to `value` field in Visualization tab.
     ![Setting the visualization value](images/vizvalue.png).
 7. The guage now looks like this:-
