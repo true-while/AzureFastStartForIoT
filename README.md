@@ -1,10 +1,12 @@
 # Azure Fast Start for IoT
 
-Welcome to the *Azure Fast Start for IoT*, a series of scenarios designed to help you build basic projects that integrate hardware running on Windows 10 Core with the IoT features of Microsoft Azure.
+Welcome to the *Azure Fast Start for IoT*, a series of practical labs and scenarios designed to help you build basic projects that integrate hardware running on Windows 10 Core with the IoT features of Microsoft Azure.
 
 The content has been drawn from a number of different locations and authors and is indended to be used during the delivery of an *Azure Fast Start for IoT*, a 4 day delivery by Microsoft Premier Services to help customers build working prototypes based on IoT devices and using Azure services for data processing.
 
-The three scenarios currently available are:
+A full [kit list of the hardware needed to build these scenarios](Electronics/Kit List.md) is available.
+
+The scenarios currently available are:
 
 Fraud Detection
 ---------------
