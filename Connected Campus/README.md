@@ -81,24 +81,24 @@ Azure Pre-reqs
 Develoment Machine and IoT device Setup
 ========================================
 
-1. Ensure your local development machine is setup according to these instructions: [Azure IoT Development machine setup](../IoT Developer Setup.docx?raw=true)
+1. Ensure your local development machine is setup according to these instructions: [Azure IoT Development machine setup](../IoT Developer Setup.docx?raw=true).
 2. Part of the above document describes installing the "Device Explorer" tool - make sure that you *do* follow these instructions as you'll need that tool later on.
-3. Ensure you have installed the [Connected Service for Azure IoTHub Visual Studio Extension](https://marketplace.visualstudio.com/items?itemName=MicrosoftIoT.ConnectedServiceforAzureIoTHub)
+3. Ensure you have installed the [Connected Service for Azure IoT Hub Visual Studio Extension](https://marketplace.visualstudio.com/items?itemName=MicrosoftIoT.ConnectedServiceforAzureIoTHub)
 4. Ensure you have [followed the instructions](https://developer.microsoft.com/en-us/windows/iot/docs/iotdashboard) to __Use the Windows 10 IoT Core Dashboard__ to setup your Raspberry Pi.
 
-*Note about setting up Wi-Fi on the RPi:* IoT Dashboard shows all available networks that your PC has previously connected to. If you don’t see your desired Wi-Fi network on the list, ensure you’re connected to it on your PC. If you uncheck the Wi-Fi box when writing the Windows 10 IoT Core image onto your SD card, you must connect an Ethernet cable to your board after flashing. Wether using Wi-Fi or Ethernet, your device will recieve an IP via DHCP at start up.
+*Note about setting up Wi-Fi on the RPi:* IoT Dashboard shows all available networks that your PC has previously connected to. If you don’t see your desired Wi-Fi network on the list, ensure you’re connected to it on your PC. If you uncheck the Wi-Fi box when writing the Windows 10 IoT Core image onto your SD card, you must connect an Ethernet cable to your board after flashing. Whether using Wi-Fi or Ethernet, your device will recieve an IP via DHCP at start up.
 
 For more in depth guidance on setting up your hardware device see [Get Started](https://developer.microsoft.com/en-us/windows/iot/GetStarted).
 
 Step 1 - Build an IoT Hub
 =========================
 
-1. [Open th Azure Portal](https://portal.azure.com).
+1. [Open the Azure Portal](https://portal.azure.com).
 2. Click (+)-->Internet of Things-->IoT Hub.
     ![New IoT Hub](images/newiot.png)
 3. Enter a unique name for the IoT Hub, choose a Pricing and Scale tier (note that Free has been choosen here), select or create a Resource Group and datacentre location and __Click Create__.
 4. ![Choosing IoT Hub settings](images/newiothubsettings.png)
-5. Once the IoTHub has been created, ensure to make a copy of the *iothubowner* Connection String - this is shown via the *Shared Access Policies-->iothubowner* blade.
+5. Once the IoTHub has been created, ensure you make a copy of the *iothubowner* Connection String - this is shown via the *Shared Access Policies-->iothubowner* blade.
     ![Iot Hub Key](images/iothubkeys.png)  
 6. Finally you should also make a copy of the *Event Hub-compatible name* & *Event Hub-compatible endpoint* values. You'll need these later on when you start to read data back from IoT Hub.
     ![Event Hub Compatible Endpoint](images/eventhubendpoint.png)
@@ -110,11 +110,11 @@ Step 2 - Register your device with IoT Hub
 For your device to connect to IoT Hub it must have its own Device Identity (aka set of credentials). The process of obtaining these is known as Registering your Device. Currently there is no way to do this via the Azure Portal but there is a remote API available. Rather than write a custom application to connect & register you are going to use Device Explorer which is part of the IoT SDK. You can also register a device via the IoT Dashboard application or use iothub-explorer, another tool from the IoT SDK written in node.js.
 
 1.	Open the Device Explorer (*C:\Program Files (x86)\Microsoft\DeviceExplorer\DeviceExplorer.exe*) and fill the IoT Hub Connection String field with the connection string of the IoT Hub you created in previous steps and click on __Update__.
-    ![Setting the connection string](images/deconfigure.png)
-2. Go to the __Management tab__ and __Click on the Create button__. The Create Device popup will be displayed. Enter "__device1__" as the Device ID for your device  and __click on Create__. *The device name is important as other parts of the supplied sample program rely on this*.
-    ![Create device entry](images/createentry.png)
-3. Once the device identity is created, it will be displayed in the grid. __Right click__ on the device entry you just created and select __Copy connection string__. Paste this into a notepad as it will be required later one.
-    ![Copy device details](images/degrid.png)
+2. ![Setting the connection string](images/deconfigure.png)
+3. Go to the __Management tab__ and __Click on the Create button__. The Create Device popup will be displayed. Enter "__device1__" as the Device ID for your device  and __click on Create__. *The device name is important as other parts of the supplied sample program rely on this*.
+4. ![Create device entry](images/createentry.png)
+5. Once the device identity is created, it will be displayed in the grid. __Right click__ on the device entry you just created and select __Copy connection string for the selected device__. Paste this into a notepad as it will be required later one.
+6. ![Copy device details](images/degrid.png)
 
 __Note__: The device identities registration can be automated using the Azure IoT Hubs SDK. An example can be found at https://azure.microsoft.com/en-us/documentation/articles/iot-hub-csharp-csharp-getstarted/#create-a-device-identity. 
 
@@ -129,7 +129,7 @@ A [Completed Example](source/DeviceApp) is also available. __TODO__: Add details
     ![Blank project](images/newproject.png)
 2. Call your project "ConnectedBackApp" and make sure the .NET Framework version is 4.5.1 or later. Click __Create__. Accept the defaults for Universal Windows Project target versions.
 3. [Follow these instructions to add a NuGet reference](/Developer Setup/NuGet Package Install.md) to the __Microsoft.Azure.Devices.Client__ package.
-4. Right click on References in the Solution Explorer and choose “Connected Service”.
+4. Right click on References in the Solution Explorer and choose "Add Connected Service".
     ![Add reference](images/addservicereference.png)
 5. Choose __Azure IoT Hub__ and press __Configure__ then select the option to __hardcode__ shared access keys in the applications code, then press OK.
     ![Add Service](images/addservice.png) ![Hardcode connection string](images/hardcode.png)
@@ -406,7 +406,7 @@ public sealed class StartupTask : IBackgroundTask
     }
     ```
 9. Add a new class to the project by __Right-Clicking__ on the project name in *Solution Explorer* and choosing __Add->Class__. Call the new class __"MCP3008"__. 
-10. Add the following code to the new *MCP3008.cs* file replacing the exising class defintion (leave the outer Namespace defintion in place).. *The light detector part of the circuit you built earlier produces a variable voltage however the Raspberry PI does not have a built-in Analog-To-Digital converter therefore it needs to use an external MCP3008 chip to do the work. The code you are about to add to the new class file knows how to read data from that chip and convert it into a value that can be used in the rest of the program.*
+10. Add the following code to the new *MCP3008.cs* file replacing the exising class defintion (leave the outer Namespace defintion in place). *The light detector part of the circuit you built earlier produces a variable voltage however the Raspberry PI does not have a built-in Analog-To-Digital converter therefore it needs to use an external MCP3008 chip to do the work. The code you are about to add to the new class file knows how to read data from that chip and convert it into a value that can be used in the rest of the program.*
     ```
  class MCP3008
     {
@@ -535,7 +535,7 @@ public sealed class StartupTask : IBackgroundTask
     using System.Diagnostics;
     ```
 12. Add a new class to the project by __Right-Clicking__ on the project name in *Solution Explorer* and choosing __Add->Class__. Call the new class __"BMP280"__. 
-13. Add the following code to the new *BMP280.cs* file replacing the exising class defintion (leave the outer Namespace defintion in place).__Not only are you replacing the class defintion but you are adding two new classes to support it__. *This new class contains code which will read temprature and pressure data from the BMP280 sensor. This is done via the use of the I2C interface*
+13. Add the following code to the new *BMP280.cs* file replacing the exising class defintion (leave the outer Namespace defintion in place).__Not only are you replacing the class defintion but you are adding two new classes to support it__. *This new class contains code which will read temprature and pressure data from the BMP280 sensor. This is done via the use of the I2C interface*.
     ```
     public sealed class BMP280_CalibrationData
     {
@@ -903,7 +903,7 @@ public sealed class StartupTask : IBackgroundTask
         public string LightCDSVoltageValue { get; internal set; }
     }
     ```
-16. Open the *AzureIoTHub.cs* file added by the wizard earlier. Replace the deviceConnectionString with that you obtained in __Step 3__ of the *Step 2 - Register your device with IoT Hub* section.
+16. Open the *AzureIoTHub.cs* file added by the wizard earlier. Replace the deviceConnectionString with the one you saved in __Step 3__ of the *Step 2 - Register your device with IoT Hub* section.
 17. At this point all the code is ready and your circuit should also be ready. Time to test! You can now deploy and test the application by pressing `F5`. *The first time you deploy an application it make take some time as required framework updates are installed onto the device - Visual Studio may even display some "This is taking too long messages" - Be patient! Subsequent deployments will be much quicker.*. For help on deploying apps please see [Deploying an App with Visual Studio](https://developer.microsoft.com/en-us/windows/iot/Docs/appdeployment)
 
 Step 4 - Verify your device is correctly collecting data.
