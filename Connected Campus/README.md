@@ -995,7 +995,7 @@ You will now configure Azure Stream Analytics to pull the uploaded data from IoT
 31. ![Stream Analytics Output Job Creation Settings](images/outputconfiguresettings.png)
 32. The completed output looks like this:
 33. ![Completed output](images/completedoutput.png)
-34. Click the `Query` tab and in the *Query* section of the screen ente the following Stream Analytics query:-
+34. Click the `Query` tab and in the *Query* section of the screen enter the Stream Analytics query shown below. *Note that if you have given different names to your Input and Output locations you will have to change the query accordingly.*
     ```
     SELECT
     DeviceId,
@@ -1015,7 +1015,7 @@ GROUP BY
     DeviceId,RoomStatus,LightStatus,TumblingWindow(Second,10)
     ```
 
-35. ![Inserted Query](images/saquery.png).
+35. Save work work by pressing __Save__ at the bottom of the page.
 36. Finally run the job by clicking on the __Start__ button.
 
 
@@ -1030,15 +1030,14 @@ Finally you will use PowerBI to display a guage showing the average temperature 
 4. Click on the + icon to create a report against the *RoomSet* dataset. This displays the report canvas, the data table inside the dataset and the different visualizations available.
     ![Start Stream Analytics Job](images/addingtodataset.png).
 5. Click to add a *Guage chart*.
- 
     ![Adding guage chart](images/vizualization.png).
 6. Drag and drop the `roomtempavg` value field from fields tab to `value` field in Visualization tab.
     ![Setting the visualization value](images/vizvalue.png).
 7. The guage now looks like this:-
     ![Visualization value result](images/guage.png).
-8. Change the `roomtempavg` value `sum` to `average`.
+8. Change the `roomtempavg` value from `sum` to `average`.
 9. ![Setting the visualization value to show average data](images/vizaverage.png).
-10. The final visualization looks like this:-
+10. The final visualization shows the average of all the temprature values it has received from Stream Analytics.
 11. ![The Final Visualization](images/visualfinal.png).
 12. Click on Pin symbol on top of the chart to add it to dashboard. Save it before pining to the dashboard.
     ![Saving the report](images/savereport.png).
