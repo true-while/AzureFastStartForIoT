@@ -937,7 +937,8 @@ You will get these details under IoTHub Settings -> Messaging section under Devi
 ``` 
         static string eventHubEntity = "iothub-ehub-deviothub9-88974-af8949fa5d";
 ```
-7. Now press `F5` to run the application. Note this runs on your local Windows 10 development machine and not on your IoT device, so don't try to deploy it there.
+
+__Now press `F5` to run the application__. Note this runs on your local Windows 10 development machine and not on your IoT device, so don't try to deploy it there.
 
 The running application will display the room occupied status, temperature and pressure data which is being sent from you IoT device.
 
