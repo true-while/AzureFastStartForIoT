@@ -53,7 +53,9 @@ You will need the following hardware items to build this scenario:
 
 ![The circuit](images/circuit.png)
 
-![The circuit](images/prototype.png)
+![The circuit diagram](images/circuitdiagram.png)
+
+![Completed circuit example](images/prototype.png)
 
 ![Raspberry Pi 3 PinOut Reference](/RaspberryPI/images/pinout.png)
 
@@ -1005,17 +1007,16 @@ GROUP BY
     ![Start Stream Analytics Job](images/runsajob.png).
 
 
-
-
-
-
-
-
-
-
-
 Step 8 - Configure PowerBI to display the average temperature
 =============================================================
 
-__TODO:__ Add details on how to setup and configure. Add screen shots.
+Finally you will use PowerBI to display a guage showing the average temperature of the room. Once the Stream Analytics job has started a new dataset called `RoomSet` which contains a single table called `Rooms` will be available in PowerBI. You will display data from this table.
+
+1. Login to the [PowerBI](https://www.powerbi.com) site.
+2. Locate the `RoomsSet` dataset from the bottom of the hand menu.
+    ![Start Stream Analytics Job](images/pbidataset.png).
+4. Click on the + icon to create a report.
+    ![Start Stream Analytics Job](images/addingtodataset.png).
+5. 
+
 
