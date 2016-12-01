@@ -2,8 +2,6 @@
 
 ##Common to all scenarios
 
-* All the scenarios will need these common items:-
-
 * [Microsoft IoT Pack for Raspberry Pi 3 - w/ Raspberry Pi 3](https://www.adafruit.com/products/2733)
 
 * [1 x USB cable - A/MicroB - 3ft](https://www.adafruit.com/product/592)
@@ -12,7 +10,7 @@
 
 ##Fraud Prevention
 
-[1 x External WebCam](https://www.amazon.com/Microsoft-LifeCam-HD-3000-Webcam-T3H-00011/dp/B008ZVRAQS/ref=sr_1_1?ie=UTF8&qid=1438711398&sr=8-1&keywords=lifecam+hd-300) 
+* [1 x External WebCam](https://www.amazon.com/Microsoft-LifeCam-HD-3000-Webcam-T3H-00011/dp/B008ZVRAQS/ref=sr_1_1?ie=UTF8&qid=1438711398&sr=8-1&keywords=lifecam+hd-300) 
 
 ##Connected Campus
 
