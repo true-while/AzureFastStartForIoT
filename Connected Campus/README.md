@@ -963,38 +963,38 @@ Step 7 - Configure Azure Stream Analytics to pull data from IoT Hub
 
 You will now configure Azure Stream Analytics to pull the uploaded data from IoT Hub, compute a set of rolling averages then off-load the data to Azure PowerBI.
 
-1. Log in to the [Azure classic portal](http://manage.windowsazure.com).
+1. Log in to the [Azure classic portal](http://manage.windowsazure.com)
 2. Click on "__New plus__" icon on bottom left hand corner of the page then __Select Data Services->Stream Analytics->Quick Create__
-3. ![Stream Analytics->Quick Create](images/streamanalyticsquickcreate.png).
+3. ![Stream Analytics->Quick Create](images/streamanalyticsquickcreate.png)
 4. Enter a *Job Name* of `Rooms`, Select `Region` and a related regional storage account (or create a new storage account if one does not exist already).
 5. Finally __Click__ the *Create Stream Analytics Job* button.
-6. ![Creating the Stream Analytics Job](images/createsajob.png).
+6. ![Creating the Stream Analytics Job](images/createsajob.png)
 7. Select the new stream analytics job, click the *Inputs* tab and select *Add An Input*.
-8. ![Add a Stream Analytics Input](images/addinput.png).
+8. ![Add a Stream Analytics Input](images/addinput.png)
 9. Select the `Add Data Stream` option then press the `Next` arrow.
-10. ![Choosing to add a Data Stream](images/adddatastream.png).
-11.  Select IoT Hub as the data stream input and click `Next`.
-12. ![Choosing to add a Data Stream](images/selectionhub.png).
+10. ![Choosing to add a Data Stream](images/adddatastream.png)
+11. Select IoT Hub as the data stream input and click `Next`.
+12. ![Choosing to add a Data Stream](images/selectionhub.png)
 13. Enter an Input stream alias name of `RoomsDataIn`. This will be used in later steps.
 14. Select a subscription then choose the IoT Hub which you created above.
 15. Select `iothubowner` as shared access policy name and click on next.
-16. ![IoT Hub Settings for Stream Analytics Job Input](images/iothubsettings.png).
+16. ![IoT Hub Settings for Stream Analytics Job Input](images/iothubsettings.png)
 17. Select Event serialization format as JSON and Encoding as UTF8 then __Click__ the *Tick icon* to create the input.
-18. ![Serialization Settings](images/serializationsettings.png).
+18. ![Serialization Settings](images/serializationsettings.png)
 19. The completed input looks like this:
-20. ![Completed input](images/completedinput.png).
+20. ![Completed input](images/completedinput.png)
 21.  Click on the `Outputs` tab then __Click__ *Add an Output*.
-22. ![Add Output](images/addoutput.png).
+22. ![Add Output](images/addoutput.png)
 23. Choose `PowerBI` as the destination and click `Next`.
-24. ![Choose BI Output](images/choosebi.png).
+24. ![Choose BI Output](images/choosebi.png)
 25. To use *Power BI* you must authorize the Stream Analytics service to access your companies Power BI subscription in order to define a new datasheet and send across data. __Click Authorise Now__. *You can register for a free PowerBI account but your company must be an existing O365 customer or you must have setup an O365 trial*.
-27. ![Authorizing the Stream Analytics Service to connect to your PowerBI subscription](images/authorizepowerbi.png).
+27. ![Authorizing the Stream Analytics Service to connect to your PowerBI subscription](images/authorizepowerbi.png)
 28. After successful authorization, you should enter an Output alias name (e.g. `BIOut`) which is a friendly name to reference in output queries.
 29. Enter `RoomSet` as the DataSet Name and `Rooms` as the table name (you can only have one table in a Stream Analytics output dataset)
 30. Select *My Workspace* as the workspace.
-31. ![Stream Analytics Output Job Creation Settings](images/outputconfiguresettings.png).
+31. ![Stream Analytics Output Job Creation Settings](images/outputconfiguresettings.png)
 32. The completed output looks like this:
-33. ![Completed output](images/completedoutput.png).
+33. ![Completed output](images/completedoutput.png)
 34. Click the `Query` tab and in the *Query* section of the screen ente the following Stream Analytics query:-
     ```
     SELECT
@@ -1014,7 +1014,7 @@ FROM
 GROUP BY
     DeviceId,RoomStatus,LightStatus,TumblingWindow(Second,10)
     ```
-    
+
 35. ![Inserted Query](images/saquery.png).
 36. Finally run the job by clicking on the __Start__ button.
 
