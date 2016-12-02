@@ -34,9 +34,5 @@
 
 ##Remote Patient Monitoring and Clinical Analytics
 
-* [ADS1115 16-Bit ADC - 4 Channel with Programmable Gain Amplifier](https://www.adafruit.com/products/1085)
-
-* [SparkFun Single Lead Heart Rate Monitor - AD8232](https://www.sparkfun.com/products/12650)
-
-* [Pulse Sensor](https://www.sparkfun.com/products/11574)
+* [Heart Rate Educational Starter Pack with Polar Wireless Sensors](https://www.adafruit.com/products/1077)
 
