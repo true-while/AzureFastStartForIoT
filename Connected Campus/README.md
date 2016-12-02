@@ -1024,6 +1024,8 @@ Step 8 - Configure PowerBI to display the average temperature
 
 Finally you will use PowerBI to display a guage showing the average temperature of the room. Once the Stream Analytics job has started a new dataset called `RoomSet` which contains a single table called `Rooms` will be available in PowerBI. You will display data from this table.
 
+__Note:__ *At time of writing the ability to display the latest values of temperature, pressure, light status etc. coming from Stream Analytics is in private preview therefore the report below will display an "average" of "averages", i.e. an average of all the temprature values stored. Once the ability to display the latest known value is made available, this section of the scenario will be updated. You can find out more about these upcoming features at https://powerbi.microsoft.com/en-us/blog/announcing-private-preview-of-azure-stream-analytics-outputting-to-power-bi-streaming-datasets/*
+
 1. Login to the [PowerBI](https://www.powerbi.com) site.
 2. Locate the `Streaming DataSets` dataset from the bottom of the hand menu and __Click__ it.
     ![Start Stream Analytics Job](images/pbidataset.png).
