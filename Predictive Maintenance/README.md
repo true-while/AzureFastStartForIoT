@@ -106,6 +106,20 @@ For more in depth guidance on setting up your hardware device see [Get Started](
 Step 1 - Setup Azure IoT Suite
 ==============================
 
+[Azure IoT Suite](https://azure.microsoft.com/en-us/suites/iot-suite/) is a set of preconfigured components that every IoT project would benefit from when starting a new project. It contains an IoT Hub, Stream Analytics, PowerBI Dashboard plus a number of other components needed to kick start your project. It shows how these components are best connected together, what can be done with them and how by examining the template from which it is built you can create your own solutions.
+
+There are two variations available for use:
+
+* Predictive Maintenance
+* Remote Monitoring
+
+You can watch an introducatory video at https://docs.microsoft.com/en-us/azure/iot-suite/iot-suite-overview or read more about [Azure IoT Suite](https://docs.microsoft.com/en-us/azure/iot-suite/) 
+
+For this scenario you are going to build a Predictive Maintenance Suite.
+
+1. Start by opening https://www.azureiotsuite.com/ - you will need to login with your standard Azure Subscription credentials.
+2. ![Raspberry Pi 3 PinOut Reference](images/newsolution.png)
+
 Step 2 - Build an application to upload the data and receive command messages
 ==============================================================================
 
