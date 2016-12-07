@@ -5,7 +5,7 @@
 Scenario
 ========
 
-In this scenario, you will build a system which uses an external sensor to detect potential problems in a jet engine and relays the information to Azure.
+In this scenario, you will build a system which uses an external sensor to detect potential problems in a jet engine and relay the information to Azure.
 The collected data will be used to proactively detect impending maintenance issues and send control signals back to the device.
 This scenario will build on the Predictive Maintenance scenario which is part of the [Azure IoT Suite](http://wwww.azureiotsuite.com).
 
@@ -77,7 +77,7 @@ This number is going to be fed into Azure IoT Suite.
 
 ## "Here's one I made earlier"
 
-__TODO__
+![](images/predict.png)
 
 Azure Pre-reqs
 ==============
