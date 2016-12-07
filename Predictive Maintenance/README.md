@@ -1,6 +1,6 @@
 # Predictive Maintenance
 
-![](images/jetengine.png)
+![](images/JetEngine.png)
 
 Scenario
 ========
