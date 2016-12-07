@@ -118,7 +118,12 @@ You can watch an introducatory video at https://docs.microsoft.com/en-us/azure/i
 For this scenario you are going to build a Predictive Maintenance Suite.
 
 1. Start by opening https://www.azureiotsuite.com/ - you will need to login with your standard Azure Subscription credentials.
-2. ![Azure IoT Suite New Solution](images/newsolution.png)
+2. At the Azure IoT Suite page, __Click__ the large green + button.
+3. ![Azure IoT Suite New Solution](images/newsolution.png)
+4. Of the two solutions available, select "Predictive Maintenance".
+5. ![Selecting the right solution to create](images/selectpredictive.png)
+6. Enter a unique name for the Solution, select your Azure Subscription and choose a Region, then press __Create Solution__. This will take about 20 minutes to complete.
+7. ![Solution creation in progress](images/inprogress.png)
 
 Step 2 - Build an application to upload the data and receive command messages
 ==============================================================================
