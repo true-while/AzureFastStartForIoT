@@ -116,10 +116,13 @@ For this scenario you are going to build a Predictive Maintenance Suite.
     ![Azure IoT Suite New Solution](images/newsol.png)
 3. Of the two solutions available, select "Predictive Maintenance".
     ![Selecting the right solution to create](images/selectpredictive.png)
-4. Enter a unique name for the Solution, select your Azure Subscription and choose a Region, then press __Create Solution__. This will take about 20 minutes to complete.
+4. Enter a unique name for the Solution, select your Azure Subscription and choose a Region, then press __Create Solution__.
+    ![Enter creation details](images/enterdetails.png)
+5. This will take about 20 minutes to complete.
     ![Solution creation in progress](images/inprogress.png)
 5. When complete, __Click__ the __Launch__ button to open the portal for the new solution *(you'll be asked to approve the application - say "yes" to this)*.
     ![Lanching the new solution](images/launch.png)
+6. Next
 
 
 The solution you have just created is based off a template https://github.com/Azure/azure-iot-predictive-maintenance which you are free to download and modify.
