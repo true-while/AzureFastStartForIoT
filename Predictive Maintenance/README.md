@@ -124,7 +124,16 @@ For this scenario you are going to build a Predictive Maintenance Suite.
     ![Lanching the new solution](images/launch.png)
 7.  You'll be asked to approve the application - say __yes__ to this.
 
-The solution you have just created is based off a template https://github.com/Azure/azure-iot-predictive-maintenance which you are free to download and modify.
+The solution you have just created is based off a template https://github.com/Azure/azure-iot-predictive-maintenance which you are free to download, inspect, learn from and modify.
+
+Can can also install it from the command line: Open a Visual Studio developer command prompt and run `build.cmd cloud debug "myblahnamexx" "AzureCloud"` where "myblahnamexx" is a unique name for your installation. As part of the running script you'll be asked for credentials for Azure and which location you wish to install to.
+
+
+#
+##########################################
+###########################################
+##########################################
+#
 
 Step 2 - Register your device with IoT Hub
 ==========================================
