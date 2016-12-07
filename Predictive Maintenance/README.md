@@ -120,10 +120,9 @@ For this scenario you are going to build a Predictive Maintenance Suite.
     ![Enter creation details](images/enterdetails.png)
 5. This will take about 20 minutes to complete.
     ![Solution creation in progress](images/inprogress.png)
-6. When complete, __Click__ the __Launch__ button to open the portal for the new solution *(you'll be asked to approve the application - say "yes" to this)*.
+6. When complete, __Click__ the __Launch__ button to open the portal for the new solution.
     ![Lanching the new solution](images/launch.png)
-7. Next
-
+7.  You'll be asked to approve the application - say __yes__ to this.
 
 The solution you have just created is based off a template https://github.com/Azure/azure-iot-predictive-maintenance which you are free to download and modify.
 
