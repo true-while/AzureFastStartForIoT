@@ -75,6 +75,12 @@ These are the PINs on the MCP3008 Analog-to-Digital Converter.
 
 ![Raspberry Pi 3 PinOut Reference](/RaspberryPI/images/mcp3008-cobbler.png)
 
+
+## Circuit Output
+
+The circuit has only a single sensor which is fed through an analog to digital converter with the output being a number between 0 and 1023.
+This number is going to be fed into Azure IoT Suite.
+
 ## "Here's one I made earlier"
 
 __TODO__
@@ -97,8 +103,22 @@ Develoment Machine and IoT device Setup
 
 For more in depth guidance on setting up your hardware device see [Get Started](https://developer.microsoft.com/en-us/windows/iot/GetStarted).
 
-Step 1 - Build an IoT Hub
-=========================
+Step 1 - Setup Azure IoT Suite
+==============================
+
+Step 2 - Build an application to upload the data and receive command messages
+==============================================================================
+
+Step 3 - Register device with IoT Hub
+======================================
+
+Step 4 - Configure Rules
+========================
+
+
+
+
+
 
 
 
