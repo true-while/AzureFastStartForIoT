@@ -51,8 +51,8 @@ Specifically the following items are required from the kit list:
 * Raspberry Pi
 * Breadboard (generic)
 * MCP3008 - 8-Channel 10-Bit ADC With SPI Interface
-* 2 x Potentiometer - 10K
-* Resistor 560 ohm
+* Resistor 10K ohm
+* Resistor 220 ohm
 * An LED
 * Jumper Wires
 * Force sensor
@@ -74,7 +74,6 @@ For interest/reference, these are the PINs on the Raspberry Pi.
 These are the PINs on the MCP3008 Analog-to-Digital Converter.
 
 ![Raspberry Pi 3 PinOut Reference](/RaspberryPI/images/mcp3008-cobbler.png)
-
 
 ## Circuit Output
 
