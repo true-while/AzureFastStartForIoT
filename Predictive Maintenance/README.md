@@ -67,13 +67,13 @@ If you have more electronics experience, this is the circuit diagram of what you
 
 __TODO__
 
-For interest/reference, these are the PINs on the Raspberry Pi. Note for example that the LED is attached to GPIO Pin 5 - this is referenced later in the code.
+For interest/reference, these are the PINs on the Raspberry Pi.
 
 ![Raspberry Pi 3 PinOut Reference](/RaspberryPI/images/pinout.png)
 
 ## "Here's one I made earlier"
 
-![Completed circuit example](images/XXXXX.png)
+__TODO__
 
 Azure Pre-reqs
 ==============
