@@ -1,40 +1,35 @@
 # Predictive Maintenance
 
-![](images/rig.png)
+![](images/jetengine.png)
 
 Scenario
 ========
 
-In this scenario, you will build a system which uses an external sensor to detect oil levels in a piece of machinery and relays the information to Azure.
+In this scenario, you will build a system which uses an external sensor to detect potential problems in a jet engine and relays the information to Azure.
 The collected data will be used to proactively detect impending maintenance issues and send control signals back to the device.
 This scenario will build on the Predictive Maintenance scenario which is part of the [Azure IoT Suite](http://wwww.azureiotsuite.com).
 
-This scenario is based on a project from [Hackster.io](http://www.hackster.io):-
-
-* [Oil Level Monitoring](https://www.hackster.io/sameerk/oil-level-monitoring-ac01b9).
-* Additional content has been added by [Microsoft Premier Services](https://www.microsoft.com/en-us/microsoftservices/support.aspx).
-
 Credit for this project is as follows:-
 
-* [Oil Level Monitoring](https://www.hackster.io/sameerk/oil-level-monitoring-ac01b9) - Made by [Sameer](https://www.hackster.io/sameerk).
+* [Microsoft Premier Services](https://www.microsoft.com/en-us/microsoftservices/support.aspx).
 
 Architecture
 ============
 
-The system comprises of a force sensor that is connected to the Raspberry Pi. A program running on the Raspberry Pi will periodically check the force measured by the sensor where it will then be uploaded to Azure and display the level on screen.
-On Azure, an IOT suite will consume the telemetry data and define the business rules that will send messages to the Raspberry Pi for displaying to the user.
-The critical messages will also activate LED on the hardware. 
+The IoT Suite predictive maintenance preconfigured solution is an end-to-end solution for a business scenario that predicts the point when failure is likely to occur.
+You can use this preconfigured solution proactively for activities such as optimizing maintenance.
+The solution combines key Azure IoT Suite services, including an Azure Machine Learning workspace.
+This workspace contains machine learning experiments, based on a public sample data set, to predict the Remaining Useful Life (RUL) of an aircraft engine.
+The solution fully implements the IoT business scenario as a starting point for you to plan and implement a solution that meets your own specific business requirements.
 
 The system you are about to build consists of the following components and will work in the following manner:
 
-1. An IoT Hub. This will act as the main gateway for ingesting data from connected devices. You will need to register your device with IoT Hub before you can send it data.
-2. A Raspberry Pi with attached sensors. For this specific scenario a force sensor will be attached. This could be used for example to measure vibrations in mechanical systems or the strains on loaded components.
-3. The collected data will be uploaded to IoTHub.
-4. The raw data will be feed into Azure Stream Analytics to produce averages of sensor values overtime.
-5. The final data will be sent to Power BI for display. This will make it easly available to view on a number of mobile devices or computers.
-6. Rules will be configured in IoT Suite to send control messages back to the device when certain threasholds are crossed.
+1. The blue items are Azure services that are provisioned in the location you select when you provision the preconfigured solution. You can provision the preconfigured solution in either the East US, North Europe, or East Asia region.
+2. Some resources are not available in the regions where you provision the preconfigured solution. The orange items in the diagram represent the Azure services provisioned in the closest available region (South Central US, Europe West, or SouthEast Asia) given the selected region.
+3. The green item is a simulated device that represents an aircraft engine being monitored. It will constantly send out a stream of data. You will eventually replace this with a real device.
+4. The gray items represent components that implement device administration capabilities. The current release of the predictive maintenance preconfigured solution does not provision these resources.
 
-![](images/overview.png)
+![](images/architecture.png)
 
 Basic Hardware Setup
 ====================
@@ -123,12 +118,41 @@ For this scenario you are going to build a Predictive Maintenance Suite.
     ![Selecting the right solution to create](images/selectpredictive.png)
 4. Enter a unique name for the Solution, select your Azure Subscription and choose a Region, then press __Create Solution__. This will take about 20 minutes to complete.
     ![Solution creation in progress](images/inprogress.png)
-5. When complete, __Click__ the __Launch__ button.
+5. When complete, __Click__ the __Launch__ button to open the portal for the new solution *(you'll be asked to approve the application - say "yes" to this)*.
     ![Lanching the new solution](images/launch.png)
-6. Next
 
-Step 2 - Build an application to upload the data and receive command messages
+
+The solution you have just created is based off a template https://github.com/Azure/azure-iot-predictive-maintenance which you are free to download and modify.
+
+Step 2 - Register your device with IoT Hub
+==========================================
+
+For your device to connect to IoT Hub it must have its own Device Identity (aka set of credentials).
+The process of obtaining these is known as Registering your Device.
+Currently there is no way to do this via the offical Azure Portal however as part of the Azure IoT Suite you just created, a website which contains an administration interface for devices is now avaialble (internally this uses a remote API to talk to IoT Hub and register devices).
+
+Rather than write a custom application to connect & register you are going to use Device Explorer which is part of the IoT SDK. You can also register a device via the IoT Dashboard application or use iothub-explorer, another tool from the IoT SDK written in node.js.
+
+1.Open the Device Explorer (*C:\Program Files (x86)\Microsoft\DeviceExplorer\DeviceExplorer.exe*) and fill the IoT Hub Connection String field with the connection string of the IoT Hub you created in previous steps and click on __Update__.
+2. ![Setting the connection string](images/deconfigure.png)
+3. Go to the __Management tab__ and __Click on the Create button__. The Create Device popup will be displayed. Enter "__device1__" as the Device ID for your device  and __click on Create__. *The device name is important as other parts of the supplied sample program rely on this*.
+4. ![Create device entry](images/createentry.png)
+5. Once the device identity is created, it will be displayed in the grid. __Right click__ on the device entry you just created and select __Copy connection string for the selected device__. Paste this into a notepad as it will be required later one.
+6. ![Copy device details](images/degrid.png)
+
+__Note__: The device identities registration can be automated using the Azure IoT Hubs SDK. An example can be found at https://azure.microsoft.com/en-us/documentation/articles/iot-hub-csharp-csharp-getstarted/#create-a-device-identity. 
+
+Step 3 - Build an application to upload the data and receive command messages
 ==============================================================================
+
+You will now build an application which will be installed onto the Raspberry Pi. This will read the values produced by the force sensor/ADS combination and upload these to IoT Hub. The application will also receive alert messages back from the cloud which will be signaled to the use by the illumination of a LED.
+
+1. Open Visual Studio and click File->New Project.
+    ![Creating a Background UWP App for an IoT Device](images/selectpredictive.png)
+2. 
+
+
+
 
 Step 3 - Register device with IoT Hub
 ======================================

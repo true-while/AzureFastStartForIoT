@@ -34,14 +34,9 @@ Predictive Maintenance
 
 Build a system which uses an external sensor to detect oil levels in a pieces of machinery and relays the information to Azure. The collected data will be used to proactively detect impending maintenance issues and send control signals back to the device. This scenario will build on the Predictive Maintenance scenario which is part of the [Azure IoT Suite](http://wwww.azureiotsuite.com).
 
-This scenario is based on a project from [Hackster.io](http://www.hackster.io):-
-
-* [Oil Level Monitoring](https://www.hackster.io/sameerk/oil-level-monitoring-ac01b9).
-* Additional content has been added by [Microsoft Premier Services](https://www.microsoft.com/en-us/microsoftservices/support.aspx).
-
 Credit for this project is as follows:-
 
-* [Oil Level Monitoring](https://www.hackster.io/sameerk/oil-level-monitoring-ac01b9) - Made by [Sameer](https://www.hackster.io/sameerk).
+* [Microsoft Premier Services](https://www.microsoft.com/en-us/microsoftservices/support.aspx).
 
 
 Connected Campus
