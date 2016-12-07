@@ -126,7 +126,11 @@ For this scenario you are going to build a Predictive Maintenance Suite.
 
 The solution you have just created is based off a template https://github.com/Azure/azure-iot-predictive-maintenance which you are free to download, inspect, learn from and modify.
 
-Can can also install it from the command line: Open a Visual Studio developer command prompt and run `build.cmd cloud debug "myblahnamexx" "AzureCloud"` where "myblahnamexx" is a unique name for your installation. As part of the running script you'll be asked for credentials for Azure and which location you wish to install to.
+Can can also install it from the command line: Open a Visual Studio developer command prompt and running
+
+`build.cmd cloud debug "myblahnamexx" "AzureCloud"`
+
+where "myblahnamexx" is a unique name for your installation. As part of the running script you'll be asked for credentials for Azure and which location you wish to install to.
 
 
 #
