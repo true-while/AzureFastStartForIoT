@@ -71,6 +71,10 @@ For interest/reference, these are the PINs on the Raspberry Pi.
 
 ![Raspberry Pi 3 PinOut Reference](/RaspberryPI/images/pinout.png)
 
+These are the PINs on the MCP3008 Analog-to-Digital Converter.
+
+![Raspberry Pi 3 PinOut Reference](/RaspberryPI/images/mcp3008-cobbler.png)
+
 ## "Here's one I made earlier"
 
 __TODO__
@@ -78,7 +82,7 @@ __TODO__
 Azure Pre-reqs
 ==============
 
-1. A working Azure subscription or trail - http://portal.azure.com
+1. A working Azure subscription or trial - http://portal.azure.com
 2. A working PowerBI subscription or trial - http://www.powerbi.com
 
 Develoment Machine and IoT device Setup
