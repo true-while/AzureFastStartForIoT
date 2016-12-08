@@ -166,6 +166,10 @@ You now have the data source added, all that remains is to display the data. In 
      ![Select Table](images/addname.png).
 6. Now add ticks to the *LastSeen*, *Location* and *RFiD* columns.
 
+The final report looks similar to this:
+
+![Final Report](images/finalreport.png).
+
 
 
 
