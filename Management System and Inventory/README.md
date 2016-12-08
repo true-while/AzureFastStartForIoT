@@ -1,6 +1,6 @@
 ﻿# Management System and Inventory
 
-![](images/.png)
+![](images/th.jpg)
 
 Scenario
 ========
@@ -16,9 +16,9 @@ Credit for this project is as follows:-
 Architecture
 ============
 
-![Remote Monitoring Architecture](images/remote-monitoring-architecture.png)
+The system consists of a number of standard Azure components as shown in the diagram below. Exact details are discussed in a later section.
 
-The following key components are built by the Remote Montitoring solution template: 
+![Remote Monitoring Architecture](images/remote-monitoring-architecture.png)
 
 You can read more about the out of the box Remote Monitoring solution and how it works at https://docs.microsoft.com/en-gb/azure/iot-suite/iot-suite-remote-monitoring-sample-walkthrough.
 
@@ -43,10 +43,6 @@ Specifically the following items are required from the kit list:
 Build your basic cicuit according to this diagram:
 
 ![The circuit](images/xxxxxxxx.png)
-
-If you have more electronics experience, this is the circuit diagram of what you'll be building:
-
-__TODO__
 
 For interest/reference, these are the PINs on the Raspberry Pi.
 
@@ -116,8 +112,8 @@ The solution you have just created is based off a template: https://github.com/A
 
 This will create a new deployment in its own resource group that functions the same as the one you created in step 1. You may remove that now.
 
-Step 3 - Examinine the what was created
-=======================================
+Step 3 - Examinine what was created
+====================================
 
 Once the deployment is complete (it may take up to 20 minutes), you can now take a look at the Azure Portal to see what was created:-
 
