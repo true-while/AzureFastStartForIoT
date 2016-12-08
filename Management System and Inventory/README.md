@@ -51,6 +51,7 @@ Azure Pre-reqs
 
 1. A working Azure subscription or trial - http://portal.azure.com
 2. A working PowerBI subscription or trial - http://www.powerbi.com
+3. The PowerBI Desktop tool must be downloaded from https://powerbi.microsoft.com/en-us/desktop/ and installed on your development machine.
 
 Develoment Machine and IoT device Setup
 ========================================
@@ -95,16 +96,65 @@ Once your logical server has been created, you can build a connection string lik
 
 Make a note of this completed connection string as you'll need it next.
 
-Step 3 - Setup a Web Function
-=============================
+Step 3 - Setup an Azure Function to process incomming data
+==========================================================
 
-Web functions are background jobs that run on web servers and process data. You are going to use one to read the data which has been sent to the IoT Hub then upload it into the database.
+Azure functions are background jobs that run on web servers and process data. You are going to use one to read the data which has been sent to the IoT Hub then upload it into the database.
 
 1. Open a browser at head to the [Azure Functions page](http://functions.azure.com).
 2. __Click__ on the "Login to your account" link under the "Try it for Free" green button.
 3. Enter a suitable *name* for the function, *a region*, then click *"Create"*.
     ![Creating an Azure Function](images/createfunction.png).
-4. Next
+4. Next.
+
+
+Step 4 - Build an application to upload the data
+================================================
+
+In this section you will build an application for your Windows 10 IoT device. This will emulate a typical hand help RFiD scanner that an operative in a warehouse would carry. Eachtime an item with an attached RFiD sticker is scanned, a small packet of data indicating the id, location and time/date will be uploaded to IoT Hub.
+
+A [Completed Example](source/XXXXXX) is also available. __TODO__: Add details on how to set this up and use it.
+
+1. Open Visual Studio then go *File->Project->Visual C#->Windows->Windows IoT Core* and select the *Background Application (IoT)* template.
+    ![Blank project](images/newproject.png)
+2. Call your project "StockBackApp" and make sure the .NET Framework version is 4.5.1 or later. Click __Create__. Accept the defaults for Universal Windows Project target versions.
+3. [Follow these instructions to add a NuGet reference](/Developer Setup/NuGet Package Install.md) to the __Microsoft.Azure.Devices.Client__ package.
+4. Right click on References in the Solution Explorer and choose "Add Connected Service".
+    ![Add reference](images/addservicereference.png)
+5. Choose __Azure IoT Hub__ and press __Configure__ then select the option to __hardcode__ shared access keys in the applications code, then press OK.
+    ![Add Service](images/addservice.png) ![Hardcode connection string](images/hardcode.png)
+6. The wizard will now search for IoT Hubs available in your subscription, find the one you created previously and click __Add__.
+    ![Wizard Search](images/wizardsearch.png)
+7. Select the device you registered earlier then click OK.
+    ![Add Device](images/selectdevice.png)
+    * A new file __AzureIoTHub.cs__ has been added to your Visual Studio project along with several Nuget packages which reference the Azure IoT SDK. This file contains the boiler-plate code that you can immediately invoke in your application. The AzureIoTHub class contains two methods that you can start using right away from your own classes:
+    * A method to send messages - __SendDeviceToCloudMessageAsync()__
+    * A method to start listening for incoming messages - __ReceiveCloudToDeviceMessageAsync()__
+    * You can call these methods from elsewhere in your project.
+    * The Connected Service Wizard has inserted into the new class a __deviceConnectionString__ variable that contains the access key required to connect your device to IoT Hub. Anyone who comes into the possession of this information will be able to send and receive messages on behalf of that device. It is recommended that you remove this string from the source code before committing your code into a source control. Consider storing it in a configuration file or an environment variable.
+
+Step 5 - View the captured data
+================================
+
+In order to view the captured data, you will use PowerBI to build a report which displays the current and historical locations of items from the warehouse.
+
+1. Open PowerPI Desktop and click on __Get Data__.
+    ![Get Data](images/getdata.png).
+2. Select *Azure->Microsoft Azure SQL Database* and press __Connect__
+    ![Choose Database](images/azuresqldb.png).
+3. Enter your Azure logical SQL Server name as created in a previous step.
+     ![Enter DB Name](images/sqlservername.png).
+4. Select the "StockItems" table, then click __Load__.
+     ![Select Table](images/selecttable.png).
+
+You now have the data source added, all that remains is to display the data. In this simple example you simply display all the data in the database however the scenario could be extened to show only the most recent location.
+
+1. Click on the *Name* column box under the StockItems table on the Fields pane. This will add it to a report on the main report canvas. If there is any data in the database it will be queriered now and displayed.
+     ![Select Table](images/addname.png).
+2. Now add ticks to the *LastSeen*, *Location* and *RFiD* columns.
+
+
+
 
 
 
