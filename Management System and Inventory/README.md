@@ -42,7 +42,7 @@ Specifically the following items are required from the kit list:
 
 Build your basic cicuit according to this diagram:
 
-![The circuit](images/xxxxxxxx.png)
+![Breadboard_Model](images/xxxxxxxx.png)
 
 For interest/reference, these are the PINs on the Raspberry Pi.
 
