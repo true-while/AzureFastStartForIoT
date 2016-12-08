@@ -5,9 +5,7 @@
 Scenario
 ========
 
-The IoT Suite remote monitoring preconfigured solution is an implementation of an end-to-end monitoring solution for multiple machines running in remote locations.
-The solution combines key Azure services to provide a generic implementation of the business scenario and you can use it as a starting point for your own implementation.
-You will customize this solution to meet specific business requirements for the remote monitoring of stock in a warehouse.
+In this scenario you will imagine that you are building a system to support a stocking taking programme in a warehouse. Employees will scan the tags of stock items before putting them into known locations. This information will then be uploaded to IoT Hub before being stored in a database for reporting purposes.
 
 Credit for this project is as follows:-
 
@@ -16,11 +14,7 @@ Credit for this project is as follows:-
 Architecture
 ============
 
-The system consists of a number of standard Azure components as shown in the diagram below. Exact details are discussed in a later section.
-
-![Remote Monitoring Architecture](images/remote-monitoring-architecture.png)
-
-You can read more about the out of the box Remote Monitoring solution and how it works at https://docs.microsoft.com/en-gb/azure/iot-suite/iot-suite-remote-monitoring-sample-walkthrough.
+__TODO - Draw the overall architecture diagram in Visio __
 
 Basic Hardware Setup
 ====================
@@ -70,77 +64,19 @@ Develoment Machine and IoT device Setup
 
 For more in depth guidance on setting up your hardware device see [Get Started](https://developer.microsoft.com/en-us/windows/iot/GetStarted).
 
-Step 1 - Setup Azure IoT Suite
-==============================
+Step 1 - Build an IoT Hub
+=========================
 
-[Azure IoT Suite](https://azure.microsoft.com/en-us/suites/iot-suite/) is a set of preconfigured components that every IoT project would benefit from when starting a new project. It contains an IoT Hub, Stream Analytics, PowerBI Dashboard plus a number of other components needed to kick start your project. It shows how these components are best connected together, what can be done with them and how by examining the template from which it is built you can create your own solutions.
-
-There are two variations available for use:
-
-* Predictive Maintenance
-* Remote Monitoring
-
-You can watch an introducatory video at https://docs.microsoft.com/en-us/azure/iot-suite/iot-suite-overview or read more about [Azure IoT Suite](https://docs.microsoft.com/en-us/azure/iot-suite/) 
-
-For this scenario you are going to build a Remote Monitoring Suite. This can be done via the https://www.azureiotsuite.com site or you can deploy your own customized version.
-
-1. Start by opening https://www.azureiotsuite.com/ - you will need to login with your standard Azure Subscription credentials.
-2. At the Azure IoT Suite page, __Click__ the large green + button.
-    ![Azure IoT Suite New Solution](images/newsol.png)
-3. Of the two solutions available, select "Remote Monitoring".
-    ![Selecting the right solution to create](images/selectmonitoring.png)
-4. Enter a name for the Solution, select your Subscription and choose a Region, then press __Create Solution__.
-    ![Enter creation details](images/enterdetails.png)
-5. This will take about 20 minutes to complete.
-    ![Solution creation in progress](images/inprogress.png)
-6. When complete, __Click__ the __Launch__ button to open the portal for the new solution.
-    ![Lanching the new solution](images/launch.png)
-7.  You'll be asked to approve the application - say __yes__ to this.
-
-Once this is complete you'll have a working demonstration the remote monitoring application however you won't be able to modify or change it. Let's address that now.
-
-Step 2 - Customization and deployment
-=====================================
-
-The solution you have just created is based off a template: https://github.com/Azure/azure-iot-remote-monitoring which you are free to download, inspect, learn from and modify. Let's do that now.
-
-1. Download or clone the entire GitHub repository to a local machine.
-2. Open a Visual Studio developer command prompt and type:-
-    `build.cmd cloud debug "mydeploymentname" "AzureCloud"`
-    where "mydeploymentname" is a unique name for your installation.
-3. As part of the running script you'll be asked for credentials for your Azure subscription, a subscription ID, which location you wish to install to and which Azure Active Directory to use. These will all be presented as menu choices - just enter appropriate values when requested. The values will be saved into a local configuration file.
-
-This will create a new deployment in its own resource group that functions the same as the one you created in step 1. You may remove that now.
-
-Step 3 - Examinine what was created
-====================================
-
-Once the deployment is complete (it may take up to 20 minutes), you can now take a look at the Azure Portal to see what was created:-
-
-![Resources created as part of Predictive Maintenance solution](images/createdresources.png)
-
-Notice the following key resources have been created as per the original architecture diagram above.
-
-* IotHub - S2
-* DocumentDB - Standard
-* Storage - Standard GRS
-* Servicebus namespace - basic
-* Eventhub
-* Stream Analytics jobs - standard
-* Website - standard
-* Bing Maps api
-
-Step 4 - Open and View the Solution
-====================================
-
-A website has been created to run the basic application and dashboard. Assuming you created your deployment with the name `mydeploymentname`, the URL will be:-
-
-`https://mydeploymentname.azurewebsites.net/`
-
-and this will be the basic screen:-
-
-![Remote Monitoring Website](images/rmwebsite.png)
-
+1. [Open the Azure Portal](https://portal.azure.com).
+2. Click (+)-->Internet of Things-->IoT Hub.
+    ![New IoT Hub](images/newiot.png)
+3. Enter a unique name for the IoT Hub, choose a Pricing and Scale tier (note that Free has been choosen here), select or create a Resource Group and datacentre location and __Click Create__.
+4. ![Choosing IoT Hub settings](images/newiothubsettings.png)
+5. Once the IoTHub has been created, ensure you make a copy of the *iothubowner* Connection String - this is shown via the *Shared Access Policies-->iothubowner* blade.
+    ![Iot Hub Key](images/iothubkeys.png)  
+6. Finally you should also make a copy of the *Event Hub-compatible name* & *Event Hub-compatible endpoint* values. You'll need these later on when you start to read data back from IoT Hub.
+    ![Event Hub Compatible Endpoint](images/eventhubendpoint.png)
+7. Done.
 
 
 
