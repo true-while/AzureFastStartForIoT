@@ -124,56 +124,50 @@ For this scenario you are going to build a Predictive Maintenance Suite.
     ![Lanching the new solution](images/launch.png)
 7.  You'll be asked to approve the application - say __yes__ to this.
 
-The solution you have just created is based off a template https://github.com/Azure/azure-iot-predictive-maintenance which you are free to download, inspect, learn from and modify.
+Once this is complete you'll have a working demonstration the predictive maintenance application however you won't be able to modify or change it. Let's address that now.
 
-Can can also install it from the command line: Open a Visual Studio developer command prompt and running
+Step 2 - Customization and deployment
+=====================================
 
-`build.cmd cloud debug "myblahnamexx" "AzureCloud"`
+The solution you have just created is based off a template: https://github.com/Azure/azure-iot-predictive-maintenance which you are free to download, inspect, learn from and modify. Let's do that now.
 
-where "myblahnamexx" is a unique name for your installation. As part of the running script you'll be asked for credentials for Azure and which location you wish to install to.
+1. Download or clone the entire GitHub repository to a local machine.
+2. Open a Visual Studio developer command prompt and type:-
+    `build.cmd cloud debug "mydeploymentname" "AzureCloud"`
+    where "mydeploymentname" is a unique name for your installation.
+3. As part of the running script you'll be asked for credentials for your Azure subscription, a subscription ID, which location you wish to install to and which Azure Active Directory to use. These will all be presented as menu choices - just enter appropriate values when requested. The values will be saved into a local configuration file.
 
+This will create a new deployment in its own resource group what functions the same as the one you created in step 1. You may remove that now.
 
-#
-##########################################
-###########################################
-##########################################
-#
+Step 3 - Examinine the what was created
+=======================================
 
-Step 2 - Register your device with IoT Hub
-==========================================
+Once the deployment is complete (it may take up to 20 minutes), you can now take a look at the Azure Portal to see what was created:-
 
-For your device to connect to IoT Hub it must have its own Device Identity (aka set of credentials).
-The process of obtaining these is known as Registering your Device.
-Currently there is no way to do this via the offical Azure Portal however as part of the Azure IoT Suite you just created, a website which contains an administration interface for devices is now avaialble (internally this uses a remote API to talk to IoT Hub and register devices).
+![Resources created as part of Predictive Maintenance solution](images/createdresources.png)
 
-Rather than write a custom application to connect & register you are going to use Device Explorer which is part of the IoT SDK. You can also register a device via the IoT Dashboard application or use iothub-explorer, another tool from the IoT SDK written in node.js.
+Notice the following key resources have been created as per the original architecture diagram above.
 
-1.Open the Device Explorer (*C:\Program Files (x86)\Microsoft\DeviceExplorer\DeviceExplorer.exe*) and fill the IoT Hub Connection String field with the connection string of the IoT Hub you created in previous steps and click on __Update__.
-2. ![Setting the connection string](images/deconfigure.png)
-3. Go to the __Management tab__ and __Click on the Create button__. The Create Device popup will be displayed. Enter "__device1__" as the Device ID for your device  and __click on Create__. *The device name is important as other parts of the supplied sample program rely on this*.
-4. ![Create device entry](images/createentry.png)
-5. Once the device identity is created, it will be displayed in the grid. __Right click__ on the device entry you just created and select __Copy connection string for the selected device__. Paste this into a notepad as it will be required later one.
-6. ![Copy device details](images/degrid.png)
+* An IoT Hub
+* Event Hub
+* Storage Account
+* Database
+* Website
+* Stream Analytics Jobs.
 
-__Note__: The device identities registration can be automated using the Azure IoT Hubs SDK. An example can be found at https://azure.microsoft.com/en-us/documentation/articles/iot-hub-csharp-csharp-getstarted/#create-a-device-identity. 
+What is missing from the list are the references to the Machine Learning components. You will understand where these are located shortly.
 
-Step 3 - Build an application to upload the data and receive command messages
-==============================================================================
+Step 4 - Open and View the Solution
+====================================
 
-You will now build an application which will be installed onto the Raspberry Pi. This will read the values produced by the force sensor/ADS combination and upload these to IoT Hub. The application will also receive alert messages back from the cloud which will be signaled to the use by the illumination of a LED.
+A website has been created to run the basic application and dashboard. Assuming you created your deployment with the name `mydeploymentname`, the URL will be:-
 
-1. Open Visual Studio and click File->New Project.
-    ![Creating a Background UWP App for an IoT Device](images/selectpredictive.png)
-2. 
+`https://mydeploymentname.azurewebsites.net/`
 
 
 
 
-Step 3 - Register device with IoT Hub
-======================================
 
-Step 4 - Configure Rules
-========================
 
 
 
