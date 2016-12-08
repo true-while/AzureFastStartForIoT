@@ -79,9 +79,22 @@ You are going to start by building an IoT Hub that hand RFiD scanners carried by
     ![Iot Hub Key](images/iothubkeys.png)  
 6. Finally you should also make a copy of the *Event Hub-compatible name* & *Event Hub-compatible endpoint* values. You'll need these later on when you start to read data back from IoT Hub.
     ![Event Hub Compatible Endpoint](images/eventhubendpoint.png)
-7. Done.
 
-Step 2 - Create an Azure Database to store the data
+Step 2 - Register your device with IoT Hub
+==========================================
+
+For your device to connect to IoT Hub it must have its own Device Identity (aka set of credentials). The process of obtaining these is known as Registering your Device. Currently there is no way to do this via the Azure Portal but there is a remote API available. Rather than write a custom application to connect & register you are going to use Device Explorer which is part of the IoT SDK. You can also register a device via the IoT Dashboard application or use iothub-explorer, another tool from the IoT SDK written in node.js.
+
+1.	Open the Device Explorer (*C:\Program Files (x86)\Microsoft\DeviceExplorer\DeviceExplorer.exe*) and fill the IoT Hub Connection String field with the connection string of the IoT Hub you created in previous steps and click on __Update__.
+2. ![Setting the connection string](images/deconfigure.png)
+3. Go to the __Management tab__ and __Click on the Create button__. The Create Device popup will be displayed. Enter "__device1__" as the Device ID for your device  and __click on Create__. *The device name is important as other parts of the supplied sample program rely on this*.
+4. ![Create device entry](images/createentry.png)
+5. Once the device identity is created, it will be displayed in the grid. __Right click__ on the device entry you just created and select __Copy connection string for the selected device__. Paste this into a notepad as it will be required later one.
+6. ![Copy device details](images/degrid.png)
+
+__Note__: The device identities registration can be automated using the Azure IoT Hubs SDK. An example can be found at https://azure.microsoft.com/en-us/documentation/articles/iot-hub-csharp-csharp-getstarted/#create-a-device-identity. 
+
+Step 3 - Create an Azure Database to store the data
 ===================================================
 
 The details on how to create a new Azure SQL Database are very well documented and won't be copied here, instead you should browse to:
@@ -96,7 +109,7 @@ Once your logical server has been created, you can build a connection string lik
 
 Make a note of this completed connection string as you'll need it next.
 
-Step 3 - Setup an Azure Function to process incomming data
+Step 4 - Setup an Azure Function to process incomming data
 ==========================================================
 
 Azure functions are background jobs that run on web servers and process data. You are going to use one to read the data which has been sent to the IoT Hub then upload it into the database.
@@ -108,7 +121,7 @@ Azure functions are background jobs that run on web servers and process data. Yo
 4. Next.
 
 
-Step 4 - Build an application to upload the data
+Step 5 - Build an application to upload the data
 ================================================
 
 In this section you will build an application for your Windows 10 IoT device. This will emulate a typical hand help RFiD scanner that an operative in a warehouse would carry. Eachtime an item with an attached RFiD sticker is scanned, a small packet of data indicating the id, location and time/date will be uploaded to IoT Hub.
@@ -133,7 +146,7 @@ A [Completed Example](source/XXXXXX) is also available. __TODO__: Add details on
     * You can call these methods from elsewhere in your project.
     * The Connected Service Wizard has inserted into the new class a __deviceConnectionString__ variable that contains the access key required to connect your device to IoT Hub. Anyone who comes into the possession of this information will be able to send and receive messages on behalf of that device. It is recommended that you remove this string from the source code before committing your code into a source control. Consider storing it in a configuration file or an environment variable.
 
-Step 5 - View the captured data
+Step 6 - View the captured data
 ================================
 
 In order to view the captured data, you will use PowerBI to build a report which displays the current and historical locations of items from the warehouse.
@@ -149,9 +162,9 @@ In order to view the captured data, you will use PowerBI to build a report which
 
 You now have the data source added, all that remains is to display the data. In this simple example you simply display all the data in the database however the scenario could be extened to show only the most recent location.
 
-1. Click on the *Name* column box under the StockItems table on the Fields pane. This will add it to a report on the main report canvas. If there is any data in the database it will be queriered now and displayed.
+5. Click on the *Name* column box under the StockItems table on the Fields pane. This will add it to a report on the main report canvas. If there is any data in the database it will be queriered now and displayed.
      ![Select Table](images/addname.png).
-2. Now add ticks to the *LastSeen*, *Location* and *RFiD* columns.
+6. Now add ticks to the *LastSeen*, *Location* and *RFiD* columns.
 
 
 
