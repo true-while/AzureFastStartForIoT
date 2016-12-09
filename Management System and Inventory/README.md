@@ -99,8 +99,8 @@ For your device to connect to IoT Hub it must have its own Device Identity (aka 
 
 __Note__: The device identities registration can be automated using the Azure IoT Hubs SDK. An example can be found at https://azure.microsoft.com/en-us/documentation/articles/iot-hub-csharp-csharp-getstarted/#create-a-device-identity. 
 
-Step 3 - Create an Azure Database to store the data
-===================================================
+Step 3 - Create an Azure Database
+=================================
 
 The details on how to create a new Azure SQL Database are very well documented and won't be copied here, instead you should browse to:
 
@@ -124,6 +124,21 @@ Azure functions are background jobs that run on web servers and process data. Yo
 3. Enter a suitable *name* for the function, *a region*, then click *"Create"*.
     ![Creating an Azure Function](images/createfunction.png).
 4. Next.
+
+__TODO ******************************__
+__TODO ******************************__
+__TODO ******************************__
+__TODO ******************************__
+__TODO ******************************__
+__TODO ******************************__
+__TODO ******************************__
+__TODO ******************************__
+
+
+https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-event-hubs
+
+http://stackoverflow.com/questions/40671391/azure-functions-with-entity-framework
+
 
 
 Step 5 - Build an application to upload the data
@@ -150,6 +165,15 @@ A [Completed Example](source/XXXXXX) is also available. __TODO__: Add details on
     * A method to start listening for incoming messages - __ReceiveCloudToDeviceMessageAsync()__
     * You can call these methods from elsewhere in your project.
     * The Connected Service Wizard has inserted into the new class a __deviceConnectionString__ variable that contains the access key required to connect your device to IoT Hub. Anyone who comes into the possession of this information will be able to send and receive messages on behalf of that device. It is recommended that you remove this string from the source code before committing your code into a source control. Consider storing it in a configuration file or an environment variable.
+
+
+__TODO ******************************__
+__TODO ******************************__
+__TODO ******************************__
+__TODO ******************************__
+__TODO ******************************__
+__TODO ******************************__
+__TODO ******************************__ 
 
 Step 6 - View the captured data
 ================================
