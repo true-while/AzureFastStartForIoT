@@ -27,18 +27,6 @@ Credits for these projects are as follows:-
 * [Face Detection in Windows 10 IoT core with Oxford Project](https://www.hackster.io/dx-lego-china/face-detection-in-windows-10-iot-core-with-oxford-project-509a3b) - Made by Team DX LEGO CHINA [Zepeng She](https://www.hackster.io/cheneyszp).
 
 
-Predictive Maintenance
-----------------------
-
-### Find the content for this scenario at [Predictive Maintenance](/Predictive Maintenance).
-
-Build a system which uses an external sensor to detect oil levels in a pieces of machinery and relays the information to Azure. The collected data will be used to proactively detect impending maintenance issues and send control signals back to the device. This scenario will build on the Predictive Maintenance scenario which is part of the [Azure IoT Suite](http://wwww.azureiotsuite.com).
-
-Credit for this project is as follows:-
-
-* [Microsoft Premier Services](https://www.microsoft.com/en-us/microsoftservices/support.aspx).
-
-
 Connected Campus
 ----------------
 
@@ -72,21 +60,6 @@ Credits for these projects are as follows:-
 * [long-range-uhf-rfid-item-tracking](https://microsoft.hackster.io/en-US/careypayette/long-range-uhf-rfid-item-tracking-system-fc5372)
 
 
-Remote Patient Monitoring and Clinical Analytics
-------------------------------------------------
-
-### Find the content for this scenario at [Remote Patient Monitoring and Clinical Analytics](/Patient Monitoring)
-
-This scenario will use Windows IoT, Azure storage, data processing and Cortana Analytics for intelligent interactions with the user. 
-
-This scenario is based on a project from [Hackster.io](http://www.hackster.io):-
-
-* [Building a Electrocardiogram with Windows IOT and Azure](https://microsoft.hackster.io/en-US/phantom_override/building-a-electrocardiogram-with-windows-iot-and-azure-8b2b44?ref=channel&ref_id=4087_popular___&offset=270)
-
-Credits for these projects are as follows:-
-
-* [Building a Electrocardiogram with Windows IOT and Azure](https://microsoft.hackster.io/en-US/phantom_override/building-a-electrocardiogram-with-windows-iot-and-azure-8b2b44?ref=channel&ref_id=4087_popular___&offset=270) - Made by [Christiano Faig](https://microsoft.hackster.io/en-US/phantom_override).
-
 Roadmap
 -------
 
@@ -95,4 +68,4 @@ The following scenarios will be added at some point in the future:
 | Scenario        | Title         | Links  |
 | --------------- |:-------------:| ------:|
 | Mobile Worker Enablement | Speech Recognition with Cortana Analytics. | [speech-controlled-robot](https://www.hackster.io/AnuragVasanwala/speech-controlled-robot-49744c) & [interactive-with-cortana](https://www.hackster.io/ada-plasma-1f5c36/windows-iot-device-interactive-with-cortana-046906) |
-
+|Remote Patient Monitoring and Clinical Analytics|Building a Electrocardiogram with Windows IOT and Azure|https://microsoft.hackster.io/en-US/phantom_override/building-a-electrocardiogram-with-windows-iot-and-azure-8b2b44?ref=channel&ref_id=4087_popular___&offset=270|
