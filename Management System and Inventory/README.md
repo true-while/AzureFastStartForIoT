@@ -14,7 +14,12 @@ Credit for this project is as follows:-
 Architecture
 ============
 
-__TODO - Draw the overall architecture diagram in Visio __
+![Architecture](images/architecture.png)
+
+1. An RFiD Reader will scan a tagged item then send the details to an IoT Hub. Each reader could be registered as a unique device.
+2. The scanned data is queued up inside IoT Hub and then made available via an Event Hub compatible endpoint.
+3. An Azure Function is configured to trigger off the arrival of a message at the Event Hub. The details will be inserted/updated in an Azure hosted SQL Database.
+4. PowerBI will be used to build a quick and simple report to display the stock inventory details from the backend database.
 
 Basic Hardware Setup
 ====================
