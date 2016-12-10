@@ -121,29 +121,29 @@ The Event Hub will act as an intermediatory for scanned and uploaded data before
 Step 4 - Stream Analytics Job
 =============================
 
-The Stream Analytics job will for now serve not purpose, it will, simply copy messages from the IoT Hub to the Event Hub. Later this will be modified to send message to two different locations.
+The role of the Stream Analytics is to copy messages unchanged from the IoT Hub to the Event Hub. Later this will be modified to send messages to two different locations.
 
 1. Click (+)-->Internet of Things-->Stream Analytics Job.
 2. Call the job "ProcessRFID", select a Resource Group and click __Create__.
-3. Once the Stream Analytics Job has been created, click on it's homepage, then click __Input__, then click __Add__.
+3. Once the Stream Analytics Job has been created, click on it's homepage, then click __Inputs__, then click __Add__.
 4. ![New Input](images/streamanalyticshome.png)
 5. Enter the values shown below to define where Stream Analytics will obtain its Input data from. *You will select the name of the IoT Hub you created in a previous step*. Click __Create__ when you are done.
 6. ![New Input Details](images/newinputdetails.png)
-7. Back on the Stream Analytics job homepage, click __Output__ then __Add__ to define an output location for the job.
+7. Back on the Stream Analytics job homepage, click __Outputs__ then __Add__ to define an output location for the job.
 8. Enter the values shown below to define where Stream Analytics will obtain its Output data from. *You will select the name of the Service Bus Namespace and Event Hub you created in a previous step*. Note that *Partition Key Column* is left blank. Click __Create__ when you are done.
 9. ![New Output Details](images/newoutputdetails.png)
-10. To ensure messages from passed from the IoT Hub to the Event Hub, you will need to define a query. From the job's homepage, click __Query__ which is sandwiched between Input and Output which you clicked earlier.
+10. To ensure messages from passed from the IoT Hub to the Event Hub, you will need to define a query. From the job's homepage, click __Query__ which is sandwiched between Inputs and Outputs which you clicked earlier.
 11. Enter the following query:-
-```
-SELECT
-    *
-INTO
-    [EHOut]
-FROM
-    [IoTHub]
-```
-![Stream Analytics Query](images/saquery.png)
-12. Back on the Stream Analytics Jobs's homepage, click __Start__ at the top of the blade. This will ensure messages are copied from input to output.
+        ```
+        SELECT
+         *
+        INTO
+            [EHOut]
+        FROM
+            [IoTHub]
+        ```
+13. [Stream Analytics Query](images/saquery.png)
+14. Back on the Stream Analytics Jobs's homepage, click __Start__ at the top of the blade. This will ensure messages are copied from input to output.
 
 
 Step 5 - Create an Azure Database
