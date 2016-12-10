@@ -202,36 +202,20 @@ http://stackoverflow.com/questions/40671391/azure-functions-with-entity-framewor
 Step 7 - Build an application to upload the data
 ================================================
 
-In this section you will build an application for your Windows 10 IoT device. This will emulate a typical hand help RFiD scanner that an operative in a warehouse would carry. Eachtime an item with an attached RFiD sticker is scanned, a small packet of data indicating the id, location and time/date will be uploaded to IoT Hub.
+In this section you will configure a pre-created console application which emulates a typical hand help RFiD scanner that an operative in a warehouse would carry.
+To emulate each time an item with an attached RFiD sticker is scanned, a small packet of data indicating the id, location and time/date will be uploaded to IoT Hub.
+This will happen every 10 seconds.
 
-A [Completed Example](source/XXXXXX) is also available. __TODO__: Add details on how to set this up and use it.
+1. Open the *\source\SimulatedRFiDReader.sln* project in a new copy of Visual Studio.
+2. Open the App.Config file and update the __DeviceKey__ connection string in the *appSettings* section to reflect the device connection key you copied when registering a device using the *Device Explorer* tool.
+```
+  <appSettings>
+    <add key="DeviceKey" value="HostName=devhubby99.azure-devices.net;DeviceId=device1;SharedAccessKey=LALEdC+ihi2ToNf9iNQlQWUcLARsE2RP0ECjUMRrHdI="/>
+  </appSettings>
+```
+3. Press `F5` to launch the tool.
 
-1. Open Visual Studio then go *File->Project->Visual C#->Windows->Windows IoT Core* and select the *Background Application (IoT)* template.
-    ![Blank project](images/newproject.png)
-2. Call your project "StockBackApp" and make sure the .NET Framework version is 4.5.1 or later. Click __Create__. Accept the defaults for Universal Windows Project target versions.
-3. [Follow these instructions to add a NuGet reference](/Developer Setup/NuGet Package Install.md) to the __Microsoft.Azure.Devices.Client__ package.
-4. Right click on References in the Solution Explorer and choose "Add Connected Service".
-    ![Add reference](images/addservicereference.png)
-5. Choose __Azure IoT Hub__ and press __Configure__ then select the option to __hardcode__ shared access keys in the applications code, then press OK.
-    ![Add Service](images/addservice.png) ![Hardcode connection string](images/hardcode.png)
-6. The wizard will now search for IoT Hubs available in your subscription, find the one you created previously and click __Add__.
-    ![Wizard Search](images/wizardsearch.png)
-7. Select the device you registered earlier then click OK.
-    ![Add Device](images/selectdevice.png)
-    * A new file __AzureIoTHub.cs__ has been added to your Visual Studio project along with several Nuget packages which reference the Azure IoT SDK. This file contains the boiler-plate code that you can immediately invoke in your application. The AzureIoTHub class contains two methods that you can start using right away from your own classes:
-    * A method to send messages - __SendDeviceToCloudMessageAsync()__
-    * A method to start listening for incoming messages - __ReceiveCloudToDeviceMessageAsync()__
-    * You can call these methods from elsewhere in your project.
-    * The Connected Service Wizard has inserted into the new class a __deviceConnectionString__ variable that contains the access key required to connect your device to IoT Hub. Anyone who comes into the possession of this information will be able to send and receive messages on behalf of that device. It is recommended that you remove this string from the source code before committing your code into a source control. Consider storing it in a configuration file or an environment variable.
-
-
-__TODO ******************************__
-__TODO ******************************__
-__TODO ******************************__
-__TODO ******************************__
-__TODO ******************************__
-__TODO ******************************__
-__TODO ******************************__ 
+You should now see a command window appear and every 10 seconds a new message is sent to IoT Hub.
 
 Step 7 - View the captured data
 ================================
