@@ -163,16 +163,25 @@ Once your logical server has been created, you can build a connection string lik
 
 Make a note of this completed connection string as you'll need it soon.
 
-Step 6 - Setup an Azure Function to process incomming data
-==========================================================
+Step 6 - Setup an Azure Function to process incoming data
+=========================================================
 
 Azure functions are background jobs that run on web servers and process data. You are going to use one to read the data which has been sent to the IoT Hub then upload it into the database.
 
-1. Open a browser at head to the [Azure Functions page](http://functions.azure.com).
+1. Open a browser tab at the [Azure Functions](http://functions.azure.com) page.
 2. __Click__ on the "Login to your account" link under the "Try it for Free" green button.
 3. Enter a suitable *name* for the function, *a region*, then click *"Create"*.
-    ![Creating an Azure Function](images/createfunction.png).
-4. Next.
+4. ![Creating a Azure Function App](images/createfunction.png).
+5. From the Function App homepage, press +New Function in the upper left hand side of the screen.
+6. ![New Function](images/newfunction.png).
+7. Select the __EventHubTrigger-CSharp__ function template.
+8. ![Function Template](images/correctfunction.png).
+9. Enter the details for the function. *Ensure you name the function as shown and enter the name of the Event Hub you created earlier (I called mine "mymessages"). In order for this function to read messages from your Event Hub, it will need a connection string, Click on the __New__ link to the right of the "Event Hub Connection" box and enter the details as shown here:
+10. ![Entering Function Details](images/enterfunctiondetails.png).
+11. Enter the Event Hub Connection string you saved from earlier, remember that it looks something like this `Endpoint=sb://somenamehere.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=BjTiZe6GUhH1PjG6AQKt1nROm2YwVWU3L4wMFpY7JiM=`
+12. ![Entering Event Hub Connection String](images/creatingsbconnectionstring.png).
+
+
 
 __TODO ******************************__
 __TODO ******************************__
