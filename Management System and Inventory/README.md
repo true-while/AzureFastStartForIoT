@@ -153,13 +153,15 @@ The details on how to create a new Azure SQL Database are very well documented a
 
 `https://docs.microsoft.com/en-us/azure/sql-database/sql-database-get-started`
 
-and follow the instructions under the section __Create a new logical SQL server in the Azure portal__. You can call the logical database server whatever you want, just keep a record of the name and credetials your create for later. You don't need to create a new database as this will be done for you later by the Entity Framework however you will need to keep a record of the username and password.
+and follow the instructions under the section __Create a new logical SQL server in the Azure portal__.
+You can call the logical database server whatever you want, just keep a record of the name and credentials your create for later.
+You don't need to create a new database as this will be done for you later by the Entity Framework (just remember to keep a record of the username and password for the server).
 
 Once your logical server has been created, you can build a connection string like this (replacing the server name, username and password placeholders with your own details).
 
 `Server=tcp:YOUR_SERVER_NAME_HERE.database.windows.net,1433;Database=RFIDStock;User ID=YOUR_LOGIN_NAME_HERE;Password=YOUR_PASSWORD_HERE;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30`
 
-Make a note of this completed connection string as you'll need it next.
+Make a note of this completed connection string as you'll need it soon.
 
 Step 6 - Setup an Azure Function to process incomming data
 ==========================================================
