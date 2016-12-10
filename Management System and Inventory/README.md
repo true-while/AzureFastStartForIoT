@@ -220,6 +220,7 @@ This will happen every 10 seconds.
 
 You should now see a command window appear and every 10 seconds a new message is sent to IoT Hub.
 
+![Simulated RFiD Reader](images/simulatedrfid.png).
 
 Step 7 - View the captured data
 ================================
