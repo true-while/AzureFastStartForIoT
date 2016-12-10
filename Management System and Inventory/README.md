@@ -222,7 +222,7 @@ You should now see a command window appear and every 10 seconds a new message is
 
 ![Simulated RFiD Reader](images/simulatedrfid.png).
 
-Step 7 - View the captured data
+Step 8 - View the captured data
 ================================
 
 In order to view the captured data, you will use PowerBI to build a report which displays the current and historical locations of items from the warehouse.
