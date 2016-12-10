@@ -104,8 +104,8 @@ For your device to connect to IoT Hub it must have its own Device Identity (aka 
 
 __Note__: The device identities registration can be automated using the Azure IoT Hubs SDK. An example can be found at https://azure.microsoft.com/en-us/documentation/articles/iot-hub-csharp-csharp-getstarted/#create-a-device-identity. 
 
-Step 3 - Create and Event Hub
-=============================
+Step 3 - Create an Event Hub
+============================
 
 1. Click (+)-->Internet of Things-->Event Hub.
 2. Enter a unique name for the Event Hub namespace, choose a Pricing tier, select or create a Resource Group and datacentre location and __Click Create__.
