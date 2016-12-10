@@ -202,6 +202,8 @@ http://stackoverflow.com/questions/40671391/azure-functions-with-entity-framewor
 Step 7 - Build an application to upload the data
 ================================================
 
+__In future updates to this scenario it is planned that the simulated RFiD reader console application will be replaced with a physical reader.__
+
 In this section you will configure a pre-created console application which emulates a typical hand help RFiD scanner that an operative in a warehouse would carry.
 To emulate each time an item with an attached RFiD sticker is scanned, a small packet of data indicating the id, location and time/date will be uploaded to IoT Hub.
 This will happen every 10 seconds.
@@ -213,9 +215,11 @@ This will happen every 10 seconds.
     <add key="DeviceKey" value="HostName=devhubby99.azure-devices.net;DeviceId=device1;SharedAccessKey=LALEdC+ihi2ToNf9iNQlQWUcLARsE2RP0ECjUMRrHdI="/>
   </appSettings>
 ```
+
 3. Press `F5` to launch the tool.
 
 You should now see a command window appear and every 10 seconds a new message is sent to IoT Hub.
+
 
 Step 7 - View the captured data
 ================================
