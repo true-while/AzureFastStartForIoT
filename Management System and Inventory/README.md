@@ -176,7 +176,7 @@ Azure functions are background jobs that run on web servers and process data. Yo
 6. ![New Function](images/newfunction.png).
 7. Select the __EventHubTrigger-CSharp__ function template.
 8. ![Function Template](images/correctfunction.png)
-9. Enter the details to setup and configure the function. *Ensure you name the function as shown and enter the name of the Event Hub you created earlier (I called mine "mymessages"). In order for this function to read messages from your Event Hub, it will need a connection string, Click on the __New__ link to the right of the "Event Hub Connection" box, click __Add a Connection String__ and enter the details as shown in the image below.*
+9. Enter the details to setup and configure the function. *Ensure you name the function* __RFiDFunc__ *as shown and enter the name of the Event Hub you created earlier (I called mine "mymessages"). In order for this function to read messages from your Event Hub, it will need a connection string, Click on the __New__ link to the right of the "Event Hub Connection" box, click __Add a Connection String__ and enter the details as shown in the image below.*
 
 Enter the Event Hub Connection string you saved from earlier, remember that it looks something like this `Endpoint=sb://somenamehere.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=BjTiZe6GUhH1PjG6AQKt1nROm2YwVWU3L4wMFpY7JiM=`
 
