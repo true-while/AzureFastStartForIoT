@@ -5,7 +5,9 @@
 Scenario
 ========
 
-In this scenario you will imagine that you are building a system to support a stocking taking programme in a warehouse. Employees will scan the tags of stock items before putting them into known locations. This information will then be uploaded to IoT Hub before being stored in a database for reporting purposes.
+In this scenario you will imagine that you are building a system to support a stocking taking programme in a warehouse.
+Employees will scan the tags of stock items before storing them in known locations.
+This information will be uploaded to IoT Hub and stored in a database for reporting purposes.
 
 Credit for this project is as follows:-
 
