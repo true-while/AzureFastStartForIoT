@@ -176,22 +176,11 @@ Azure functions are background jobs written in .Net Core that run on web servers
 ![Entering Function Details](images/enterfunctiondetails.png) ![Entering Event Hub Connection String](images/creatingsbconnectionstring.png).
 
 
-
-
-__TODO ******************************__
-__TODO ******************************__
-__TODO ******************************__
-__TODO ******************************__
-__TODO ******************************__
-__TODO ******************************__
-__TODO ******************************__
 __TODO ******************************__
 
+The code to write messages via Entity Framework to the Azure SQL DB needs to be inserted here.
 
-https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-event-hubs
-
-http://stackoverflow.com/questions/40671391/azure-functions-with-entity-framework
-
+__TODO ******************************__
 
 
 Step 7 - Build an application to upload the data
