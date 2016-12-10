@@ -142,7 +142,7 @@ The role of the Stream Analytics is to copy messages unchanged from the IoT Hub 
         FROM
             [IoTHub]
         ```
-13. [Stream Analytics Query](images/saquery.png)
+13. ![Stream Analytics Query](images/saquery.png)
 14. Back on the Stream Analytics Jobs's homepage, click __Start__ at the top of the blade. This will ensure messages are copied from input to output.
 
 
