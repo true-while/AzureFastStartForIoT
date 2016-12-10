@@ -43,17 +43,12 @@ Specifically the following items are required from the kit list:
 
 ## Basic Circuit
 
-Build your basic cicuit according to this diagram:
-
-![Breadboard_Model](images/xxxxxxxx.png)
+For the first release of this scenario a simulated RFiD Reader will be provided.
+In subsequent releases, details of how to build a hardware based reader using Raspberry PI, Windows 10 Core and the [PN532 NFC Breakout kit](https://www.adafruit.com/products/364) will be made available.
 
 For interest/reference, these are the PINs on the Raspberry Pi.
 
 ![Raspberry Pi 3 PinOut Reference](/RaspberryPI/images/pinout.png)
-
-## "Here's one I made earlier"
-
-![](images/xxxxxxxx.png)
 
 Azure Pre-reqs
 ==============
