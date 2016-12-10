@@ -116,6 +116,7 @@ The Event Hub will act as an intermediatory for scanned and uploaded data before
 4. Once the Event Hub has been created, from it's settings blade click on __+New Event Hub__.
 5. ![New Event Hub](images/neweventhub.png)
 6. Once the Event Hub has been created, ensure you make a copy of the *RootManageSharedAccessKey* Connection String Primary Key- this is shown via the *Shared Access Policies-->RootManageSharedAccessKey* blade.
+7. ![Event Hub Key](images/eventhubkey.png)
 
 Step 4 - Stream Analytics Job
 =============================
