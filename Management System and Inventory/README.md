@@ -100,7 +100,7 @@ For your device to connect to IoT Hub it must have its own Device Identity (aka 
 2. ![Setting the connection string](images/deconfigure.png)
 3. Go to the __Management tab__ and __Click on the Create button__. The Create Device popup will be displayed. Enter "__device1__" as the Device ID for your device  and __click on Create__. *The device name is important as other parts of the supplied sample program rely on this*.
 4. ![Create device entry](images/createentry.png)
-5. Once the device identity is created, it will be displayed in the grid. __Right click__ on the device entry you just created and select __Copy connection string for the selected device__. Paste this into a notepad as it will be required later one.
+5. Once the device identity is created, it will be displayed in the grid. __Right click__ on the device entry you just created and select __Copy connection string for the selected device__. Paste this into a notepad as it will be required later on.
 6. ![Copy device details](images/degrid.png)
 
 __Note__: The device identities registration can be automated using the Azure IoT Hubs SDK. An example can be found at https://azure.microsoft.com/en-us/documentation/articles/iot-hub-csharp-csharp-getstarted/#create-a-device-identity. 
@@ -108,8 +108,10 @@ __Note__: The device identities registration can be automated using the Azure Io
 Step 3 - Create an Event Hub
 ============================
 
+The Event Hub will act as an intermediatory for scanned and uploaded data before it gets processed by the Azure Function.
+
 1. Click (+)-->Internet of Things-->Event Hub.
-2. Enter a unique name for the Event Hub namespace, choose a Pricing tier, select or create a Resource Group and datacentre location and __Click Create__.
+2. Enter a unique name for the Service Hub namespace, choose a Pricing tier, select or create a Resource Group and datacentre location and __Click Create__.
 3. ![Choosing Event Hub settings](images/newnamespace.png)
 4. Once the Event Hub has been created, from it's settings blade click on __+New Event Hub__.
 5. ![New Event Hub](images/neweventhub.png)
