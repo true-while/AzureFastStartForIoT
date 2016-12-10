@@ -104,7 +104,45 @@ For your device to connect to IoT Hub it must have its own Device Identity (aka 
 
 __Note__: The device identities registration can be automated using the Azure IoT Hubs SDK. An example can be found at https://azure.microsoft.com/en-us/documentation/articles/iot-hub-csharp-csharp-getstarted/#create-a-device-identity. 
 
-Step 3 - Create an Azure Database
+Step 3 - Create and Event Hub
+=============================
+
+1. Click (+)-->Internet of Things-->Event Hub.
+2. Enter a unique name for the Event Hub namespace, choose a Pricing tier, select or create a Resource Group and datacentre location and __Click Create__.
+3. ![Choosing Event Hub settings](images/newnamespace.png)
+4. Once the Event Hub has been created, from it's settings blade click on __+New Event Hub__.
+5. ![New Event Hub](images/neweventhub.png)
+6. Once the Event Hub has been created, ensure you make a copy of the *RootManageSharedAccessKey* Connection String Primary Key- this is shown via the *Shared Access Policies-->RootManageSharedAccessKey* blade.
+
+Step 4 - Stream Analytics Job
+=============================
+
+The Stream Analytics job will for now serve not purpose, it will, simply copy messages from the IoT Hub to the Event Hub. Later this will be modified to send message to two different locations.
+
+1. Click (+)-->Internet of Things-->Stream Analytics Job.
+2. Call the job "ProcessRFID", select a Resource Group and click __Create__.
+3. Once the Stream Analytics Job has been created, click on it's homepage, then click __Input__, then click __Add__.
+4. ![New Input](images/streamanalyticshome.png)
+5. Enter the values shown below to define where Stream Analytics will obtain its Input data from. *You will select the name of the IoT Hub you created in a previous step*. Click __Create__ when you are done.
+6. ![New Input Details](images/newinputdetails.png)
+7. Back on the Stream Analytics job homepage, click __Output__ then __Add__ to define an output location for the job.
+8. Enter the values shown below to define where Stream Analytics will obtain its Output data from. *You will select the name of the Service Bus Namespace and Event Hub you created in a previous step*. Note that *Partition Key Column* is left blank. Click __Create__ when you are done.
+9. ![New Output Details](images/newoutputdetails.png)
+10. To ensure messages from passed from the IoT Hub to the Event Hub, you will need to define a query. From the job's homepage, click __Query__ which is sandwiched between Input and Output which you clicked earlier.
+11. Enter the following query:-
+```
+SELECT
+    *
+INTO
+    [EHOut]
+FROM
+    [IoTHub]
+```
+![Stream Analytics Query](images/saquery.png)
+12. Back on the Stream Analytics Jobs's homepage, click __Start__ at the top of the blade. This will ensure messages are copied from input to output.
+
+
+Step 5 - Create an Azure Database
 =================================
 
 The details on how to create a new Azure SQL Database are very well documented and won't be copied here, instead you should browse to:
@@ -119,7 +157,7 @@ Once your logical server has been created, you can build a connection string lik
 
 Make a note of this completed connection string as you'll need it next.
 
-Step 4 - Setup an Azure Function to process incomming data
+Step 6 - Setup an Azure Function to process incomming data
 ==========================================================
 
 Azure functions are background jobs that run on web servers and process data. You are going to use one to read the data which has been sent to the IoT Hub then upload it into the database.
@@ -146,7 +184,7 @@ http://stackoverflow.com/questions/40671391/azure-functions-with-entity-framewor
 
 
 
-Step 5 - Build an application to upload the data
+Step 7 - Build an application to upload the data
 ================================================
 
 In this section you will build an application for your Windows 10 IoT device. This will emulate a typical hand help RFiD scanner that an operative in a warehouse would carry. Eachtime an item with an attached RFiD sticker is scanned, a small packet of data indicating the id, location and time/date will be uploaded to IoT Hub.
@@ -180,7 +218,7 @@ __TODO ******************************__
 __TODO ******************************__
 __TODO ******************************__ 
 
-Step 6 - View the captured data
+Step 7 - View the captured data
 ================================
 
 In order to view the captured data, you will use PowerBI to build a report which displays the current and historical locations of items from the warehouse.
