@@ -168,6 +168,8 @@ Once your logical server has been created, you can build a connection string lik
 
 `Server=tcp:YOUR_SERVER_NAME_HERE.database.windows.net,1433;Database=RFIDStock;User ID=YOUR_LOGIN_NAME_HERE;Password=YOUR_PASSWORD_HERE;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30`
 
+Note as part of the above connection string there is a `Database=RFIDStock` key/value pair. This information will be used later by the Entity Framework to create a new database with this name on your new logical server.
+
 Make a note of this completed connection string as you'll need it soon.
 
 Step 6 - Setup an Azure Function to process incoming data
