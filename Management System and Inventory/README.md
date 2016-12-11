@@ -292,15 +292,15 @@ public class MyDBConfiguration: DbConfiguration
 The Azure Function is now complete. It will automatically run when new messages arrive at the Event Hub. 
 
 
-Step 7 - Build an application to upload the data
-================================================
+Step 7 - Build an application to upload scanned RFiD tags
+=========================================================
 
 ![Application](images/application.png)
 
 __In future updates to this scenario it is planned that the simulated RFiD reader console application will be replaced with a physical reader.__
 
-In this section you will configure a pre-created console application which emulates a typical hand help RFiD scanner that an operative in a warehouse would carry.
-To emulate each time an item with an attached RFiD sticker is scanned, a small packet of data indicating the id, location and time/date will be uploaded to IoT Hub.
+In this section you will configure a pre-created console application which emulates a typical hand help RFiD scanner that an operative in a warehouse might carry.
+To emulate an item being scanned, a small packet of data indicating the DeviceId, Location and Time along with an RFiD will be uploaded to IoT Hub.
 This will happen every 10 seconds.
 
 1. Open the *\source\SimulatedRFiDReader.sln* project in a new copy of Visual Studio.

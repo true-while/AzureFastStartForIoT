@@ -16,7 +16,7 @@ static class AzureIoTHub
         {
             var telemetryDataPoint = new
             {
-                deviceId = "device1",
+                DeviceId = "device1",
                 Time = DateTime.UtcNow,
                 RFiD = GetRandomRFiD(),
                 Location = "StoreLocation123"
