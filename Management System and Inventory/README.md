@@ -96,7 +96,7 @@ The process of obtaining these is known as *Registering your Device*.
 Currently there is no way to do this via the Azure Portal but there is a remote API available.
 Rather than write a custom application to connect & register a new device, you are going to use Device Explorer, a tool which is part of the IoT SDK.
 
-1.	Open the Device Explorer (*C:\Program Files (x86)\Microsoft\DeviceExplorer\DeviceExplorer.exe*) and fill the IoT Hub Connection String field with the connection string of the IoT Hub you created in previous steps and click on __Update__.
+1. Open the Device Explorer (*C:\Program Files (x86)\Microsoft\DeviceExplorer\DeviceExplorer.exe*) and fill the IoT Hub Connection String field with the connection string you created in previous step and click on __Update__. *If you don't have this tool installed, see the section at the top of this page about how to install it*.
 2. ![Setting the connection string](images/deconfigure.png)
 3. Go to the __Management tab__ and __Click on the Create button__. The Create Device popup will be displayed. Enter "__device1__" as the Device ID for your device  and __click on Create__. *The device name is important as other parts of the supplied sample program rely on this*.
 4. ![Create device entry](images/createentry.png)
