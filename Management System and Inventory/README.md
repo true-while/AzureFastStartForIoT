@@ -195,7 +195,7 @@ To make this easier you'll use the Entity Framework with a *code first* model to
 
 7. From the Azure Function Code Editor screen, press __View Files__ in the upper right-hand corner of the screen, press __+ Add__, then add a new file called *project.json*.
     ![New Azure Function Project File](images/azurefuncproject.png) 
-8. Enter the following text into the file (to ensure that the Entity Framework is loaded before the Function trys to run), then press the red *Save* button at the top of the page:
+8. Enter the following text into the file (to ensure that the Entity Framework is loaded before the Function trys to run), then press the red *Save* button at the top of the page: 
     {
       "frameworks": {
         "net46":{
@@ -207,6 +207,8 @@ To make this easier you'll use the Entity Framework with a *code first* model to
     }
 9. Back in the project files explorer, click *run.csx* then enter the following code into the main editor (followed by *Save*):
 ```
+#r "Newtonsoft.Json"
+
 using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
@@ -214,31 +216,43 @@ using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity.SqlServer;
+using System.Net;
+using Newtonsoft.Json;
 
 
 public static void Run(string myEventHubMessage, TraceWriter log)
 {
-    log.Info($"Running.....");
-    
-    StockItem item = new StockItem();
-    item.LastSeen = DateTime.Now;
-    item.Location = "Under the sofa";
-    item.Name = "Thing 1234";
-    item.RFiD = "kgfjdgkdj";
+    log.Info($"New message detected, starting new run.....");
 
+    // Raw input data for debugging purposes.
+    log.Info($"Raw Data: {myEventHubMessage}");
+    dynamic data = JsonConvert.DeserializeObject(myEventHubMessage);
+    log.Info($"DeviceId: {data.DeviceId}");
+    log.Info($"Time: {data.Time}");
+    log.Info($"Location: {data.Location}");
+    log.Info($"RFiD: {data.RFiD}");
+
+    // Create a new item for insertion into the SQL Database.
+    StockItem item = new StockItem();
+    item.DeviceId = data.DeviceId;
+    item.Time = data.Time;
+    item.Location = data.Location;
+    item.RFiD = data.RFiD;
+
+    // Use Entity Framework to write the data to the SQL Database.
     Model1 db = new Model1();
     db.StockItems.Add(item);
-
     db.SaveChanges();
 }
 
-
+// The required Entity Framework custom Context class.
 public class Model1 : DbContext
 {
     public Model1(): base("name=Model1")
     {
     }
-    
+
+    // A new table for storing stock items.
     public virtual DbSet<StockItem> StockItems
     {   
         get;
@@ -246,17 +260,20 @@ public class Model1 : DbContext
     }
 }
 
+// Our POCO class to define the data we wish to store in the SQL Database.
 public class StockItem
 {
     [Key]
     public int Id { get; set; }
-    public string Name { get; set; }
-    public DateTime LastSeen { get; set; }
+    public string DeviceId { get; set; }
+    public DateTime Time { get; set; }
     public string Location { get; set; }
     public string RFiD { get; set; }
 }
 
 
+// This custom database configuration class is required to indicated to Entity Framework the database provider we wish to use.
+// Normally this is set in an EnityFramework section of the web or app.config but Azure Functions don't use those!
 public class MyDBConfiguration: DbConfiguration
 {
     public MyDBConfiguration()
