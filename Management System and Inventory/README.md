@@ -110,12 +110,12 @@ Step 3 - Create an Event Hub
 
 ![Event Hub](images/eventhub.png)
 
-The Event Hub will act as an intermediatory for scanned and uploaded data before it gets processed by the Azure Function.
+The Event Hub will act as an intermediary for scanned and uploaded data before it gets processed by the Azure Function.
 
 1. Click (+)-->Internet of Things-->Event Hub.
 2. Enter a unique name for the Service Hub namespace, choose a Pricing tier, select or create a Resource Group and datacentre location and __Click Create__.
 3. ![Choosing Event Hub settings](images/newnamespace.png)
-4. Once the Event Hub has been created, from it's settings blade click on __+New Event Hub__.
+4. Once the Event Hub has been created, from it's settings blade click on __+New Event Hub__, enter a unique name for the Event Hub and __Click Create__.
 5. ![New Event Hub](images/neweventhub.png)
 6. Once the Event Hub has been created, ensure you make a copy of the *RootManageSharedAccessKey* Connection String Primary Key- this is shown via the *Shared Access Policies-->RootManageSharedAccessKey* blade.
 7. ![Event Hub Key](images/eventhubkey.png)
