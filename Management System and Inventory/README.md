@@ -181,8 +181,8 @@ Azure functions are background jobs written in C# or Node.js that run on web ser
 You are going to use one to read the data which has been sent to the Event Hub from Stream Analytics then insert it into the database.
 To make this easier you'll use the Entity Framework with a *code first* model to automatically create the database with the correct schema on the logical SQL Server you created previously.
 
-1. Open a new browser tab at the http://functions.azure.com page.
-2. Enter a suitable *name* for the function, *a region*, then click *"Create"*.
+1. Open a new browser tab at the http://functions.azure.com page. *This will allow you to create a new Function App, a container website for your data processing functions.*
+2. Enter a suitable *name* for the Function App Website , *a region*, then click *"Create"*.
 3. ![Creating a Azure Function App](images/createfunction.png).
 4. From the Function App homepage, press +New Function in the upper left hand side of the screen.
 5. ![New Function](images/newfunction.png).
