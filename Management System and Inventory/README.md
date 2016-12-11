@@ -322,29 +322,10 @@ You should now see a command window appear and every 10 seconds a new message is
 Step 8 - View the captured data
 ================================
 
-![PowerBI](images/powerbi.png)
+In order to view the captured data, use the Database connection tools in Visual Studio or the full SQL Management Studio to connect to your database and view the data in the *StockItems* table.
 
-In order to view the captured data, you will use PowerBI to build a report which displays the current and historical locations of items from the warehouse.
 
-1. Open PowerPI Desktop and click on __Get Data__.
-    ![Get Data](images/getdata.png).
-2. Select *Azure->Microsoft Azure SQL Database* and press __Connect__
-    ![Choose Database](images/azuresqldb.png).
-3. Enter your Azure logical SQL Server name as created in a previous step and be sure to select *Direct Query*.
-     ![Enter DB Name](images/sqlservername.png).
-4. You'll be asked for Database credentials, ensure to use the User Id and Password you setup as part of the SQL Database creation.
-4. Select the "StockItems" table, then click __Load__.
-     ![Select Table](images/selecttable.png).
 
-You now have the data source added, all that remains is to display the data. In this simple example you simply display all the data in the database however the scenario could be extened to show only the most recent location.
-
-5. Click on the *Name* column box under the StockItems table on the Fields pane. This will add it to a report on the main report canvas. If there is any data in the database it will be queriered now and displayed.
-     ![Select Table](images/addname.png).
-6. Now add ticks to the *LastSeen*, *Location* and *RFiD* columns.
-
-The final report looks similar to this:
-
-![Final Report](images/finalreport.png).
 
 
 
