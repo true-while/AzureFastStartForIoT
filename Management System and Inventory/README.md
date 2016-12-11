@@ -125,7 +125,8 @@ Step 4 - Stream Analytics Job
 
 ![Azure Stream Analytics](images/streamanalytics.png)
 
-The role of the Stream Analytics is to copy messages unchanged from the IoT Hub to the Event Hub. Later this will be modified to send messages to two different locations.
+The role of the Stream Analytics is to copy messages unchanged from the IoT Hub to the Event Hub.
+Later this will be modified to detect duplicate RFiD tags being used in multiple locations.
 
 1. Click (+)-->Internet of Things-->Stream Analytics Job.
 2. Call the job "ProcessRFID", select a Resource Group and click __Create__.
