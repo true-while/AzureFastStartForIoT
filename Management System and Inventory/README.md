@@ -19,7 +19,7 @@ Architecture
 ![Architecture](images/architecture.png)
 
 1. An RFiD Reader will scan a tagged item then send the details to an IoT Hub. Each reader will be registered as a unique device.
-2. A Stream Analytics job will remove the scanned data and move it to an Event Hub. Currently nothing is done to the data but in a later update to this scenario this will change.
+2. A Stream Analytics job collects the scanned data and moves it to an Event Hub. Currently nothing is done to process the data but in a later update to this scenario Stream Analytics will be used to detect duplicate tags across multiple store locations.
 3. The data is uploaded to a regular Event Hub where it is queued for processing.
 4. An Azure Function is configured to trigger off the arrival of a message at the Event Hub.
 5. The details of the scanned item will be inserted/updated in an Azure hosted SQL Database.
@@ -270,7 +270,7 @@ public class MyDBConfiguration: DbConfiguration
 17. `Server=tcp:somedbname.database.windows.net,1433;Database=RFIDStock;User ID=someusername;Password=somepassword;Encrypt=True;TrustServerCertificate=False;Connection Timeout=300`. *Remember to include the space between "User Id" - this might not be obvious with the formatting of the text on the page*.
 18. Press *Save*.
 
-The Azure Function is now complete. It will automatically run then new messages arrive at the Event Hub. 
+The Azure Function is now complete. It will automatically run when new messages arrive at the Event Hub. 
 
 
 Step 7 - Build an application to upload the data
