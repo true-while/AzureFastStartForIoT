@@ -229,14 +229,14 @@ public static void Run(string myEventHubMessage, TraceWriter log)
     // Raw input data for debugging purposes.
     log.Info($"Raw Data: {myEventHubMessage}");
     dynamic data = JsonConvert.DeserializeObject(myEventHubMessage);
-    log.Info($"DeviceId: {data.DeviceId}");
+    log.Info($"DeviceId: {data.deviceId}");
     log.Info($"Time: {data.Time}");
     log.Info($"Location: {data.Location}");
     log.Info($"RFiD: {data.RFiD}");
 
     // Create a new item for insertion into the SQL Database.
     StockItem item = new StockItem();
-    item.DeviceId = data.DeviceId;
+    item.DeviceId = data.deviceId;
     item.Time = data.Time;
     item.Location = data.Location;
     item.RFiD = data.RFiD;
