@@ -172,6 +172,8 @@ Note as part of the above connection string there is a `Database=RFIDStock` key/
 
 Make a note of this completed connection string as you'll need it soon.
 
+> You will also need to create a firewall rule to allow the PowerBI components access to the database. Follow the details under the __Create a server-level firewall rule in the Azure portal__ section on the the above page for details on how to do this.
+
 Step 6 - Setup an Azure Function to process incoming data
 =========================================================
 
@@ -328,8 +330,9 @@ In order to view the captured data, you will use PowerBI to build a report which
     ![Get Data](images/getdata.png).
 2. Select *Azure->Microsoft Azure SQL Database* and press __Connect__
     ![Choose Database](images/azuresqldb.png).
-3. Enter your Azure logical SQL Server name as created in a previous step.
+3. Enter your Azure logical SQL Server name as created in a previous step and be sure to select *Direct Query*.
      ![Enter DB Name](images/sqlservername.png).
+4. You'll be asked for Database credentials, ensure to use the User Id and Password you setup as part of the SQL Database creation.
 4. Select the "StockItems" table, then click __Load__.
      ![Select Table](images/selecttable.png).
 
