@@ -91,7 +91,10 @@ You are going to start by building an IoT Hub that hand RFiD scanners carried by
 Step 2 - Register your device with IoT Hub
 ==========================================
 
-For your device to connect to IoT Hub it must have its own Device Identity (aka set of credentials). The process of obtaining these is known as Registering your Device. Currently there is no way to do this via the Azure Portal but there is a remote API available. Rather than write a custom application to connect & register you are going to use Device Explorer which is part of the IoT SDK. You can also register a device via the IoT Dashboard application or use iothub-explorer, another tool from the IoT SDK written in node.js.
+For your device to connect to IoT Hub it must have its own Device Identity (aka set of credentials).
+The process of obtaining these is known as *Registering your Device*.
+Currently there is no way to do this via the Azure Portal but there is a remote API available.
+Rather than write a custom application to connect & register a new device, you are going to use Device Explorer, a tool which is part of the IoT SDK.
 
 1.	Open the Device Explorer (*C:\Program Files (x86)\Microsoft\DeviceExplorer\DeviceExplorer.exe*) and fill the IoT Hub Connection String field with the connection string of the IoT Hub you created in previous steps and click on __Update__.
 2. ![Setting the connection string](images/deconfigure.png)
