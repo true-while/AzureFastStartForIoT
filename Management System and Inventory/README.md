@@ -185,12 +185,91 @@ Azure functions are background jobs written in .Net Core that run on web servers
 
 ![Entering Function Details](images/enterfunctiondetails.png) ![Entering Event Hub Connection String](images/creatingsbconnectionstring.png).
 
+You now have a basic Azure Function which will trigger each time a new message arrives at the Event Hub. Let's now update this to send the output to the Azure SQL Database.
 
-__TODO ******************************__
+10. From the Azure Function Code Editor screen, press __View Files__ in the upper right-hand corner of the screen, press __+ Add__, then add a new file called *project.json*.
+11. ![New Azure Function Project File](images/azurefuncproject.png) 
+12. Enter the following text into the file (to ensure that the Entity Framework is loaded before the Function trys to run), then press the red *Save* button at the top of the page:
+```
+{
+  "frameworks": {
+    "net46":{
+      "dependencies": {
+        "EntityFramework": "6.1.3"
+      }
+    }
+   }
+}
+```
 
-The code to write messages via Entity Framework to the Azure SQL DB needs to be inserted here.
+13. Back in the project files explorer, click *run.csx* then enter the following code into the main editor (followed by *Save*):
+```
+using System;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Core.Objects;
+using System.Linq;
+using System.ComponentModel.DataAnnotations;
+using System.Data.Entity.SqlServer;
 
-__TODO ******************************__
+
+public static void Run(string myEventHubMessage, TraceWriter log)
+{
+    log.Info($"Running.....");
+    
+    StockItem item = new StockItem();
+    item.LastSeen = DateTime.Now;
+    item.Location = "Under the sofa";
+    item.Name = "Thing 1234";
+    item.RFiD = "kgfjdgkdj";
+
+    Model1 db = new Model1();
+    db.StockItems.Add(item);
+
+    db.SaveChanges();
+}
+
+
+public class Model1 : DbContext
+{
+    public Model1(): base("name=Model1")
+    {
+    }
+    
+    public virtual DbSet<StockItem> StockItems
+    {   
+        get;
+        set;
+    }
+}
+
+public class StockItem
+{
+    [Key]
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public DateTime LastSeen { get; set; }
+    public string Location { get; set; }
+    public string RFiD { get; set; }
+}
+
+
+public class MyDBConfiguration: DbConfiguration
+{
+    public MyDBConfiguration()
+    {
+        SetProviderServices("System.Data.SqlClient", SqlProviderServices.Instance);
+        SetDefaultConnectionFactory(new SqlConnectionFactory());
+    }
+}
+```
+
+14. Click the "Function App Settings" link in the lower left hand menu followed by the *Configure App Settings* link under the *Develop* heading.
+15. On the Application Settings blade, scroll to the bottom of the page to the *Connection Strings* section.
+16. Enter a new connection string called `Model1`, a type of `SQL Database` and for the value enter the connection string to your Azure SQL Database. *Remember your SQL Database connection string will look something like this* `Server=tcp:somedbname.database.windows.net,1433;Database=RFIDStock;User ID=someusername;Password=somepassword;Encrypt=True;TrustServerCertificate=False;Connection Timeout=300`.
+17. Press *Save*.
+
+The Azure Function is now complete. It will automatically run then new messages arrive at the Event Hub. 
 
 
 Step 7 - Build an application to upload the data
