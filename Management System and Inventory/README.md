@@ -72,7 +72,7 @@ For more in depth guidance on setting up your hardware device see [Get Started](
 Step 1 - Build an IoT Hub
 =========================
 
-[IoT Hub](images/iothub.png)
+![IoT Hub](images/iothub.png)
 
 You are going to start by building an IoT Hub that hand RFiD scanners carried by employees will upload their data to.
 
@@ -105,7 +105,7 @@ __Note__: The device identities registration can be automated using the Azure Io
 Step 3 - Create an Event Hub
 ============================
 
-[Event Hub](images/eventhub.png)
+![Event Hub](images/eventhub.png)
 
 The Event Hub will act as an intermediatory for scanned and uploaded data before it gets processed by the Azure Function.
 
@@ -120,7 +120,7 @@ The Event Hub will act as an intermediatory for scanned and uploaded data before
 Step 4 - Stream Analytics Job
 =============================
 
-[Azure Stream Analytics](images/streamanalytics.png)
+![Azure Stream Analytics](images/streamanalytics.png)
 
 The role of the Stream Analytics is to copy messages unchanged from the IoT Hub to the Event Hub. Later this will be modified to send messages to two different locations.
 
@@ -150,7 +150,7 @@ The role of the Stream Analytics is to copy messages unchanged from the IoT Hub 
 Step 5 - Create an Azure Database
 =================================
 
-[Azure SQL Database](images/sqldatabase.png)
+![Azure SQL Database](images/sqldatabase.png)
 
 The details on how to create a new Azure SQL Database are very well documented and won't be copied here, instead you should browse to:
 
@@ -169,7 +169,7 @@ Make a note of this completed connection string as you'll need it soon.
 Step 6 - Setup an Azure Function to process incoming data
 =========================================================
 
-[Azure Functions](images/azurefunctions.png)
+![Azure Functions](images/azurefunctions.png)
 
 Azure functions are background jobs written in .Net Core that run on web servers and process data. You are going to use one to read the data which has been sent to the Event Hub then upload it into the database. To make this easier you'll use the Entity Framework with a *code first* model to automatically create the database with the correct schema on the logical SQL Server you created in an earlier step.
 
@@ -196,7 +196,7 @@ __TODO ******************************__
 Step 7 - Build an application to upload the data
 ================================================
 
-[Application](images/application.png)
+![Application](images/application.png)
 
 __In future updates to this scenario it is planned that the simulated RFiD reader console application will be replaced with a physical reader.__
 
@@ -221,7 +221,7 @@ You should now see a command window appear and every 10 seconds a new message is
 Step 8 - View the captured data
 ================================
 
-[PowerBI](images/powerbi.png)
+![PowerBI](images/powerbi.png)
 
 In order to view the captured data, you will use PowerBI to build a report which displays the current and historical locations of items from the warehouse.
 
