@@ -190,7 +190,7 @@ To make this easier you'll use the Entity Framework with a *code first* model to
     ![Function Template](images/correctfunction.png)
 5. Enter the details to setup and configure the function. *Ensure you name the function* __RFiDFunc__ *as shown and enter the name of the Event Hub you created earlier from which you want to pull messages. In order for this function to read those messages, it will need a connection string. Click on the __New__ link to the right of the "Event Hub Connection" box, click __Add a Connection String__ and enter the details the Event Hub Connection string you saved from earlier, remember that it looks something like this* `Endpoint=sb://somenamehere.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=BjTiZe6GUhH1PjG6AQKt1nROm2YwVWU3L4wMFpY7JiM=`
     ![Entering Function Details](images/enterfunctiondetails.png) ![Entering Event Hub Connection String](images/creatingsbconnectionstring.png).
-6. You now have a basic Azure Function which will trigger each time a new message arrives at the Event Hub. Let's now update this to send the output to the Azure SQL Database.
+    You now have a basic Azure Function which will trigger each time a new message arrives at the Event Hub. Let's now update this to send the output to the Azure SQL Database.
 7. From the Azure Function Code Editor screen, press __View Files__ in the upper right-hand corner of the screen, press __+ Add__, then add a new file called *project.json*.
     ![New Azure Function Project File](images/azurefuncproject.png) 
 8. Enter the following text into the file (to ensure that the Entity Framework is loaded before the Function trys to run), then press the red *Save* button at the top of the page:
