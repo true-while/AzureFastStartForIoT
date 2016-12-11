@@ -267,7 +267,7 @@ public class MyDBConfiguration: DbConfiguration
 14. Click the *Function App Settings* link in the lower left hand menu followed by the *Configure App Settings* link under the *Develop* heading.
 15. On the Application Settings blade, scroll to the bottom of the page to the *Connection Strings* section.
 16. Enter a new connection string called `Model1`, a type of `SQL Database` and for the value enter the connection string to your Azure SQL Database. *Remember your SQL Database connection string will look something like that shown below*:
-17. `Server=tcp:somedbname.database.windows.net,1433;Database=RFIDStock;User ID=someusername;Password=somepassword;Encrypt=True;TrustServerCertificate=False;Connection Timeout=300`. *Remember to include the space between "User Id" - this might not be obvious with the formatting of the text on page*.
+17. `Server=tcp:somedbname.database.windows.net,1433;Database=RFIDStock;User ID=someusername;Password=somepassword;Encrypt=True;TrustServerCertificate=False;Connection Timeout=300`. *Remember to include the space between "User Id" - this might not be obvious with the formatting of the text on the page*.
 18. Press *Save*.
 
 The Azure Function is now complete. It will automatically run then new messages arrive at the Event Hub. 
