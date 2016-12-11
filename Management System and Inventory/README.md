@@ -177,7 +177,9 @@ Step 6 - Setup an Azure Function to process incoming data
 
 ![Azure Functions](images/azurefunctions.png)
 
-Azure functions are background jobs written in .Net Core that run on web servers and process data. You are going to use one to read the data which has been sent to the Event Hub then upload it into the database. To make this easier you'll use the Entity Framework with a *code first* model to automatically create the database with the correct schema on the logical SQL Server you created in an earlier step.
+Azure functions are background jobs written in C# or Node.js that run on web servers and process data.
+You are going to use one to read the data which has been sent to the Event Hub from Stream Analytics then insert it into the database.
+To make this easier you'll use the Entity Framework with a *code first* model to automatically create the database with the correct schema on the logical SQL Server you created previously.
 
 1. Open a browser tab at the [Azure Functions](http://functions.azure.com) page.
 2. __Click__ on the "Login to your account" link under the "Try it for Free" green button.
