@@ -181,23 +181,19 @@ Azure functions are background jobs written in C# or Node.js that run on web ser
 You are going to use one to read the data which has been sent to the Event Hub from Stream Analytics then insert it into the database.
 To make this easier you'll use the Entity Framework with a *code first* model to automatically create the database with the correct schema on the logical SQL Server you created previously.
 
-1. Open a browser tab at the [Azure Functions](http://functions.azure.com) page.
-2. __Click__ on the "Login to your account" link under the "Try it for Free" green button.
-3. Enter a suitable *name* for the function, *a region*, then click *"Create"*.
-4. ![Creating a Azure Function App](images/createfunction.png).
-5. From the Function App homepage, press +New Function in the upper left hand side of the screen.
-6. ![New Function](images/newfunction.png).
-7. Select the __EventHubTrigger-CSharp__ function template.
-8. ![Function Template](images/correctfunction.png)
-9. Enter the details to setup and configure the function. *Ensure you name the function* __RFiDFunc__ *as shown and enter the name of the Event Hub you created earlier (I called mine "mymessages"). In order for this function to read messages from your Event Hub, it will need a connection string, Click on the __New__ link to the right of the "Event Hub Connection" box, click __Add a Connection String__ and enter the details the Event Hub Connection string you saved from earlier, remember that it looks something like this* `Endpoint=sb://somenamehere.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=BjTiZe6GUhH1PjG6AQKt1nROm2YwVWU3L4wMFpY7JiM=`
-
-![Entering Function Details](images/enterfunctiondetails.png) ![Entering Event Hub Connection String](images/creatingsbconnectionstring.png).
-
-You now have a basic Azure Function which will trigger each time a new message arrives at the Event Hub. Let's now update this to send the output to the Azure SQL Database.
-
-10. From the Azure Function Code Editor screen, press __View Files__ in the upper right-hand corner of the screen, press __+ Add__, then add a new file called *project.json*.
-11. ![New Azure Function Project File](images/azurefuncproject.png) 
-12. Enter the following text into the file (to ensure that the Entity Framework is loaded before the Function trys to run), then press the red *Save* button at the top of the page:
+1. Open a new browser tab at the http://functions.azure.com page.
+2. Enter a suitable *name* for the function, *a region*, then click *"Create"*.
+3. ![Creating a Azure Function App](images/createfunction.png).
+4. From the Function App homepage, press +New Function in the upper left hand side of the screen.
+5. ![New Function](images/newfunction.png).
+6. Select the __EventHubTrigger-CSharp__ function template.
+7. ![Function Template](images/correctfunction.png)
+8. Enter the details to setup and configure the function. *Ensure you name the function* __RFiDFunc__ *as shown and enter the name of the Event Hub you created earlier (I called mine "mymessages"). In order for this function to read messages from your Event Hub, it will need a connection string. Click on the __New__ link to the right of the "Event Hub Connection" box, click __Add a Connection String__ and enter the details the Event Hub Connection string you saved from earlier, remember that it looks something like this* `Endpoint=sb://somenamehere.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=BjTiZe6GUhH1PjG6AQKt1nROm2YwVWU3L4wMFpY7JiM=`
+9. ![Entering Function Details](images/enterfunctiondetails.png) ![Entering Event Hub Connection String](images/creatingsbconnectionstring.png).
+10. You now have a basic Azure Function which will trigger each time a new message arrives at the Event Hub. Let's now update this to send the output to the Azure SQL Database.
+11. From the Azure Function Code Editor screen, press __View Files__ in the upper right-hand corner of the screen, press __+ Add__, then add a new file called *project.json*.
+12. ![New Azure Function Project File](images/azurefuncproject.png) 
+13. Enter the following text into the file (to ensure that the Entity Framework is loaded before the Function trys to run), then press the red *Save* button at the top of the page:
 ```
 {
   "frameworks": {
@@ -209,8 +205,7 @@ You now have a basic Azure Function which will trigger each time a new message a
    }
 }
 ```
-
-13. Back in the project files explorer, click *run.csx* then enter the following code into the main editor (followed by *Save*):
+14. Back in the project files explorer, click *run.csx* then enter the following code into the main editor (followed by *Save*):
 ```
 using System;
 using System.Data.Entity;
@@ -271,12 +266,11 @@ public class MyDBConfiguration: DbConfiguration
     }
 }
 ```
-
-14. Click the *Function App Settings* link in the lower left hand menu followed by the *Configure App Settings* link under the *Develop* heading.
-15. On the Application Settings blade, scroll to the bottom of the page to the *Connection Strings* section.
-16. Enter a new connection string called `Model1`, a type of `SQL Database` and for the value enter the connection string to your Azure SQL Database. *Remember your SQL Database connection string will look something like that shown below*:
-17. `Server=tcp:somedbname.database.windows.net,1433;Database=RFIDStock;User ID=someusername;Password=somepassword;Encrypt=True;TrustServerCertificate=False;Connection Timeout=300`. *Remember to include the space between "User Id" - this might not be obvious with the formatting of the text on the page*.
-18. Press *Save*.
+15. Click the *Function App Settings* link in the lower left hand menu followed by the *Configure App Settings* link under the *Develop* heading.
+16. On the Application Settings blade, scroll to the bottom of the page to the *Connection Strings* section.
+17. Enter a new connection string called `Model1`, a type of `SQL Database` and for the value enter the connection string to your Azure SQL Database. *Remember your SQL Database connection string will look something like that shown below*:
+18. `Server=tcp:somedbname.database.windows.net,1433;Database=RFIDStock;User ID=someusername;Password=somepassword;Encrypt=True;TrustServerCertificate=False;Connection Timeout=300`. *Remember to include the space between "User Id" - this might not be obvious with the formatting of the text on the page*.
+19. Press *Save*.
 
 The Azure Function is now complete. It will automatically run when new messages arrive at the Event Hub. 
 
