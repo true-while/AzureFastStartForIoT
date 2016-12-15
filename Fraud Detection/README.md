@@ -21,6 +21,16 @@ For testing purposes, it has to ability to simulate a camera that takes a photo 
 
 Basic Hardware Setup
 ====================
+## Hardware Requirements
+
+You will need the following hardware items to build this scenario:
+* [Microsoft IoT Pack for Raspberry Pi 3 - w/ Raspberry Pi 3](https://www.adafruit.com/products/2733)
+* [1 x Adafruit Assembled Pi Cobbler Breakout + Cable for Raspberry Pi - Model B](https://www.adafruit.com/product/914)
+* [1 x PIR (motion) sensor](https://www.adafruit.com/product/189)
+* [1 x USB Webcam: Supported USB Webcam's](https://developer.microsoft.com/en-us/windows/iot/docs/hardwarecompatlist)
+
+
+## Basic Circuit
 
 __TODO - This section needs reviewing and updating__
 
