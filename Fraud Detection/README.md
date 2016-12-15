@@ -1,7 +1,6 @@
 # Fraud Detection Scenario
 
-<img src="https://hackster.imgix.net/uploads/cover_image/file/66861/SecurityCamera2.JPG?auto=compress%2Cformat&w=400">
-
+![Camera](images/camera.png)
 
 Scenario
 ========
