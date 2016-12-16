@@ -13,6 +13,8 @@ Credit for this project is as follows:-
 
 * [Microsoft Premier Services](https://www.microsoft.com/en-us/microsoftservices/support.aspx).
 
+> At launch on the 15th December 2016, the physical RFiD reader which is part of the kit of provided parts does not work with the RaspberyPi. A suitable driver to make this work is in development but is not avaialble at launch. Once this is ready, this scenario will be updated accordingly. In the meantime, a simualted RFiD reader (a console application!) has been made availble.
+
 Architecture
 ============
 
