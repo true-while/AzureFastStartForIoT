@@ -33,16 +33,38 @@ namespace SecuritySystemUWP
 
         public static string GetIPAddress()
         {
-            // iterate hostnames to find ipv4 address
-            var hostname = NetworkInformation.GetHostNames()
-                .FirstOrDefault(
-                x => x.IPInformation != null &&
-                x.Type == HostNameType.Ipv4);
-            if (hostname != null)
+            //get the connection profiles
+            var icp = NetworkInformation.GetInternetConnectionProfile();
+
+            //verify that we have content
+            if (icp != null
+                  && icp.NetworkAdapter != null
+                  && icp.NetworkAdapter.NetworkAdapterId != null)
             {
-                return hostname.DisplayName;
+                //get the profile name
+                var name = icp.ProfileName;
+
+                //get the system's host name
+                var hostnames = NetworkInformation.GetHostNames();
+
+                //verify each hostname information
+                foreach (var hn in hostnames)
+                {
+                    if (hn.IPInformation != null
+                        && hn.IPInformation.NetworkAdapter != null
+                        && hn.IPInformation.NetworkAdapter.NetworkAdapterId
+                                                                   != null
+                        && hn.IPInformation.NetworkAdapter.NetworkAdapterId
+                                    == icp.NetworkAdapter.NetworkAdapterId
+                        && hn.Type == HostNameType.Ipv4)
+                    {
+                        //return current ip
+                        return hn.CanonicalName;
+                    }
+                }
             }
-            // if not found
+
+            //if we do not have any IP, return 0.0.0.0
             return "0.0.0.0";
         }
 
