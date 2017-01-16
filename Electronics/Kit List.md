@@ -22,7 +22,7 @@
 
 ##Retail Management System and Inventory Optimization
 
-* [PN532 NFC/RFID controller breakout board - v1.6](https://www.adafruit.com/products/364)
+* [RFID-522 NFC/RFID controller breakout board](http://www.sainsmart.com/sainsmart-mifare-rc522-card-read-antenna-rf-rfid-reader-ic-card-proximity-module.html)
 
 * [13.56MHz RFID/NFC White Tag - 1KB](https://www.adafruit.com/products/360)
 
@@ -30,9 +30,6 @@
 
 * [13.56MHz RFID/NFC Card - 1KB](https://www.adafruit.com/products/359)
 
-* [Micro NFC/RFID Transponder - NTAG203 13.56MHz](https://www.adafruit.com/products/2800)
-
 ##Remote Patient Monitoring and Clinical Analytics
 
 * [Heart Rate Educational Starter Pack with Polar Wireless Sensors](https://www.adafruit.com/products/1077)
-
