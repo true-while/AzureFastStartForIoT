@@ -35,18 +35,17 @@ As described in the [Kit List for these scenarios](/Electronics/Kit%20List.md), 
 * [Microsoft IoT Pack for Raspberry Pi 3 - w/ Raspberry Pi 3](https://www.adafruit.com/products/2733)
 * [1 x USB cable - A/MicroB - 3ft](https://www.adafruit.com/product/592)
 * [1 x Adafruit Assembled Pi Cobbler Breakout + Cable for Raspberry Pi - Model B](https://www.adafruit.com/product/914)
-* __TODO - Add RFID Components here __
+* RFID-522 Breakout board.
 
 Specifically the following items are required from the kit list:
 
 * Raspberry Pi
 * Breadboard (generic)
-* __TODO - Add RFID Components here __
+* RFID-522 Breakout board.
 
 ## Basic Circuit
 
-For the first release of this scenario a simulated RFiD Reader will be provided.
-In subsequent releases, details of how to build a hardware based reader using Raspberry PI, Windows 10 Core and the [PN532 NFC Breakout kit](https://www.adafruit.com/products/364) will be made available.
+![RFID-522 Breakout Breadboard](images/circuit.png)
 
 For interest/reference, these are the PINs on the Raspberry Pi.
 
