@@ -49,10 +49,15 @@ Specifically the following items are required from the kit list:
 
 The RFID-522 breakout board is capable of connecting to a controlling device via Serial UART, I2C or SPI. For this scenario, we'll use Serial Peripheral Interface (SPI).
 
-|RPi Pin|RFID-522 Pin|Usage|
-|:-------:|:------------:|-----:|
-|A|B|C|
-|A|B|C|
+|RPi Pin|RFID-522 Pin|Usage|Colour|
+|-|-|-|-|
+|3V3|Vcc|3.3v|Red|
+|GND|GND|Ground|Black|
+|G25|RST|Device Reset|Blue|
+|CEO|SS|Slave Select|Green|
+|MOSI|MOSI|Master Out - Slave In|Orange|
+|MISO|MISO|Master In - Slabout Out|Blue|
+|SCLK|SCK|Clock timing pulse|Yellow|
 
 ![RFID-522 Pin outs](images/RFID-RC522-pinout.png)
 
