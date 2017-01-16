@@ -49,8 +49,8 @@ Specifically the following items are required from the kit list:
 
 The RFID-522 breakout board is capable of connecting to a controlling device via Serial UART, I2C or SPI. For this scenario, we'll use Serial Peripheral Interface (SPI).
 
-| RPi Pin | RFID-522 Pin | Usage |
-|:-------:|:------------:| -----:|
+|RPi Pin|RFID-522 Pin|Usage|
+|:-------:|:------------:|-----:|
 |A|B|C|
 |A|B|C|
 
