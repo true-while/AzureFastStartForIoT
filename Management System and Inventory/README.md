@@ -93,9 +93,9 @@ You are going to start by building an IoT Hub that hand RFiD scanners carried by
 5. ![Choosing IoT Hub settings](images/newiothubsettings.png)
 6. Once the IoTHub has been created, ensure you make a copy of the *iothubowner* Connection String - this is shown via the *Shared Access Policies-->iothubowner* blade.
 7. ![Iot Hub Key](images/iothubkeys.png)  
-8. Also make a copy of the *Event Hub-compatible name* & *Event Hub-compatible endpoint* values - these appear on the *Messaging* blade. You'll need these later on when you start to read data back from IoT Hub.
+8. Also make a copy of the *Event Hub-compatible name* & *Event Hub-compatible endpoint* values - these appear on the *Messaging->EndPoints->Events->Properties* blade. You'll need these later on when you start to read data back from IoT Hub.
 9. ![Event Hub Compatible Endpoint](images/eventhubendpoint.png)
-10. Finally via the Messaging blade, create a new Consumer Group called __dbstore__, then press __Save__. Consumer groups allow multiple applications to each receive their own copy of the messages sent to the IoTHub.
+10. Finally on the same *Properties* blade, create a new Consumer Group called __dbstore__, then press __Save__. Consumer groups allow multiple applications to each receive their own copy of the messages sent to the IoTHub.
 11. ![Creating a Consumer Group](images/iotconsumergroup.png)
 
 Step 2 - Register your device with IoT Hub
