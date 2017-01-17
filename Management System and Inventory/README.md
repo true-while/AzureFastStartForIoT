@@ -13,8 +13,6 @@ Credit for this project is as follows:-
 
 * [Microsoft Premier Services](https://www.microsoft.com/en-us/microsoftservices/support.aspx).
 
-> At v1.0 launch on the 15th December 2016, the physical RFiD reader which is contained in the kit of parts with each Fast Start does not work with the RaspberyPi. A suitable driver to enable this is in development but was not avaialble at launch. Once this is ready, this scenario will be updated accordingly. In the meantime, a simualted RFiD reader (a console application!) has been made provided.
-
 Architecture
 ============
 
@@ -36,12 +34,9 @@ As described in the [Kit List for these scenarios](/Electronics/Kit%20List.md), 
 * [1 x USB cable - A/MicroB - 3ft](https://www.adafruit.com/product/592)
 * [1 x Adafruit Assembled Pi Cobbler Breakout + Cable for Raspberry Pi - Model B](https://www.adafruit.com/product/914)
 * RFID-522 Breakout board.
-
-Specifically the following items are required from the kit list:
-
-* Raspberry Pi
-* Breadboard (generic)
-* RFID-522 Breakout board.
+* An LED.
+* 220 Ohm Resistor.
+* Jumper wires.
 
 ## Basic Circuit
 
@@ -53,7 +48,7 @@ The RFID-522 breakout board is capable of connecting to a controlling device via
 | ------- | ------------ | ----------------------- | ------ |
 | 3V3     |Vcc           | 3.3v                    | Red    |
 | GND     |GND           | Ground                  | Black  |
-| G25     |RST           | Device Reset            | Blue   |
+| G5      |RST           | Device Reset            | Blue   |
 | CEO     |SS            | Slave Select            | Green  |
 | MOSI    |MOSI          | Master Out - Slave In   | Orange |
 | MISO    |MISO          | Master In - Slabout Out | Blue   |
