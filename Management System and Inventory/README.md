@@ -310,25 +310,17 @@ Step 7 - Build an application to upload scanned RFiD tags
 
 ![Application](images/application.png)
 
-__In future updates to this scenario it is planned that the simulated RFiD reader console application will be replaced with a physical reader.__
+In this section you will configure a precreated UWP application for IoT Core which acts as an RFiD scanner that an operative in a warehouse might carry.
 
-In this section you will configure a pre-created console application which emulates a typical hand help RFiD scanner that an operative in a warehouse might carry.
-To emulate an item being scanned, a small packet of data indicating the DeviceId, Location and Time along with an RFiD will be uploaded to IoT Hub.
-This will happen every 10 seconds.
-
-1. Open the *\source\SimulatedRFiDReader.sln* project in a new copy of Visual Studio.
-2. Open the App.Config file and update the __DeviceKey__ connection string in the *appSettings* section to reflect the device connection key you copied when registering a device using the *Device Explorer* tool.
+1. Open the *\source\RFiDReader\RFiDReader.sln* solution in a new copy of Visual Studio.
+2. Open the *AzureIoTHub.cs* file and update the __deviceConnectionString__ connection string to reflect the device connection key you copied when registering a device using the *Device Explorer* tool. Remember  that is look something like this: `HostName=devhubby99.azure-devices.net;DeviceId=device1;SharedAccessKey=LALEdC+ihi2ToNf9iNQlQWUcLARsE2RP0ECjUMRrHdI`
+3. Press `F5` to launch the tool. It will take a minute or two to deploy for the first time. Once the application is running, you should see the "Running..." appear in the Output window of Visual Stutio and the LED should illuminate.
+4. Touch an RFiD card against the reader. The LED will go off to indicate the card is being read and the data uploaded to Azure IoT Hub. The packet of data looks like this:
 ```
-  <appSettings>
-    <add key="DeviceKey" value="HostName=devhubby99.azure-devices.net;DeviceId=device1;SharedAccessKey=LALEdC+ihi2ToNf9iNQlQWUcLARsE2RP0ECjUMRrHdI="/>
-  </appSettings>
+{"deviceId":"device1","Time":"2017-01-17T13:36:09.4381693Z","RFiD":"d53a92c4","Location":"StoreLocation123"}
 ```
 
-3. Press `F5` to launch the tool.
-
-You should now see a command window appear and every 10 seconds a new message is sent to IoT Hub.
-
-![Simulated RFiD Reader](images/simulatedrfid.png).
+5. Once the upload has completed, the LED will illuminate again.
 
 Step 8 - View the captured data
 ================================
