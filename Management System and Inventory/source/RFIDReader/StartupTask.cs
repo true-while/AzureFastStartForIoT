@@ -1,54 +1,76 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Net.Http;
-using Windows.ApplicationModel.Background;
-
-using RFIDReader.Mfrc522Lib;
+﻿using RFIDReader.Mfrc522Lib;
+using System;
 using System.Diagnostics;
-using Newtonsoft.Json;
-using Microsoft.Azure.Devices.Client;
-
+using Windows.ApplicationModel.Background;
+using Windows.Devices.Gpio;
 
 // The Background Application template is documented at http://go.microsoft.com/fwlink/?LinkID=533884&clcid=0x409
 
 namespace RFIDReader
 {
     public sealed class StartupTask : IBackgroundTask
-    {
+    {   
+        Mfrc522 mfrc;
+        static GpioPin pin;
+        const int LED_PIN = 5;
+
         public async void Run(IBackgroundTaskInstance taskInstance)
         {
-            BackgroundTaskDeferral deferral = taskInstance.GetDeferral();
+            Debug.WriteLine("Running....");
+            InitGPIO();
+            pin.Write(GpioPinValue.High);
 
-            Mfrc522 mfrc = new Mfrc522();
+            BackgroundTaskDeferral deferral = taskInstance.GetDeferral();
+          
+            mfrc = new Mfrc522();
             await mfrc.InitIO();
 
-            #region loop
+            // Main loop
             while (true)
-            {
-                
-
-                //verify if the tag is present
+            {          
+                //true when an RFiD tag is detected
                 if (mfrc.IsTagPresent())
                 {
+                    pin.Write(GpioPinValue.Low);
                     Debug.WriteLine("IsTagPresent() == True.");
-                    //read the UUID and show in UI
-                    var uid = mfrc.ReadUid();
+                    //read the UUID from the card
+                    Uid uid = mfrc.ReadUid();
                     Debug.WriteLine("Tag value == " + uid.ToString());
                     //rfid controller halt state
                     //mfrc.HaltTag();
-                    //Sent message
+
+                    //Send message to IoT Hub
                     await AzureIoTHub.SendDeviceToCloudMessageAsync(uid.ToString());
+                    pin.Write(GpioPinValue.High);
                 }
                                    
             //sleep
             await System.Threading.Tasks.Task.Delay(TimeSpan.FromSeconds(1));
 
             }
-            #endregion
-
             //deferral.Complete();
         }
+
+        private void InitGPIO()
+        {
+            GpioController gpio = GpioController.GetDefault();
+
+            if (gpio == null)
+            {
+                pin = null;
+                return;
+            }
+
+            pin = gpio.OpenPin(LED_PIN);
+
+            if (pin == null)
+            {
+                return;
+            }
+
+            pin.Write(GpioPinValue.High);
+            pin.SetDriveMode(GpioPinDriveMode.Output);
+        }
+
     }
 }

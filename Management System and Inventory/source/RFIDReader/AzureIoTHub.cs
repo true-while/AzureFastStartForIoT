@@ -4,21 +4,11 @@ using System.Threading.Tasks;
 using Microsoft.Azure.Devices.Client;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using Windows.Devices.Gpio;
 
 static class AzureIoTHub
 {
-    //
-    // Note: this connection string is specific to the device "device1". To configure other devices,
-    // see information on iothub-explorer at http://aka.ms/iothubgetstartedVSCS
-    //
     const string deviceConnectionString = "HostName=devhubb99.azure-devices.net;DeviceId=device1;SharedAccessKey=UShGPPPi5Td1vCzYGEvE0/ZiYUDlb2YwsmHOEG91pIs=";
-
-    //
-    // To monitor messages sent to device "device1" use iothub-explorer as follows:
-    //    iothub-explorer HostName=devhubb99.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=uZKiXmf46ZD79Jr/Vv1qCX4o+nkceLFnKr/L84uxN+Y= monitor-events "device1"
-    //
-
-    // Refer to http://aka.ms/azure-iot-hub-vs-cs-wiki for more information on Connected Service for Azure IoT Hub
 
     public static async Task SendDeviceToCloudMessageAsync(string uid)
     {
@@ -32,10 +22,10 @@ static class AzureIoTHub
             Location = "StoreLocation123"
         };
 
-        var messageString = JsonConvert.SerializeObject(telemetryDataPoint);
-        var message = new Message(Encoding.ASCII.GetBytes(messageString));
+        string messageString = JsonConvert.SerializeObject(telemetryDataPoint);
+        Message message = new Message(Encoding.ASCII.GetBytes(messageString));
 
-        Debug.WriteLine("{0} > Sending message: {1}", DateTime.Now, messageString);
+        Debug.WriteLine("{0} > Sending message: {1}", telemetryDataPoint.Time.ToString(), messageString);
         await deviceClient.SendEventAsync(message);
         Debug.WriteLine("Done.");
 
@@ -60,4 +50,6 @@ static class AzureIoTHub
             await Task.Delay(TimeSpan.FromSeconds(1));
         }
     }
+
+    
 }
