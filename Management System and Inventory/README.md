@@ -135,8 +135,8 @@ Step 4 - Stream Analytics Job
 
 ![Azure Stream Analytics](images/streamanalytics.png)
 
-The role of the Stream Analytics is to copy messages unchanged from the IoT Hub to the Event Hub.
-Later this will be modified to detect duplicate RFiD tags being used in multiple locations.
+The role of Stream Analytics is simple: to copy messages unchanged from the IoT Hub to the Event Hub.
+In a later update to this scenario, this will be modified to detect duplicate RFiD tags being used in multiple locations.
 
 1. Click (+)-->Internet of Things-->Stream Analytics Job.
 2. Call the job "ProcessRFID", select a Resource Group and click __Create__.
@@ -145,7 +145,7 @@ Later this will be modified to detect duplicate RFiD tags being used in multiple
 5. Enter the values shown below to define where Stream Analytics will obtain its Input data from. *You will select the name of the IoT Hub you created in a previous step*. Click __Create__ when you are done.
 6. ![New Input Details](images/newinputdetails.png)
 7. Back on the Stream Analytics job homepage, click __Outputs__ then __Add__ to define an output location for the job.
-8. Enter the values shown below to define where Stream Analytics will obtain its Output data from. *You will select the name of the Service Bus Namespace and Event Hub you created in a previous step*. Note that *Partition Key Column* is left blank. Click __Create__ when you are done.
+8. Enter the values shown below to define where Stream Analytics will send its Output data to. *You will select the name of the Service Bus Namespace and Event Hub you created in a previous step*. Note that *Partition Key Column* is left blank. Click __Create__ when you are done.
 9. ![New Output Details](images/newoutputdetails.png)
 10. To ensure messages from passed from the IoT Hub to the Event Hub, you will need to define a query. From the job's homepage, click __Query__ which is sandwiched between Inputs and Outputs which you clicked earlier.
 11. Enter the following query:-
@@ -193,7 +193,7 @@ Azure functions are background jobs written in C# or Node.js that run on web ser
 You are going to use one to read the data which has been sent to the Event Hub from Stream Analytics then insert it into the database.
 To make this easier you'll use the Entity Framework with a *code first* model to automatically create the database with the correct schema on the logical SQL Server you created previously.
 
-1. Open a new browser tab at the http://functions.azure.com page. *This will allow you to create a new Function App, a container website for your data processing functions.*
+1. Open a new browser tab at the http://functions.azure.com page. *This will allow you to create a new Function App and a container website for your data processing functions.*
 2. Enter a suitable *name* for the Function App Website , *a region*, then click *"Create"*.
     ![Creating a Azure Function App](images/createfunction.png)
 3. From the Function App homepage, press +New Function in the upper left hand side of the screen.
@@ -208,6 +208,7 @@ To make this easier you'll use the Entity Framework with a *code first* model to
 7. From the Azure Function Code Editor screen, press __View Files__ in the upper right-hand corner of the screen, press __+ Add__, then add a new file called *project.json*.
     ![New Azure Function Project File](images/azurefuncproject.png) 
 8. Enter the following text into the file (to ensure that the Entity Framework is loaded before the Function trys to run), then press the red *Save* button at the top of the page: 
+```  
     {
       "frameworks": {
         "net46":{
@@ -217,6 +218,7 @@ To make this easier you'll use the Entity Framework with a *code first* model to
         }
        }
     }
+```    
 9. Back in the project files explorer, click *run.csx* then enter the following code into the main editor (followed by *Save*):
 ```
 #r "Newtonsoft.Json"
